@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -32,14 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     private SliderLayout mDemoSlider;
+    ConstraintLayout main_first_row, cardPenari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //START : TOOLBAR
+
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
+
+        //END : TOOLBAR
+
+        //START : DRAWER MENU
 
         // Create the AccountHeader
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -77,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        //END DRAWER MENU
+        //END : DRAWER MENU
 
-        //START SLIDER LAYOUT
+        //START : SLIDER LAYOUT
         mDemoSlider = (SliderLayout)findViewById(R.id.main_slider);
 
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
@@ -111,6 +119,24 @@ public class MainActivity extends AppCompatActivity {
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
+
+        //END : DRAWER MENU
+
+        //START : CARDS
+
+        main_first_row = (ConstraintLayout) findViewById(R.id.main_first_row);
+        main_first_row.bringToFront();
+
+        cardPenari = (ConstraintLayout) findViewById(R.id.main_card_penari);
+        cardPenari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        //END : CARD
+
 
     }
 }
