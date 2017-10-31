@@ -12,4 +12,13 @@
         <item name="android:windowBackground">@drawable/splashbackground</item>
     </style>
 
+    <style name="HeaderBar">
+        <item name="android:background">#ED6549</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
