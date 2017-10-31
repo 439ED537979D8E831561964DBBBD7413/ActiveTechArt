@@ -3,5 +3,6 @@
     <color name="colorPrimary">#ED6549</color>
     <color name="colorPrimaryDark">#b5341f</color>
     <color name="colorPrimaryLight">#ff9676</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorUnderlineDivider">#a5afaeae</color>
 </resources>

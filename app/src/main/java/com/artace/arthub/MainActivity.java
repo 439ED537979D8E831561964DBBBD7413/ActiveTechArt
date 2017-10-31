@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,9 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Masuk Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_circle);
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Masuk Sebagai Event Organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Daftar Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_box);
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Daftar Sebagai Event organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -77,9 +79,20 @@ public class MainActivity extends AppCompatActivity {
                 .addDrawerItems(
                         item1,
                         item2,
+                        item3,
                         new DividerDrawerItem(),
-                        item3
+                        item4
                 )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        if (drawerItem.getIdentifier() == 1){
+                            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        return false;
+                    }
+                })
                 .build();
 
         result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
