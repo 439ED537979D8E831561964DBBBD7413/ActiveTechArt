@@ -90,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                             startActivity(intent);
                         }
+                        if (drawerItem.getIdentifier() == 2){
+                            Intent intent = new Intent(MainActivity.this, RegisterSenimanActivity.class);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 })

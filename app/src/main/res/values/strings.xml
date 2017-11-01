@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ArtHub</string>
+    <string name="seniman">Seniman</string>
+    <string name="eventorganizer">Event Organizer</string>
 </resources>

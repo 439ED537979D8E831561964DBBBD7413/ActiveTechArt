@@ -21,4 +21,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!--Spinner Theme-->
+    <style name="SpinnerTheme" parent="Base.Widget.AppCompat.Spinner.Underlined">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorPrimaryLight</item>
+    </style>
+
 </resources>
