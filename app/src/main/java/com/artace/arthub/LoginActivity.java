@@ -27,19 +27,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setContentView(R.layout.register_choose);
+
+                btnRegisterSeniman = (Button) findViewById(R.id.register_choose_seniman);
+                btnRegisterSeniman.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(LoginActivity.this,RegisterSenimanActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                btnRegisterEO = (Button) findViewById(R.id.register_choose_eo);
             }
         });
-
-        btnRegisterSeniman = (Button) findViewById(R.id.register_choose_seniman);
-        btnRegisterSeniman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,RegisterSenimanActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnRegisterEO = (Button) findViewById(R.id.register_choose_eo);
         //TODO : ONCLICK REGISTER IO
     }
 }

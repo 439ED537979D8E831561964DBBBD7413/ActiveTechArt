@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     private SliderLayout mDemoSlider;
-    ConstraintLayout main_first_row, cardPenari;
+    ConstraintLayout main_first_row, cardPenari, cardMusisi, cardBondres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +148,35 @@ public class MainActivity extends AppCompatActivity {
         cardPenari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,OrganizerMainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("TITLE","Penari");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
 
+        cardMusisi = (ConstraintLayout) findViewById(R.id.main_card_musisi);
+        cardMusisi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,OrganizerMainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("TITLE","Musisi");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
+
+        cardBondres = (ConstraintLayout) findViewById(R.id.main_card_bondres);
+        cardBondres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,OrganizerMainActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("TITLE","Bondres");
+                intent.putExtras(extras);
+                startActivity(intent);
             }
         });
 

@@ -13,9 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
         <activity android:name=".MainActivity" />
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -25,17 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".RegisterSenimanActivity"
-            android:parentActivityName="com.artace.arthub.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".OrganizerMainActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.artace.arthub.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
