@@ -21,7 +21,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +43,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
+        <activity android:name=".TambahEventActivity"></activity>
         <activity android:name=".RegisterEventOrganizerActivity" />
+        <activity android:name=".EventTerimaTolakActivity">
+
+        </activity>
+        <activity android:name=".EventDetailActivity"></activity>
         <activity android:name=".SenimanHomeProfileActivity"></activity>
 
     </application>
