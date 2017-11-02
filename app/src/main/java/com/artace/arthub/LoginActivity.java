@@ -38,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
                 btnRegisterEO = (Button) findViewById(R.id.register_choose_eo);
+                btnRegisterEO.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(LoginActivity.this,RegisterEventOrganizerActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
         //TODO : ONCLICK REGISTER IO

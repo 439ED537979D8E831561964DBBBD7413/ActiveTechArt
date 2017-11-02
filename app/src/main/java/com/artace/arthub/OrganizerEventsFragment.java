@@ -4,9 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.artace.arthub.adapter.EventAdapter;
+import com.artace.arthub.controller.AppController;
+import com.artace.arthub.pojo.PojoEvent;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +46,12 @@ public class OrganizerEventsFragment extends Fragment {
     private String mParam2;
 
 //    private OnFragmentInteractionListener mListener;
+
+    RequestQueue queue;
+    String url = "http://192.168.43.84/arthub/eventorganizer/eventorganizerevents.php";
+    RecyclerView recyclerView;
+    List<PojoEvent> eventList = new ArrayList<PojoEvent>();
+    EventAdapter adapter;
 
     public OrganizerEventsFragment() {
         // Required empty public constructor
@@ -58,13 +82,60 @@ public class OrganizerEventsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        RelativeLayout rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_events_recyclerview);
+        adapter = new EventAdapter(getContext(), eventList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        recyclerView.setAdapter(adapter);
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+        //Volley's inbuilt class to make Json array request
+        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try{
+                    JSONArray jr = response.getJSONArray(0);
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+
+                            PojoEvent event = new PojoEvent(obj.getInt("id_event"),obj.getInt("id_event_organizer"),obj.getString("nama"),obj.getString("tanggal"),obj.getString("lokasi"),obj.getString("keterangan"),obj.getString("foto"),obj.getString("nama_eo"));
+
+                            // adding event to events array
+                            eventList.add(event);
+
+                        } catch (Exception e) {
+                            System.out.println("LOG gamao! = " + e.getMessage());
+                        } finally {
+                            //Notify adapter about data changes
+                            adapter.notifyItemChanged(i);
+                        }
+                    }
+                }catch (Exception e){
+                    System.out.println("LOG gamao diluar! = " + e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+
+            }
+        });
+        //Adding JsonArrayRequest to Request Queue
+        queue.add(newsReq);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_organizer_events, container, false);
+        return rootView;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
