@@ -15,20 +15,20 @@ public class RegisterSenimanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_seniman);
+        setContentView(R.layout.activity_seniman_list_tawaran);
 
         //START : TOOLBAR
 
-        mToolbar = (Toolbar) findViewById(R.id.register_seniman_toolbar);
-        setSupportActionBar(mToolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle("Register Seniman");
+//        mToolbar = (Toolbar) findViewById(R.id.register_seniman_toolbar);
+//        setSupportActionBar(mToolbar);
+//        ActionBar ab = getSupportActionBar();
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setTitle("Register Seniman");
 
         //END : TOOLBAR
 
-        password = (EditText) findViewById(R.id.register_seniman_password);
-        password.setTransformationMethod(new PasswordTransformationMethod());
+        //password = (EditText) findViewById(R.id.register_seniman_password);
+        //password.setTransformationMethod(new PasswordTransformationMethod());
 
     }
 }

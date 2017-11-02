@@ -38,7 +38,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-        <activity android:name=".RegisterEventOrganizerActivity"></activity>
     </application>
 
 </manifest>
