@@ -15,7 +15,7 @@ public class RegisterSenimanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seniman_list_tawaran);
+        setContentView(R.layout.activity_register_seniman);
 
         //START : TOOLBAR
 
