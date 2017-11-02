@@ -3,7 +3,7 @@ package com.artace.arthub;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ItemEventList extends AppCompatActivity {
+public class ItemEventListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

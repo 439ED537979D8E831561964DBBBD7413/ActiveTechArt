@@ -38,8 +38,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-        <activity android:name=".ItemEventList" />
-        <activity android:name=".SenimanListTawaran"></activity>
+        <activity android:name=".ItemEventListActivity"></activity>
     </application>
 
 </manifest>
