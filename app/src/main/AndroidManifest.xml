@@ -44,6 +44,7 @@
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
         <activity android:name=".RegisterEventOrganizerActivity" />
+        <activity android:name=".SenimanHomeProfileActivity"></activity>
 
     </application>
 
