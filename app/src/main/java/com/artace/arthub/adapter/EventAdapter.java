@@ -1,8 +1,11 @@
 package com.artace.arthub.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +15,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
 import com.artace.arthub.EventDetailActivity;
 import com.artace.arthub.R;
+import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -57,6 +67,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
 
         holder.btnDetail.setTag(position);
+        holder.btnHapus.setTag(position);
 
         //OnClicks
 
@@ -74,15 +85,77 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             }
         });
 
-
         holder.btnHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO : ngapain pas di click ?
-                //Toast.makeText(context, "Rated By User : " + eventList.get(getAdapterPosition()).getRating(), Toast.LENGTH_SHORT).show();
+                int position = (Integer) view.getTag();
+                final int positionFinal = position;
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(context)
+                                .setTitle("Apakah anda yakin ?")
+                                .setMessage("Apakah anda yakin ingin menghapus event ini ?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        event = eventList.get(positionFinal);
+                                        deleteEvent(dialog,event.getId_event(), context, positionFinal);
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                alertDialogBuilder.show();
+
             }
         });
 
+    }
+
+    public void deleteEvent(DialogInterface dialog, int id_event, Context context, int position){
+
+        String delete_url = DatabaseConnection.getDeleteEvent(id_event);
+
+        final DialogInterface dialogFinal = dialog;
+        final Context contextFinal = context;
+        final int positionFinal = position;
+
+        JsonObjectRequest delete_request = new JsonObjectRequest(delete_url,
+                null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    int success = response.getInt("success");
+
+                    if (success == 1) {
+                        eventList.remove(positionFinal);
+                        notifyItemRemoved(positionFinal);
+                        dialogFinal.dismiss();
+                    } else {
+                        dialogFinal.dismiss();
+                        Toast.makeText(contextFinal,
+                                "DELETE FAILED !", Toast.LENGTH_LONG)
+                                .show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(delete_request);
     }
 
     @Override

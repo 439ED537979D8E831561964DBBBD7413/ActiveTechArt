@@ -8,7 +8,14 @@ public class DatabaseConnection {
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
 
+    //DELETE
+    public static String DELETE_EVENT = BASE_URL+"event/DeleteEvent.php";
+
     public DatabaseConnection() {
+    }
+
+    public static String getDeleteEvent(int id_event) {
+        return DELETE_EVENT + "?id_event=" + id_event;
     }
 
     public static String getBaseUrl() {
