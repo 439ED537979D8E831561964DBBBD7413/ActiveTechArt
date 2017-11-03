@@ -95,6 +95,15 @@ public class OrganizerEventsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerView.setAdapter(adapter);
+
+        getEvents();
+
+        // Inflate the layout for this fragment
+        return rootView;
+
+    }
+
+    private void getEvents(){
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
         //Volley's inbuilt class to make Json array request
@@ -133,10 +142,6 @@ public class OrganizerEventsFragment extends Fragment {
         });
         //Adding JsonArrayRequest to Request Queue
         queue.add(newsReq);
-
-        // Inflate the layout for this fragment
-        return rootView;
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event

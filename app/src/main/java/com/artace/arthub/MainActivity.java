@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         //END : DRAWER MENU
 
         //START : SLIDER LAYOUT
+
         mDemoSlider = (SliderLayout)findViewById(R.id.main_slider);
 
 //        HashMap<String,String> url_maps = new HashMap<String, String>();

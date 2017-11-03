@@ -2,6 +2,7 @@ package com.artace.arthub.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     private List<PojoEvent> eventList;
     private Context context;
     private LayoutInflater inflater;
+    PojoEvent event;
 
     public EventAdapter(Context context, List<PojoEvent> eventList) {
 
@@ -46,13 +48,36 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        PojoEvent event = eventList.get(position);
+        event = eventList.get(position);
         //Pass the values of feeds object to Views
         holder.namaEvent.setText(event.getNama());
         holder.tanggalEvent.setText(event.getTanggal());
         holder.tempatEvent.setText(event.getLokasi());
         holder.namaEo.setText(event.getEo());
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
+
+        //OnClicks
+
+        holder.btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EventDetailActivity.class);
+                Bundle extras = new Bundle();
+                extras.putInt("TITLE",event.getId_event_organizer());
+                intent.putExtras(extras);
+                context.startActivity(intent);
+            }
+        });
+
+
+        holder.btnHapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO : ngapain pas di click ?
+                //Toast.makeText(context, "Rated By User : " + eventList.get(getAdapterPosition()).getRating(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -77,26 +102,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             imageEvent = (NetworkImageView) itemView.findViewById(R.id.item_event_list_imageEvent);
             btnDetail = (Button) itemView.findViewById(R.id.item_event_list_btnDetail);
             btnHapus = (Button) itemView.findViewById(R.id.item_event_list_btnHapus);
-
-            //OnClicks
-
-            btnDetail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, EventDetailActivity.class);
-
-
-                }
-            });
-
-
-            btnHapus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO : ngapain pas di click ?
-                    //Toast.makeText(context, "Rated By User : " + eventList.get(getAdapterPosition()).getRating(), Toast.LENGTH_SHORT).show();
-                }
-            });
 
         }
     }
