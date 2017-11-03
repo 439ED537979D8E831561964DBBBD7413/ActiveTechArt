@@ -31,8 +31,8 @@
 
         <FrameLayout
             android:id="@+id/event_detail_imageEvent_container"
-            android:layout_width="86dp"
-            android:layout_height="90dp"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,12 +41,12 @@
             android:layout_marginTop="15dp">
             <ProgressBar
                 style="?android:attr/progressBarStyle"
-                android:layout_width="75dp"
-                android:layout_height="75dp" />
+                android:layout_width="85dp"
+                android:layout_height="85dp" />
             <com.artace.arthub.ViewPlugins.CircularNetworkImageView
                 android:id="@+id/event_detail_imageEvent"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
                 />
         </FrameLayout>
 
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorWhiteText"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/event_detail_imageEvent_container"
             app:layout_constraintStart_toStartOf="@+id/event_detail_imageEvent_container"
@@ -82,31 +82,40 @@
 
             <ImageView
                 android:id="@+id/event_detail_img1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/if_icons_user_1564534"
+                android:src="@drawable/ic_account_circle_black_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/event_detail_namaeo"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/form_content_height"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="12dp"
-                android:editable="false"
-                android:ems="8"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/event_detail_img1"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <EditText
+                    android:id="@+id/event_detail_namaeo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:hint="Nama Event Organizer"
+                    android:ems="10"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="20sp" />
+
+            </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,22 +131,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/event_detail_tanggalevent"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:editable="false"
-                android:ems="8"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="20sp"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/event_detail_img2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <EditText
+                    android:id="@+id/event_detail_tanggalevent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:hint="Tanggal Event"
+                    android:ems="10"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="20sp" />
+
+            </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>
         <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
@@ -154,22 +171,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/event_detail_lokasi"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:editable="false"
-                android:ems="8"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="20sp"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/event_detail_img3"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <EditText
+                    android:id="@+id/event_detail_lokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:hint="Lokasi Event"
+                    android:ems="10"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="20sp"/>
+
+            </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
@@ -186,24 +211,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/event_detail_keterangan"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:editable="false"
-                android:ems="8"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="20sp"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/event_detail_img4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <EditText
+                    android:id="@+id/event_detail_keterangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:ems="10"
+                    android:hint="Keterangan"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="20sp"
+                     />
+            </android.support.design.widget.TextInputLayout>
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
