@@ -11,6 +11,7 @@
         android:id="@+id/organizer_main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,9 +19,11 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <FrameLayout
+        android:orientation="vertical"
         android:id="@+id/organizer_main_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/organizer_main_toolbar"
         android:layout_above="@+id/organizer_main_bottombar" />
 
     <com.roughike.bottombar.BottomBar

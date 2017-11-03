@@ -56,6 +56,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.namaEo.setText(event.getEo());
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
 
+        holder.btnDetail.setTag(position);
+
         //OnClicks
 
         holder.btnDetail.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +65,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             public void onClick(View view) {
                 Intent intent = new Intent(context, EventDetailActivity.class);
                 Bundle extras = new Bundle();
-                extras.putInt("TITLE",event.getId_event_organizer());
+                int position = (Integer) view.getTag();
+                event = eventList.get(position);
+
+                extras.putInt("id_event",event.getId_event());
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }

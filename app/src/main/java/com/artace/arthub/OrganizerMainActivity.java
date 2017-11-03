@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -13,15 +14,32 @@ import com.roughike.bottombar.OnTabSelectListener;
 public class OrganizerMainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
+    String title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_main);
 
-        setToolbar();
+        if (getIntent() != null){
+            Bundle extras = getIntent().getExtras();
+            title = extras.getString("TITLE");
+            setToolbar(title);
+        }
+        else{
+            title = savedInstanceState.getString("TITLE");
+            setToolbar(title);
+        }
+
         initFragment(savedInstanceState);
         bottomBarListeners();
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        outState.putString("TITLE",title);
+        super.onSaveInstanceState(outState, outPersistentState);
 
     }
 
@@ -34,41 +52,35 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     OrganizerEventsFragment newFragment = new OrganizerEventsFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.organizer_main_fragment_container, newFragment);
-                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_portfolio) {
                     OrganizerPortfolioFragment newFragment = new OrganizerPortfolioFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.organizer_main_fragment_container, newFragment);
-                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_seniman) {
                     OrganizerSenimanFragment newFragment = new OrganizerSenimanFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.organizer_main_fragment_container, newFragment);
-                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_diundang) {
                     OrganizerDiundangFragment newFragment = new OrganizerDiundangFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.organizer_main_fragment_container, newFragment);
-                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             }
         });
     }
 
-    private void setToolbar(){
+    private void setToolbar(String title){
         mToolbar = (Toolbar) findViewById(R.id.organizer_main_toolbar);
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        Bundle extras = getIntent().getExtras();
-        String title = extras.getString("TITLE");
         ab.setTitle(title);
     }
 

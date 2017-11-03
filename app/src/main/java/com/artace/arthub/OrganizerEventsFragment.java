@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -89,7 +90,7 @@ public class OrganizerEventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RelativeLayout rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
+        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_events_recyclerview);
         adapter = new EventAdapter(getContext(), eventList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

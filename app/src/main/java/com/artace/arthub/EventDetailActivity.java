@@ -1,7 +1,11 @@
 package com.artace.arthub;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,12 +24,19 @@ import java.util.List;
 public class EventDetailActivity extends AppCompatActivity {
 
     RequestQueue queue;
-    String urlRead = DatabaseConnection.getReadEventorganizerEvents();
+    String urlRead;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
+
+        Bundle extras = getIntent().getExtras();
+        int id_event = extras.getInt("id_event");
+        urlRead = DatabaseConnection.getReadEventDetail() + "?id_event=" + String.valueOf(id_event);
+
+        setToolbar();
 
         getDetailEvent();
 
@@ -45,14 +56,25 @@ public class EventDetailActivity extends AppCompatActivity {
 
                             JSONObject obj = (JSONObject) jr.get(i);
 
-                            obj.getInt("id_event");
-                            obj.getInt("id_event_organizer");
-                            obj.getString("nama");
-                            obj.getString("tanggal");
-                            obj.getString("lokasi");
-                            obj.getString("keterangan");
+                            int idEvent = obj.getInt("id_event");
+                            int idEventOrganizer = obj.getInt("id_event_organizer");
+
+                            EditText namaEvent = (EditText) findViewById(R.id.event_detail_namaevent);
+                            namaEvent.setText(obj.getString("nama"));
+
+                            EditText tanggalEvent = (EditText) findViewById(R.id.event_detail_tanggalevent);
+                            tanggalEvent.setText(obj.getString("tanggal"));
+
+                            EditText lokasiEvent = (EditText) findViewById(R.id.event_detail_lokasi);
+                            lokasiEvent.setText(obj.getString("lokasi"));
+
+                            EditText keteranganEvent = (EditText) findViewById(R.id.event_detail_keterangan);
+                            keteranganEvent.setText(obj.getString("keterangan"));
+
                             obj.getString("foto");
-                            obj.getString("nama_eo");
+
+                            EditText namaEo = (EditText) findViewById(R.id.event_detail_namaeo);
+                            namaEo.setText(obj.getString("nama_eo"));
 
                         } catch (Exception e) {
                             System.out.println("LOG gamao! = " + e.getMessage());
@@ -71,5 +93,25 @@ public class EventDetailActivity extends AppCompatActivity {
         });
         //Adding JsonArrayRequest to Request Queue
         queue.add(newsReq);
+    }
+
+    private void setToolbar(){
+        mToolbar = (Toolbar) findViewById(R.id.event_detail_toolbar);
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("Detail Event");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -49,18 +49,23 @@
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
 
-        <activity android:name=".TambahEventActivity"></activity>
+        <activity android:name=".TambahEventActivity"/>
 
         <activity android:name=".RegisterEventOrganizerActivity" />
 
-        <activity android:name=".EventTerimaTolakActivity">
+        <activity android:name=".EventTerimaTolakActivity"/>
 
+        <activity
+                android:name=".EventDetailActivity"
+                android:parentActivityName=".OrganizerMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.artace.arthub.OrganizerMainActivity" />
         </activity>
-        <activity android:name=".EventDetailActivity"></activity>
 
-        <activity android:name=".SenimanHomeProfileActivity"></activity>
+        <activity android:name=".SenimanHomeProfileActivity"/>
 
-        <activity android:name=".EoSenimanActivity"></activity>
+        <activity android:name=".EoSenimanActivity"/>
 
 
     </application>
