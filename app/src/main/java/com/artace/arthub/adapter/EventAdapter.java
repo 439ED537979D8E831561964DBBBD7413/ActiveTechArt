@@ -1,6 +1,7 @@
 package com.artace.arthub.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
+import com.artace.arthub.EventDetailActivity;
 import com.artace.arthub.R;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
@@ -75,6 +77,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             imageEvent = (NetworkImageView) itemView.findViewById(R.id.item_event_list_imageEvent);
             btnDetail = (Button) itemView.findViewById(R.id.item_event_list_btnDetail);
             btnHapus = (Button) itemView.findViewById(R.id.item_event_list_btnHapus);
+
+            //OnClicks
+
+            btnDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, EventDetailActivity.class);
+
+
+                }
+            });
+
+
             btnHapus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.artace.arthub.adapter.EventAdapter;
+import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 
@@ -48,7 +49,7 @@ public class OrganizerEventsFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
     RequestQueue queue;
-    String url = "http://192.168.43.84/arthub/eventorganizer/eventorganizerevents.php";
+    String urlRead = DatabaseConnection.getReadEventorganizerEvents();
     RecyclerView recyclerView;
     List<PojoEvent> eventList = new ArrayList<PojoEvent>();
     EventAdapter adapter;
@@ -97,7 +98,7 @@ public class OrganizerEventsFragment extends Fragment {
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
         //Volley's inbuilt class to make Json array request
-        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
