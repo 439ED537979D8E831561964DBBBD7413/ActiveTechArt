@@ -118,7 +118,7 @@ public class OrganizerEventsFragment extends Fragment {
 
                             JSONObject obj = (JSONObject) jr.get(i);
 
-                            PojoEvent event = new PojoEvent(obj.getInt("id_event"),obj.getInt("id_event_organizer"),obj.getString("nama"),obj.getString("tanggal"),obj.getString("lokasi"),obj.getString("keterangan"),obj.getString("foto"),obj.getString("nama_eo"));
+                            PojoEvent event = new PojoEvent(obj.getInt("id_event"),obj.getInt("id_event_organizer"),obj.getString("nama"),obj.getString("tanggal"),obj.getString("lokasi"),obj.getString("keterangan"),DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("nama_eo"));
 
                             // adding event to events array
                             eventList.add(event);

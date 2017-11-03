@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.NetworkImageView;
 import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
@@ -59,7 +62,7 @@ public class EventDetailActivity extends AppCompatActivity {
                             int idEvent = obj.getInt("id_event");
                             int idEventOrganizer = obj.getInt("id_event_organizer");
 
-                            EditText namaEvent = (EditText) findViewById(R.id.event_detail_namaevent);
+                            TextView namaEvent = (TextView) findViewById(R.id.event_detail_namaevent);
                             namaEvent.setText(obj.getString("nama"));
 
                             EditText tanggalEvent = (EditText) findViewById(R.id.event_detail_tanggalevent);
@@ -71,7 +74,9 @@ public class EventDetailActivity extends AppCompatActivity {
                             EditText keteranganEvent = (EditText) findViewById(R.id.event_detail_keterangan);
                             keteranganEvent.setText(obj.getString("keterangan"));
 
-                            obj.getString("foto");
+                            NetworkImageView imageEvent = (NetworkImageView) findViewById(R.id.event_detail_imageEvent);
+                            imageEvent.setImageUrl(DatabaseConnection.getBaseUrl() + obj.getString("foto"), AppController.getInstance().getImageLoader());
+
 
                             EditText namaEo = (EditText) findViewById(R.id.event_detail_namaeo);
                             namaEo.setText(obj.getString("nama_eo"));
