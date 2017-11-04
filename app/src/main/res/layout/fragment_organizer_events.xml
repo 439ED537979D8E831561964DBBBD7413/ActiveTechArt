@@ -12,9 +12,16 @@
         android:layout_height="75dp"
         android:layout_gravity="center"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/organizer_events_recyclerview"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/organizer_events_swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/organizer_events_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
