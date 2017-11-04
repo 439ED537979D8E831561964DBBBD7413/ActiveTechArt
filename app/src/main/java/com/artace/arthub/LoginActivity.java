@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-        session = sharedpreferences.getBoolean(session_status, false);
+        session = sharedpreferences.getBoolean(session_status,false);
         password1 = sharedpreferences.getString(TAG_PASSWORD, null);
         username1 = sharedpreferences.getString(TAG_USERNAME, null);
 
@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra(TAG_PASSWORD, password1);
             intent.putExtra(TAG_USERNAME, username1);
-            finish();
             startActivity(intent);
+            finish();
         }
         actionBtnLogin();
         viewActions();
@@ -150,9 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                         String username = response.getString(TAG_USERNAME);
                         String password = response.getString(TAG_PASSWORD);
 
-
-
-
+                        Log.e("Successfully Login!", response.toString());
 
                         // menyimpan login ke session
                         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -160,9 +158,11 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString(TAG_PASSWORD, password);
                         editor.putString(TAG_USERNAME, username);
                         editor.commit();
-                        Log.e("Successfully Login!", response.toString());
+
                         // Memanggil main activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra(TAG_USERNAME,username);
+                        intent.putExtra(TAG_PASSWORD,password);
                         startActivity(intent);
                         finish();
                     } else {

@@ -1,10 +1,13 @@
 package com.artace.arthub;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,13 +39,25 @@ public class MainActivity extends AppCompatActivity {
     private SliderLayout mDemoSlider;
     ConstraintLayout main_first_row, cardPenari, cardMusisi, cardBondres;
 
+    TextView txt,txt1;
+    String password, username;
+    SharedPreferences sharedpreferences;
+
+    public static final String TAG_PASSWORD = "password";
+    public static final String TAG_USERNAME = "username";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //START : TOOLBAR
+        //get the value username and password from login
+        sharedpreferences = getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
+        password = getIntent().getStringExtra(TAG_PASSWORD);
+        username = getIntent().getStringExtra(TAG_USERNAME);
+        //end
 
+        //START : TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mToolbar);
 
@@ -70,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Daftar Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_box);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Daftar Sebagai Event organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
         SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
+        SecondaryDrawerItem item5 = new SecondaryDrawerItem().withIdentifier(5).withName("Logout").withIcon(GoogleMaterial.Icon.gmd_account_circle);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -81,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
                         item2,
                         item3,
                         new DividerDrawerItem(),
-                        item4
+                        item4,
+                        item5
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -97,6 +114,17 @@ public class MainActivity extends AppCompatActivity {
                         if (drawerItem.getIdentifier() == 3){
                             Intent intent = new Intent(MainActivity.this, RegisterEventOrganizerActivity.class);
                             startActivity(intent);
+                        }
+                        if (drawerItem.getIdentifier() == 5){
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putBoolean(LoginActivity.session_status, false);
+                            editor.putString(TAG_PASSWORD, null);
+                            editor.putString(TAG_USERNAME, null);
+                            editor.commit();
+
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                         return false;
                     }
@@ -187,6 +215,14 @@ public class MainActivity extends AppCompatActivity {
 
         //END : CARD
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
+

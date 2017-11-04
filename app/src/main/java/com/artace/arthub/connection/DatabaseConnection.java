@@ -4,7 +4,7 @@ package com.artace.arthub.connection;
 public class DatabaseConnection {
 
 //    public static String BASE_URL = "http://arthubdevelopment.000webhostapp.com/";
-    public static String BASE_URL = "http://192.168.43.206/arthub/";
+    public static String BASE_URL = "http://192.168.88.8/arthub/";
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
 
