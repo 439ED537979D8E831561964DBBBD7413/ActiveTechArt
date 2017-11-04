@@ -7,7 +7,7 @@ public class DatabaseConnection {
 //    public static String BASE_URL = "http://192.168.43.206/arthub/";
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
-
+    public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
     //DELETE
     public static String DELETE_EVENT = BASE_URL+"event/DeleteEvent.php";
     public static String LOGIN = BASE_URL+"login/Login.php";

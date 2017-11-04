@@ -254,7 +254,16 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
+            <ImageView
+                android:id="@+id/register_eventorganizer_foto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="@dimen/form_content_marginLeft"
+                android:src="@drawable/ic_launcher" />
+
             <Button
+                android:id="@+id/upload"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:text="browse"
@@ -263,7 +272,7 @@
                 android:textColor="@color/colorWhiteText"/>
 
             <Button
-                android:id="@+id/register_eventorganizer_submit"
+                android:id="@+id/btn_register_eventorganizer_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText8"
