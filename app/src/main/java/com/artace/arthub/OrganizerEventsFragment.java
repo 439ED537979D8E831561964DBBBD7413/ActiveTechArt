@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,8 @@ public class OrganizerEventsFragment extends Fragment {
     RecyclerView recyclerView;
     List<PojoEvent> eventList = new ArrayList<PojoEvent>();
     EventAdapter adapter;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    ProgressBar mLoadingAnim;
 
     public OrganizerEventsFragment() {
         // Required empty public constructor
@@ -98,6 +101,17 @@ public class OrganizerEventsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
+        final FrameLayout rootViewFinal = rootView;
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_events_swipeRefreshLayout);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getEvents(rootViewFinal);
+            }
+        });
+
         getEvents(rootView);
 
         // Inflate the layout for this fragment
@@ -108,6 +122,14 @@ public class OrganizerEventsFragment extends Fragment {
     private void getEvents(FrameLayout rootView){
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
+
+        //Set loading anim
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_events_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
+
+        //empty eventList
+        eventList.clear();
+
         //Volley's inbuilt class to make Json array request
         final FrameLayout rootViewFinal = rootView;
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
@@ -136,8 +158,8 @@ public class OrganizerEventsFragment extends Fragment {
                     System.out.println("LOG gamao diluar! = " + e.getMessage());
                 }
                 finally {
-                    ProgressBar loadingAnim = (ProgressBar) rootViewFinal.findViewById(R.id.organizer_events_progressbar);
-                    loadingAnim.setVisibility(View.GONE);
+                    mLoadingAnim.setVisibility(View.GONE);
+                    mSwipeRefreshLayout.setRefreshing(false);
                 }
             }
         }, new Response.ErrorListener() {

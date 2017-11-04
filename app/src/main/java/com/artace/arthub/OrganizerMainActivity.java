@@ -15,6 +15,10 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     String title;
+    OrganizerEventsFragment newFragment1;
+    OrganizerPortfolioFragment newFragment2;
+    OrganizerSenimanFragment newFragment3;
+    OrganizerDiundangFragment newFragment4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,27 +53,43 @@ public class OrganizerMainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_events) {
-                    OrganizerEventsFragment newFragment = new OrganizerEventsFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.organizer_main_fragment_container, newFragment);
+                    transaction.show(newFragment1);
+
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragment3);
+                    transaction.hide(newFragment4);
+
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_portfolio) {
-                    OrganizerPortfolioFragment newFragment = new OrganizerPortfolioFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.organizer_main_fragment_container, newFragment);
+                    transaction.show(newFragment2);
+
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment3);
+                    transaction.hide(newFragment4);
+
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_seniman) {
-                    OrganizerSenimanFragment newFragment = new OrganizerSenimanFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.organizer_main_fragment_container, newFragment);
+                    transaction.show(newFragment3);
+
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragment4);
+
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_diundang) {
-                    OrganizerDiundangFragment newFragment = new OrganizerDiundangFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.organizer_main_fragment_container, newFragment);
+                    transaction.show(newFragment4);
+
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragment3);
+
                     transaction.commit();
                 }
             }
@@ -94,16 +114,20 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Create a new Fragment to be placed in the activity layout
-            OrganizerEventsFragment eventsFragment = new OrganizerEventsFragment();
+            newFragment1 = new OrganizerEventsFragment();
+            newFragment2 = new OrganizerPortfolioFragment();
+            newFragment3 = new OrganizerSenimanFragment();
+            newFragment4 = new OrganizerDiundangFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.organizer_main_fragment_container, newFragment1);
 
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
-            eventsFragment.setArguments(getIntent().getExtras());
-
-            // Add the fragment to the 'fragment_container' FrameLayout
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.organizer_main_fragment_container, eventsFragment).commit();
+            transaction.add(R.id.organizer_main_fragment_container, newFragment2);
+            transaction.hide(newFragment2);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment3);
+            transaction.hide(newFragment3);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment4);
+            transaction.hide(newFragment4);
+            transaction.commit();
         }
     }
 
