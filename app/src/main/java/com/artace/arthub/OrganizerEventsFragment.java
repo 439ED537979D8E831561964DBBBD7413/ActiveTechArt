@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -97,17 +98,18 @@ public class OrganizerEventsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        getEvents();
+        getEvents(rootView);
 
         // Inflate the layout for this fragment
         return rootView;
 
     }
 
-    private void getEvents(){
+    private void getEvents(FrameLayout rootView){
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
         //Volley's inbuilt class to make Json array request
+        final FrameLayout rootViewFinal = rootView;
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -132,6 +134,10 @@ public class OrganizerEventsFragment extends Fragment {
                     }
                 }catch (Exception e){
                     System.out.println("LOG gamao diluar! = " + e.getMessage());
+                }
+                finally {
+                    ProgressBar loadingAnim = (ProgressBar) rootViewFinal.findViewById(R.id.organizer_events_progressbar);
+                    loadingAnim.setVisibility(View.GONE);
                 }
             }
         }, new Response.ErrorListener() {

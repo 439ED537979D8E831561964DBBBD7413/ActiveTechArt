@@ -1,5 +1,6 @@
 package com.artace.arthub.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,9 +31,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-/**
- * Created by AndroidNovice on 6/5/2016.
- */
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
     private List<PojoEvent> eventList;
@@ -93,7 +91,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                 AlertDialog.Builder alertDialogBuilder =
                         new AlertDialog.Builder(context)
                                 .setTitle("Apakah anda yakin ?")
-                                .setMessage("Apakah anda yakin ingin menghapus event ini ?")
+                                .setMessage("Event yang terhapus tidak dapat dikembalikan lagi")
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         event = eventList.get(positionFinal);
@@ -120,6 +118,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         final DialogInterface dialogFinal = dialog;
         final Context contextFinal = context;
         final int positionFinal = position;
+        final ProgressDialog pDialog = new ProgressDialog(contextFinal);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Deleting...");
+        pDialog.show();
 
         JsonObjectRequest delete_request = new JsonObjectRequest(delete_url,
                 null, new Response.Listener<JSONObject>() {
@@ -131,8 +133,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                     int success = response.getInt("success");
 
                     if (success == 1) {
+                        pDialog.dismiss();
                         eventList.remove(positionFinal);
-                        notifyItemRemoved(positionFinal);
+                        notifyDataSetChanged();
                         dialogFinal.dismiss();
                     } else {
                         dialogFinal.dismiss();
