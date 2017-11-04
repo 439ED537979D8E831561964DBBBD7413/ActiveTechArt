@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import com.artace.arthub.ViewPlugins.DrawerMenu;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -24,6 +25,9 @@ public class OrganizerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_main);
+
+        DrawerMenu drawerMenu = new DrawerMenu();
+        drawerMenu.createDrawer(this,this, null);
 
         if (getIntent() != null){
             Bundle extras = getIntent().getExtras();

@@ -4,7 +4,7 @@ package com.artace.arthub.connection;
 public class DatabaseConnection {
 
     public static String BASE_URL = "http://arthubdevelopment.000webhostapp.com/";
-
+//    public static String BASE_URL = "http://192.168.43.206/arthub/";
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
@@ -17,6 +17,10 @@ public class DatabaseConnection {
     //INSERT REGISTER SENIMAN
     public  static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
 
+    //DIRECTORY
+    public static String DIRECTORY_FOTO_USER = BASE_URL+"images/user/";
+    public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
+
     public DatabaseConnection() {
     }
 
@@ -26,6 +30,14 @@ public class DatabaseConnection {
 
     public static String getDeleteEvent(int id_event) {
         return DELETE_EVENT + "?id_event=" + id_event;
+    }
+
+    public static String getDirectoryFotoUserDefault() {
+        return DIRECTORY_FOTO_USER_DEFAULT;
+    }
+
+    public static String getDirectoryFotoUser() {
+        return DIRECTORY_FOTO_USER;
     }
 
     public static String getBaseUrl() {

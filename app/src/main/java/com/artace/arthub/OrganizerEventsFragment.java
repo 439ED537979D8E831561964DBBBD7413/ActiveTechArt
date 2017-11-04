@@ -1,6 +1,7 @@
 package com.artace.arthub;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.artace.arthub.adapter.EventAdapter;
 import com.artace.arthub.connection.DatabaseConnection;
+import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 
@@ -132,6 +134,14 @@ public class OrganizerEventsFragment extends Fragment {
 
         //Volley's inbuilt class to make Json array request
         final FrameLayout rootViewFinal = rootView;
+
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+
+        if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
+            urlRead += "?id_event_organizer=" + sharedpreferences.getString(Field.getIdEventOrganizer(),null);
+        }
+
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

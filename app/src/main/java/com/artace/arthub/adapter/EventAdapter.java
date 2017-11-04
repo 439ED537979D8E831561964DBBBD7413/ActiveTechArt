@@ -4,14 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.artace.arthub.EventDetailActivity;
 import com.artace.arthub.R;
 import com.artace.arthub.connection.DatabaseConnection;
+import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 
@@ -65,6 +69,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
 
         holder.btnDetail.setTag(position);
+
+        SharedPreferences sharedpreferences = context.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+
+        if (!session || !sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
+            holder.deleteContainer.setVisibility(View.GONE);
+            holder.btnHapus.setBackgroundColor(context.getResources().getColor(R.color.primary));
+        }
+
         holder.btnHapus.setTag(position);
 
         //OnClicks
@@ -171,6 +184,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         private TextView namaEvent, tanggalEvent, tempatEvent,namaEo;
         private NetworkImageView imageEvent;
         private Button btnDetail, btnHapus;
+        private FrameLayout deleteContainer;
 
         public MyViewHolder(View itemView) {
 
@@ -183,7 +197,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             imageEvent = (NetworkImageView) itemView.findViewById(R.id.item_event_list_imageEvent);
             btnDetail = (Button) itemView.findViewById(R.id.item_event_list_btnDetail);
             btnHapus = (Button) itemView.findViewById(R.id.item_event_list_btnHapus);
-
+            deleteContainer = (FrameLayout) itemView.findViewById(R.id.item_event_list_hapusContainer);
         }
     }
 

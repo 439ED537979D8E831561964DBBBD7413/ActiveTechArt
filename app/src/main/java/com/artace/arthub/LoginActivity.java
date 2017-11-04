@@ -14,12 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.artace.arthub.connection.DatabaseConnection;
+import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 
 import org.json.JSONException;
@@ -45,16 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
 
-    public final static String TAG_USERNAME = "username";
-    public final static String TAG_PASSWORD = "password";
-
     String tag_json_obj = "json_obj_req";
 
     SharedPreferences sharedpreferences;
     Boolean session = false;
     String password1, username1;
-    public static final String my_shared_preferences = "my_shared_preferences";
-    public static final String session_status = "session_status";
+
 
 
     @Override
@@ -77,15 +72,15 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Cek session login jika TRUE maka langsung buka MainActivity
-        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-        session = sharedpreferences.getBoolean(session_status,false);
-        password1 = sharedpreferences.getString(TAG_PASSWORD, null);
-        username1 = sharedpreferences.getString(TAG_USERNAME, null);
+        sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+        password1 = sharedpreferences.getString(Field.getTagPassword(), null);
+        username1 = sharedpreferences.getString(Field.getTagUsername(), null);
 
         if (session) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra(TAG_PASSWORD, password1);
-            intent.putExtra(TAG_USERNAME, username1);
+            intent.putExtra(Field.getTagPassword(), password1);
+            intent.putExtra(Field.getTagUsername(), username1);
             startActivity(intent);
             finish();
         }
@@ -167,22 +162,58 @@ public class LoginActivity extends AppCompatActivity {
                     success = response.getInt(TAG_SUCCESS);
                     // Check for error node in json
                     if (success == 1) {
-                        String username = response.getString(TAG_USERNAME);
-                        String password = response.getString(TAG_PASSWORD);
 
-                        Log.e("Successfully Login!", response.toString());
+                        String username = Field.getTagUsername();
+                        String password = Field.getTagPassword();
+                        String id_user = Field.getIdUser();
+                        String nama = Field.getNAMA();
+                        String no_hp = Field.getNoHp();
+                        String foto = Field.getFOTO();
+                        String jenis_user = Field.getJenisUser();
 
                         // menyimpan login ke session
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putBoolean(session_status, true);
-                        editor.putString(TAG_PASSWORD, password);
-                        editor.putString(TAG_USERNAME, username);
+                        editor.putBoolean(Field.getSessionStatus(), true);
+                        editor.putString(username, response.getString(password));
+                        editor.putString(password, response.getString(username));
+                        editor.putString(id_user, response.getString(id_user));
+                        editor.putString(nama, response.getString(nama));
+                        editor.putString(no_hp, response.getString(no_hp));
+                        editor.putString(foto, DatabaseConnection.getBaseUrl() + response.getString(foto));
+                        editor.putString(jenis_user, response.getString(jenis_user));
+
+
+                        if(response.getString(Field.getJenisUser()).equals("seniman")){
+                            String id_seniman = Field.getIdSeniman();
+                            String id_jenis_seniman = Field.getIdJenisSeniman();
+                            String jenis_kelamin = Field.getJenisKelamin();
+                            String portfolio = Field.getPORTFOLIO();
+                            String umur = Field.getUMUR();
+                            String keahlian_spesifik = Field.getKeahlianSpesifik();
+                            String format_solo_group = Field.getFormatSoloGrup();
+
+                            editor.putString(id_seniman, response.getString(id_seniman));
+                            editor.putString(id_jenis_seniman, response.getString(id_jenis_seniman));
+                            editor.putString(jenis_kelamin, response.getString(jenis_kelamin));
+                            editor.putString(portfolio, response.getString(portfolio));
+                            editor.putString(umur, response.getString(umur));
+                            editor.putString(keahlian_spesifik, response.getString(keahlian_spesifik));
+                            editor.putString(format_solo_group, response.getString(format_solo_group));
+                        }
+                        else{ //Jika event organizer
+                            String id_event_organizer = Field.getIdEventOrganizer();
+                            String email = Field.getEMAIL();
+
+                            editor.putString(id_event_organizer, response.getString(id_event_organizer));
+                            editor.putString(email, response.getString(email));
+                        }
+
                         editor.commit();
+
+                        Log.e("Successfully Login!", response.toString());
 
                         // Memanggil main activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra(TAG_USERNAME,username);
-                        intent.putExtra(TAG_PASSWORD,password);
                         startActivity(intent);
                         finish();
                     } else {

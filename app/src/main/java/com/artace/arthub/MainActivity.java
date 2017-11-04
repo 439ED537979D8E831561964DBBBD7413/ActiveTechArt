@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.artace.arthub.ViewPlugins.DrawerMenu;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -39,23 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private SliderLayout mDemoSlider;
     ConstraintLayout main_first_row, cardPenari, cardMusisi, cardBondres;
 
-    TextView txt,txt1;
-    String password, username;
-    SharedPreferences sharedpreferences;
-
-    public static final String TAG_PASSWORD = "password";
-    public static final String TAG_USERNAME = "username";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //get the value username and password from login
-        sharedpreferences = getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
-        password = getIntent().getStringExtra(TAG_PASSWORD);
-        username = getIntent().getStringExtra(TAG_USERNAME);
-        //end
 
         //START : TOOLBAR
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -65,74 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         //START : DRAWER MENU
 
-        // Create the AccountHeader
-        AccountHeader headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.material_background)
-                .addProfiles(
-                        new ProfileDrawerItem().withName("Guest").withEmail("Silahkan Login").withIcon(getResources().getDrawable(R.drawable.profile_img_circle))
-                )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
-                        return false;
-                    }
-                })
-                .build();
-
-        //if you want to update the items at a later time it is recommended to keep it in a variable
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Daftar Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Daftar Sebagai Event organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
-        SecondaryDrawerItem item5 = new SecondaryDrawerItem().withIdentifier(5).withName("Logout").withIcon(GoogleMaterial.Icon.gmd_account_circle);
-
-        //create the drawer and remember the `Drawer` result object
-        Drawer result = new DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(mToolbar)
-                .withAccountHeader(headerResult)
-                .addDrawerItems(
-                        item1,
-                        item2,
-                        item3,
-                        new DividerDrawerItem(),
-                        item4,
-                        item5
-                )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem.getIdentifier() == 1){
-                            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                            startActivity(intent);
-                        }
-                        if (drawerItem.getIdentifier() == 2){
-                            Intent intent = new Intent(MainActivity.this, RegisterSenimanActivity.class);
-                            startActivity(intent);
-                        }
-                        if (drawerItem.getIdentifier() == 3){
-                            Intent intent = new Intent(MainActivity.this, RegisterEventOrganizerActivity.class);
-                            startActivity(intent);
-                        }
-                        if (drawerItem.getIdentifier() == 5){
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putBoolean(LoginActivity.session_status, false);
-                            editor.putString(TAG_PASSWORD, null);
-                            editor.putString(TAG_USERNAME, null);
-                            editor.commit();
-
-                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                        return false;
-                    }
-                })
-                .build();
-
-        result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        DrawerMenu drawer = new DrawerMenu();
+        drawer.createDrawer(this,this, mToolbar);
 
         //END : DRAWER MENU
 
