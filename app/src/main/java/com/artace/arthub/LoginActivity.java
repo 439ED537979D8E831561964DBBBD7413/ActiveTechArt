@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnRegisterSeniman,btnRegisterEO,btnLogin;
 
     int success;
+    ConnectivityManager conMgr;
 
     ProgressDialog pDialog;
     EditText user, pass;
@@ -62,6 +64,18 @@ public class LoginActivity extends AppCompatActivity {
         user = (EditText) findViewById(R.id.login_username);
         pass = (EditText) findViewById(R.id.login_password);
 
+        //cek koneksi
+        conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        {
+            if (conMgr.getActiveNetworkInfo() != null
+                    && conMgr.getActiveNetworkInfo().isAvailable()
+                    && conMgr.getActiveNetworkInfo().isConnected()) {
+            } else {
+                Toast.makeText(getApplicationContext(), "No Internet Connection",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
         // Cek session login jika TRUE maka langsung buka MainActivity
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         session = sharedpreferences.getBoolean(session_status,false);
@@ -90,7 +104,13 @@ public class LoginActivity extends AppCompatActivity {
                 String username = user.getText().toString();
                 String password = pass.getText().toString();
                 if (username.trim().length() > 0 && password.trim().length() > 0) {
-                    checkLogin(username, password);
+                    if (conMgr.getActiveNetworkInfo() != null
+                            && conMgr.getActiveNetworkInfo().isAvailable()
+                            && conMgr.getActiveNetworkInfo().isConnected()) {
+                        checkLogin(username, password);
+                    } else {
+                        Toast.makeText(getApplicationContext() ,"No Internet Connection", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext() ,"Kolom tidak boleh kosong", Toast.LENGTH_LONG).show();
@@ -182,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                        "Username dan Password Salah", Toast.LENGTH_LONG).show();
 
                 hideDialog();
 
