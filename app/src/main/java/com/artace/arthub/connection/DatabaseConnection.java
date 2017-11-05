@@ -7,18 +7,17 @@ public class DatabaseConnection {
 //    public static String BASE_URL = "http://192.168.43.206/arthub/";
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
-    public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
+
     //DELETE
     public static String DELETE_EVENT = BASE_URL+"event/DeleteEvent.php";
     //LOGIN
     public static String LOGIN = BASE_URL+"login/Login.php";
     //READ JENIS SENIMAN
     public  static String READ_JENIS_SENIMAN = BASE_URL+"jenis_seniman/JenisSeniman.php";
-    //INSERT REGISTER SENIMAN
-    public  static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
 
-    //UPLOAD
-    public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
+    //INSERT REGISTER SENIMAN
+    public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
+    public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
 
     //DIRECTORY
     public static String DIRECTORY_FOTO_USER = BASE_URL+"images/user/";
@@ -27,12 +26,12 @@ public class DatabaseConnection {
     public DatabaseConnection() {
     }
 
-    public static String getCreateEventOrganizer() {
-        return CREATE_EVENT_ORGANIZER;
+    public static String getInsertRegisterSeniman() {
+        return INSERT_REGISTER_SENIMAN;
     }
 
-    public static String getUploadFotoEo() {
-        return UPLOAD_FOTO_EO;
+    public static String getCreateEventOrganizer() {
+        return CREATE_EVENT_ORGANIZER;
     }
 
     public static String getReadJenisSeniman() {
