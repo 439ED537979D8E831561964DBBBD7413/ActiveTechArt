@@ -22,11 +22,13 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".LoginActivity" />
         <activity
@@ -53,9 +55,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.OrganizerMainActivity" />
         </activity>
-        <activity android:name=".SenimanHomeProfileActivity" />
         <activity android:name=".EoSenimanActivity" />
         <activity android:name=".ItemPortfolioList"></activity>
+
+
+        <activity android:name=".SenimanMainActivity">
+
+        </activity>
     </application>
 
 </manifest>

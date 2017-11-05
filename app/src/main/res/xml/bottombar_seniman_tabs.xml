@@ -1,0 +1,10 @@
+<tabs>
+    <tab
+        id="@+id/tab_seniman_profile"
+        icon="@drawable/ic_account_circle"
+        title="Profile" />
+    <tab
+        id="@+id/tab_seniman_event"
+        icon="@drawable/ic_view_list"
+        title="Events" />
+</tabs>

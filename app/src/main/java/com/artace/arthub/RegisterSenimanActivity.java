@@ -75,7 +75,6 @@ public class RegisterSenimanActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private String UPLOAD_URL = DatabaseConnection.INSERT_REGISTER_SENIMAN;
     String READ_JENIS_SENIMAN_URL;
 
     private static final String TAG_SUCCESS = "success";
@@ -325,7 +324,6 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                             listDisplayJenisSeniman.add(obj.getString("jenis_seniman"));
 
                             Log.e("man","tapppjiwaaa");
-
 
                         } catch (Exception e) {
                             Log.e("man","LOG gamao! = " + e.getMessage());

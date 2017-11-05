@@ -13,11 +13,11 @@ import android.view.ViewGroup;
  * Activities that contain this fragment must implement the
  * {} interface
  * to handle interaction events.
- * Use the {@link SenimanHomeProfileActivity#newInstance} factory method to
+ * Use the {@link SenimanListTawaranFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
-public class SenimanHomeProfileActivity extends Fragment {
+public class SenimanListTawaranFragment extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -27,7 +27,7 @@ public class SenimanHomeProfileActivity extends Fragment {
 
 //    private OnFragmentInteractionListener mListener;
 
-    public SenimanHomeProfileActivity() {
+    public SenimanListTawaranFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +37,11 @@ public class SenimanHomeProfileActivity extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment OrganizerSenimanFragment.
+     * @return A new instance of fragment SenimanListTawaranFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SenimanHomeProfileActivity newInstance(String param1, String param2) {
-        SenimanHomeProfileActivity fragment = new SenimanHomeProfileActivity();
+    public static SenimanListTawaranFragment newInstance(String param1, String param2) {
+        SenimanListTawaranFragment fragment = new SenimanListTawaranFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,7 +62,7 @@ public class SenimanHomeProfileActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seniman_home_profile, container, false);
+        return inflater.inflate(R.layout.fragment_seniman_list_tawaran, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

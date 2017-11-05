@@ -205,6 +205,14 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(umur, response.getString(umur));
                             editor.putString(keahlian_spesifik, response.getString(keahlian_spesifik));
                             editor.putString(format_solo_group, response.getString(format_solo_group));
+                            editor.commit();
+
+                            Log.e("Successfully Login!", response.toString());
+
+                            // Memanggil activity
+                            Intent intent = new Intent(LoginActivity.this, SenimanMainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else{ //Jika event organizer
                             String id_event_organizer = Field.getIdEventOrganizer();
@@ -212,16 +220,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             editor.putString(id_event_organizer, response.getString(id_event_organizer));
                             editor.putString(email, response.getString(email));
+                            editor.commit();
+
+                            Log.e("Successfully Login!", response.toString());
+
+                            // Memanggil activity
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
-
-                        editor.commit();
-
-                        Log.e("Successfully Login!", response.toString());
-
-                        // Memanggil main activity
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
                     } else {
                         Toast.makeText(getApplicationContext(),
                                 response.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
