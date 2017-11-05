@@ -1,12 +1,36 @@
 package com.artace.arthub;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.artace.arthub.adapter.EventAdapter;
+import com.artace.arthub.adapter.SenimanPortfolioListAdapter;
+import com.artace.arthub.connection.DatabaseConnection;
+import com.artace.arthub.constant.Field;
+import com.artace.arthub.controller.AppController;
+import com.artace.arthub.pojo.PojoEvent;
+import com.artace.arthub.pojo.PojoSeniman;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +50,14 @@ public class OrganizerPortfolioFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RequestQueue queue;
+    String urlRead = DatabaseConnection.getReadSenimanList();
+    RecyclerView recyclerView;
+    List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();
+    SenimanPortfolioListAdapter adapter;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    ProgressBar mLoadingAnim;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -58,13 +90,90 @@ public class OrganizerPortfolioFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_portfolio, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_portfolio_recyclerview);
+        adapter = new SenimanPortfolioListAdapter(getContext(), senimanList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        recyclerView.setAdapter(adapter);
+
+        final FrameLayout rootViewFinal = rootView;
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_portfolio_swipeRefreshLayout);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getEvents(rootViewFinal);
+            }
+        });
+
+        getEvents(rootView);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_organizer_portfolio, container, false);
+        return rootView;
+
+    }
+
+    private void getEvents(FrameLayout rootView){
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
+        //Set loading anim
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_portfolio_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
+
+        //empty eventList
+        senimanList.clear();
+
+        //Volley's inbuilt class to make Json array request
+        final FrameLayout rootViewFinal = rootView;
+
+        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try{
+                    JSONArray jr = response.getJSONArray(0);
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+
+                            PojoSeniman event = new PojoSeniman(obj.getInt("id_seniman"),obj.getInt("id_jenis_seniman"),obj.getInt("id_user"),obj.getString("nama"),obj.getString("jenis_kelamin"),obj.getString("portfolio"),obj.getString("no_hp"),obj.getString("umur"), DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("keahlian_spesifik"),obj.getString("format_solo_grup"));
+
+                            // adding event to events array
+                            senimanList.add(event);
+
+                        } catch (Exception e) {
+                            System.out.println("LOG gamao! = " + e.getMessage());
+                        } finally {
+                            //Notify adapter about data changes
+                            adapter.notifyItemChanged(i);
+                        }
+                    }
+                }catch (Exception e){
+                    System.out.println("LOG gamao diluar! = " + e.getMessage());
+                }
+                finally {
+                    mLoadingAnim.setVisibility(View.GONE);
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+
+            }
+        });
+        //Adding JsonArrayRequest to Request Queue
+        queue.add(newsReq);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
