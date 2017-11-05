@@ -264,6 +264,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/register_seniman_laki"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -271,6 +272,7 @@
                     android:textColor="@color/colorSecondaryText" />
 
                 <RadioButton
+                    android:id="@+id/register_seniman_perempuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Perempuan"
@@ -295,12 +297,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:id="@+id/register_seniman_btnPortfolio"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="browse"
                 android:layout_marginLeft="@dimen/form_content_marginLeft"
                 android:background="@color/colorButtonForm"
-                android:textColor="@color/colorWhiteText"/>
+                android:text="browse"
+                android:textColor="@color/colorWhiteText" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -318,13 +321,21 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <ImageView
+                android:id="@+id/register_seniman_viewFoto"
+                android:paddingLeft="10dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/ic_account_circle_gray_128dp" />
+
             <Button
+                android:id="@+id/register_seniman_btnFoto"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="browse"
                 android:layout_marginLeft="@dimen/form_content_marginLeft"
                 android:background="@color/colorButtonForm"
-                android:textColor="@color/colorWhiteText"/>
+                android:text="browse"
+                android:textColor="@color/colorWhiteText" />
 
             <Button
                 android:id="@+id/register_seniman_submit"
