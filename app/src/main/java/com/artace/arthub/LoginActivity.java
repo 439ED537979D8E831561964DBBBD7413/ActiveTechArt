@@ -2,9 +2,11 @@ package com.artace.arthub;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +61,9 @@ public class LoginActivity extends AppCompatActivity {
         user = (EditText) findViewById(R.id.login_username);
         pass = (EditText) findViewById(R.id.login_password);
 
+        //Cek intent dari register
+        checkFromRegister();
+
         //cek koneksi
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
@@ -84,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
         actionBtnLogin();
         viewActions();
 
@@ -254,6 +260,35 @@ public class LoginActivity extends AppCompatActivity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(loginRequest, tag_json_obj);
+    }
+
+    private void checkFromRegister(){
+
+        if (getIntent() != null){
+            Intent intent = getIntent();
+
+
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                if (extras.containsKey("jenisRegister")) {
+                    String jenisRegister = extras.getString("jenisRegister");
+
+                    AlertDialog.Builder alertDialogBuilder =
+                            new AlertDialog.Builder(this)
+                                    .setTitle("Terdaftar")
+                                    .setMessage("Silahkan login untuk melanjutkan.")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                    alertDialogBuilder.show();
+
+                    // TODO: Do something with the value of isNew.
+                }
+            }
+        }
+
     }
 
     private void showDialog() {

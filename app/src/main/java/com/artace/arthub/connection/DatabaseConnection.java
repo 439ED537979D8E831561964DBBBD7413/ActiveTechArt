@@ -17,11 +17,22 @@ public class DatabaseConnection {
     //INSERT REGISTER SENIMAN
     public  static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
 
+    //UPLOAD
+    public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
+
     //DIRECTORY
     public static String DIRECTORY_FOTO_USER = BASE_URL+"images/user/";
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
 
     public DatabaseConnection() {
+    }
+
+    public static String getCreateEventOrganizer() {
+        return CREATE_EVENT_ORGANIZER;
+    }
+
+    public static String getUploadFotoEo() {
+        return UPLOAD_FOTO_EO;
     }
 
     public static String getReadJenisSeniman() {

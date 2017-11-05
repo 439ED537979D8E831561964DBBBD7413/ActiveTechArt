@@ -10,7 +10,7 @@
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/register_seniman_toolbar"
+        android:id="@+id/register_eventorganizer_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -263,7 +263,7 @@
                 android:src="@drawable/ic_launcher" />
 
             <Button
-                android:id="@+id/upload"
+                android:id="@+id/register_eventorganizer_browse_foto"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:text="browse"
@@ -271,18 +271,26 @@
                 android:background="@color/colorButtonForm"
                 android:textColor="@color/colorWhiteText"/>
 
-            <Button
-                android:id="@+id/btn_register_eventorganizer_submit"
+            <FrameLayout
+                android:id="@+id/item_event_list_hapusContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editText8"
-                android:layout_marginTop="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@color/colorAccent"
-                android:padding="15dp"
-                android:text="DAFTAR"
-                android:textColor="@color/colorWhiteText"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_below="@+id/editText8"
+                android:layout_marginTop="25dp">
+                <Button
+                    android:id="@+id/btn_register_eventorganizer_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/buttonStyleSmall"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="15dp"
+                    android:text="DAFTAR"
+                    android:textColor="@color/colorWhiteText"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </FrameLayout>
 
 
         </LinearLayout>
