@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.constraint.ConstraintLayout;
@@ -29,6 +30,7 @@ import com.artace.arthub.EoSenimanActivity;
 import com.artace.arthub.EventDetailActivity;
 import com.artace.arthub.R;
 import com.artace.arthub.ViewPlugins.CircularNetworkImageView;
+import com.artace.arthub.YoutubeWebViewActivity;
 import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
@@ -105,14 +107,10 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EventDetailActivity.class);
-                Bundle extras = new Bundle();
-                int position = (Integer) view.getTag();
-                seniman = senimanList.get(position);
-
-                extras.putInt("id_seniman",seniman.getId_seniman());
-                intent.putExtras(extras);
+                Intent intent = new Intent(context, YoutubeWebViewActivity.class);
+                intent.putExtra("url", seniman.getPortfolio());
                 context.startActivity(intent);
+//                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(seniman.getPortfolio())));
             }
         });
 
