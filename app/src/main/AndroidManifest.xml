@@ -3,11 +3,11 @@
     package="com.artace.arthub">
 
     <!-- PERMISSION -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
@@ -18,21 +18,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
         <activity android:name=".MainActivity" />
-
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".RegisterSenimanActivity"
             android:parentActivityName=".MainActivity">
@@ -40,7 +36,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-
         <activity
             android:name=".OrganizerMainActivity"
             android:parentActivityName=".MainActivity">
@@ -48,26 +43,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-
-        <activity android:name=".TambahEventActivity"/>
-
+        <activity android:name=".TambahEventActivity" />
         <activity android:name=".RegisterEventOrganizerActivity" />
-
-        <activity android:name=".EventTerimaTolakActivity"/>
-
+        <activity android:name=".EventTerimaTolakActivity" />
         <activity
-                android:name=".EventDetailActivity"
-                android:parentActivityName=".OrganizerMainActivity">
+            android:name=".EventDetailActivity"
+            android:parentActivityName=".OrganizerMainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.OrganizerMainActivity" />
         </activity>
-
-        <activity android:name=".SenimanHomeProfileActivity"/>
-
-        <activity android:name=".EoSenimanActivity"/>
-
-
+        <activity android:name=".SenimanHomeProfileActivity" />
+        <activity android:name=".EoSenimanActivity" />
+        <activity android:name=".ItemPortfolioList"></activity>
     </application>
 
 </manifest>
