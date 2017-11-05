@@ -1,11 +1,14 @@
 package com.artace.arthub;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,12 +28,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.controller.AppController;
 
@@ -38,6 +45,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,14 +54,18 @@ import java.util.Map;
 
 public class RegisterSenimanActivity extends AppCompatActivity {
 
-    Spinner jenis_seniman;
-    EditText username, password, nama, keahlian;
-    RadioButton laki, perempuan;
-    Button portofolio, foto, daftar;
+    Spinner mJenisSeniman, mGroupStatus;
+    EditText mUsername, mPassword, mNama, mKeahlian, mNoHp, mUmur, mPortfolio;
+    RadioButton mLaki, mPerempuan, mGroupCampuran;
+    Button mFoto, mDaftar;
     RequestQueue queue;
-    ImageView view_foto;
+    ImageView mViewFoto;
     Toolbar mToolbar;
     String[] listJenisSeniman;
+    Bitmap bitmapFoto;
+    ProgressDialog pDialog;
+    List<Integer> listValueJenisSeniman;
+    List<String> listDisplayJenisSeniman, listDisplayGroupStatus;
 
     Bitmap bitmap, decoded;
     int success;
@@ -100,20 +113,189 @@ public class RegisterSenimanActivity extends AppCompatActivity {
         }
         //end cek
 
-        jenis_seniman = (Spinner) findViewById(R.id.register_seniman_jenis);
-        username = (EditText) findViewById(R.id.register_seniman_username);
-        password = (EditText) findViewById(R.id.register_seniman_password);
-        nama = (EditText) findViewById(R.id.register_seniman_nama);
-        keahlian = (EditText) findViewById(R.id.register_seniman_keahlian);
-        laki = (RadioButton) findViewById(R.id.register_seniman_laki);
-        perempuan = (RadioButton) findViewById(R.id.register_seniman_perempuan);
-        portofolio = (Button) findViewById(R.id.register_seniman_btnPortfolio);
-        foto = (Button) findViewById(R.id.register_seniman_btnFoto);
-        view_foto = (ImageView) findViewById(R.id.register_seniman_viewFoto);
-        daftar = (Button) findViewById(R.id.register_choose_seniman);
+        mJenisSeniman = (Spinner) findViewById(R.id.register_seniman_jenis);
+        mPortfolio = (EditText) findViewById(R.id.register_seniman_portfolio);
+        mUsername = (EditText) findViewById(R.id.register_seniman_username);
+        mPassword = (EditText) findViewById(R.id.register_seniman_password);
+        mNama = (EditText) findViewById(R.id.register_seniman_nama);
+        mKeahlian = (EditText) findViewById(R.id.register_seniman_keahlian);
+        mLaki = (RadioButton) findViewById(R.id.register_seniman_laki);
+        mPerempuan = (RadioButton) findViewById(R.id.register_seniman_perempuan);
+        mFoto = (Button) findViewById(R.id.register_seniman_btnFoto);
+        mViewFoto = (ImageView) findViewById(R.id.register_seniman_viewFoto);
+        mDaftar = (Button) findViewById(R.id.register_seniman_submit);
+        mGroupStatus = (Spinner) findViewById(R.id.register_seniman_statusgroup);
+        mGroupCampuran = (RadioButton) findViewById(R.id.register_seniman_jk_campur);
+        mNoHp = (EditText) findViewById(R.id.register_seniman_nohp);
+        mUmur = (EditText) findViewById(R.id.register_seniman_umur);
 
+        mGroupStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (mGroupStatus.getSelectedItem().equals("Group")){
+                    mGroupCampuran.setVisibility(View.VISIBLE);
+                }
+                else{
+                    mGroupCampuran.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        mFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 100);
+            }
+        });
+
+        mDaftar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitForm(bitmapFoto);
+            }
+        });
+
+        fillGroupStatusSpinner();
         ReadJenisSeniman();
 
+    }
+
+    private void submitForm(final Bitmap bitmap){
+        final Context contextFinal = this;
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Mendaftar...");
+        if (!pDialog.isShowing())
+            pDialog.show();
+
+        //Multipart Volley Request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, DatabaseConnection.getInsertRegisterSeniman(),
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Log.e("insertEo",obj.getString("message"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        finally{
+                            pDialog.dismiss();
+                            Intent intent = new Intent(contextFinal,LoginActivity.class);
+                            Bundle extras = new Bundle();
+                            extras.putString("jenisRegister","seniman");
+                            intent.putExtras(extras);
+                            startActivity(intent);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            /*
+            * PARMETER POST
+            * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("tags", "RegisterEoTag");
+
+                String username = mUsername.getText().toString();
+                String password = mPassword.getText().toString();
+                String nama = mNama.getText().toString();
+                String no_hp = mNoHp.getText().toString();
+                String umur = mUmur.getText().toString();
+                String keahlian = mKeahlian.getText().toString();
+                int id_jenis_seniman = listValueJenisSeniman.get(mJenisSeniman.getSelectedItemPosition());
+                String jenis_kelamin;
+                if(mLaki.isChecked()){
+                    jenis_kelamin = "Pria";
+                }
+                else if(mPerempuan.isChecked()){
+                    jenis_kelamin = "Perempuan";
+                }
+                else{
+                    jenis_kelamin = "Group Campuran";
+                }
+                String format_solo_group = listDisplayGroupStatus.get(mGroupStatus.getSelectedItemPosition());
+
+                final String portfolio = mPortfolio.getText().toString();
+
+                params.put("username",username);
+                params.put("password",password);
+                params.put("id_jenis_seniman",String.valueOf(id_jenis_seniman));
+                params.put("nama",nama);
+                params.put("jenis_kelamin",jenis_kelamin);
+                params.put("portfolio",portfolio);
+                params.put("no_hp",no_hp);
+                params.put("umur",umur);
+                params.put("keahlian_spesifik",keahlian);
+                params.put("format_solo_grup",format_solo_group);
+                return params;
+            }
+
+            /*
+            * passing image by renaming it with a unique name
+            * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("pic", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
+
+        //adding the request to volley
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+
+            //getting the image Uri
+            Uri imageUri = data.getData();
+            try {
+                //getting bitmap object from uri
+                bitmapFoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+                //displaying selected image to imageview
+                mViewFoto.setImageBitmap(bitmapFoto);
+
+                mDaftar.setEnabled(true);
+                mDaftar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void fillGroupStatusSpinner(){
+
+        listDisplayGroupStatus = new ArrayList<String>();
+
+        listDisplayGroupStatus.add("Solo");
+        listDisplayGroupStatus.add("Group");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, listDisplayGroupStatus);
+
+        mGroupStatus.setAdapter(dataAdapter);
     }
 
     private void ReadJenisSeniman() {
@@ -130,17 +312,17 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                 Log.d(TAG, response.toString());
                 try {
                     JSONArray jr = response.getJSONArray(0);
-                    List<Integer> listValue = new ArrayList<Integer>();
-                    List<String> list = new ArrayList<String>();
+                    listValueJenisSeniman = new ArrayList<Integer>();
+                    listDisplayJenisSeniman = new ArrayList<String>();
 
 
                     for (int i = 0; i < jr.length(); i++) {
                         try {
 
                             JSONObject obj = (JSONObject) jr.get(i);
-                            listValue.add(obj.getInt("id_jenis_seniman"));
+                            listValueJenisSeniman.add(obj.getInt("id_jenis_seniman"));
 
-                            list.add(obj.getString("jenis_seniman"));
+                            listDisplayJenisSeniman.add(obj.getString("jenis_seniman"));
 
                             Log.e("man","tapppjiwaaa");
 
@@ -149,9 +331,9 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                             Log.e("man","LOG gamao! = " + e.getMessage());
                         }
                     }
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(contextFinal,android.R.layout.simple_spinner_dropdown_item, list);
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(contextFinal,android.R.layout.simple_spinner_dropdown_item, listDisplayJenisSeniman);
 
-                    jenis_seniman.setAdapter(dataAdapter);
+                    mJenisSeniman.setAdapter(dataAdapter);
                 } catch (Exception e) {
                     Log.e("man","LOG gamao diluar! = " + e.getMessage());
                 }
@@ -168,4 +350,11 @@ public class RegisterSenimanActivity extends AppCompatActivity {
 //        AppController.getInstance().addToRequestQueue(readRequest, tag_json_obj);
         queue.add(readRequest);
     }
+
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
 }
