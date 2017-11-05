@@ -108,6 +108,7 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
+                        android:inputType="textPassword"
                         android:ems="10"
                         android:hint="Password"
                         android:textColorHint="@color/colorSecondaryText" />
@@ -149,6 +150,7 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
+                        android:inputType="textPersonName"
                         android:ems="10"
                         android:hint="Nama"
                         android:textColorHint="@color/colorSecondaryText" />
@@ -190,6 +192,7 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
+                        android:inputType="phone"
                         android:ems="10"
                         android:hint="No. HP"
                         android:textColorHint="@color/colorSecondaryText" />
@@ -231,6 +234,7 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
+                        android:inputType="textEmailAddress"
                         android:ems="10"
                         android:hint="Email"
                         android:textColorHint="@color/colorSecondaryText" />
