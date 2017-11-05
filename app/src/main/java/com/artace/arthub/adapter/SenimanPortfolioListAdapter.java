@@ -34,6 +34,7 @@ import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 import com.artace.arthub.pojo.PojoSeniman;
+import com.artace.arthub.utils.YoutubeId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,14 +70,8 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
     public void onBindViewHolder(MyViewHolder holder, int position) {
         seniman = senimanList.get(position);
 
-        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
-
-        Pattern compiledPattern = Pattern.compile(pattern);
-        Matcher matcher = compiledPattern.matcher(seniman.getPortfolio()); //url is youtube url for which you want to extract the id.
-        String idThumbnail = "";
-        if (matcher.find()) {
-            idThumbnail = matcher.group();
-        }
+        YoutubeId generateYoutubeId = new YoutubeId();
+        String idThumbnail = generateYoutubeId.generateId(seniman.getPortfolio());
 
         holder.mNama.setText(seniman.getNama());
         holder.mFoto.setImageUrl(seniman.getFoto(), AppController.getInstance().getImageLoader());
