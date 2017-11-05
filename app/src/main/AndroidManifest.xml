@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".controller.AppController"
@@ -56,7 +57,6 @@
         <activity android:name=".EoSenimanActivity" />
         <activity android:name=".ItemPortfolioList" />
         <activity android:name=".SenimanMainActivity"></activity>
-        <activity android:name=".YoutubeWebViewActivity"></activity>
     </application>
 
 </manifest>

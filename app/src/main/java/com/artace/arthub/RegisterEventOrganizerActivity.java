@@ -35,6 +35,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterEventOrganizerActivity extends AppCompatActivity{
 
@@ -62,8 +64,8 @@ public class RegisterEventOrganizerActivity extends AppCompatActivity{
         mUsername = (EditText) findViewById(R.id.register_eventorganizer_username);
         mPassword = (EditText) findViewById(R.id.register_eventorganizer_password);
         mNama = (EditText) findViewById(R.id.register_eventorganizer_nama);
-        mEmail = (EditText) findViewById(R.id.register_eventorganizer_nohp);
-        mNoHp = (EditText) findViewById(R.id.register_eventorganizer_email);
+        mEmail = (EditText) findViewById(R.id.register_eventorganizer_email);
+        mNoHp = (EditText) findViewById(R.id.register_eventorganizer_nohp);
         mFoto = (ImageView) findViewById(R.id.register_eventorganizer_foto);
         mSubmit = (Button) findViewById(R.id.btn_register_eventorganizer_submit);
 
@@ -84,11 +86,53 @@ public class RegisterEventOrganizerActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View view) {
-                submitForm(bitmapFoto);
+                String userS = mUsername.getText().toString();
+                String passS = mPassword.getText().toString();
+                String namaS = mNama.getText().toString();
+                String nohpS = mNoHp.getText().toString();
+                String emailS = mEmail.getText().toString();
+                String regExpn =
+                        "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                                +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                                +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                                +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                                +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                                +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+                CharSequence inputStr = emailS;
+
+                Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+                Matcher matcher = pattern.matcher(inputStr);
+
+
+                if (userS.trim().length()>0 && namaS.trim().length()>0 && nohpS.trim().length()>0 && emailS.trim().length()>0) {
+                    if (passS.trim().length()>5){
+                        boolean validEmail = isValidEmail(mEmail.getText().toString());
+                        if(validEmail){
+                            submitForm(bitmapFoto);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Email belum valid", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Password minimal 6 karakter", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(RegisterEventOrganizerActivity.this, "Data harus lengkap", Toast.LENGTH_SHORT).show();
+            }
             }
 
         });
 
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     @Override
@@ -161,34 +205,10 @@ public class RegisterEventOrganizerActivity extends AppCompatActivity{
                 Map<String, String> params = new HashMap<>();
                 params.put("tags", "RegisterEoTag");
                 final String uname = mUsername.getText().toString();
-//                if (mUsername.getText().toString().toString().isEmpty()) {
-//                    Toast.makeText(RegisterEventOrganizerActivity.this, "You did not enter a username", Toast.LENGTH_SHORT).show();
-//                    return params;
-//                }
                 final String pass = mPassword.getText().toString();
                 final String nama = mNama.getText().toString();
                 final String nohp = mNoHp.getText().toString();
                 final String email = mEmail.getText().toString();
-                final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-                mEmail.addTextChangedListener(new TextWatcher() {
-                    public void afterTextChanged(Editable s) {
-
-                        if (email.matches(emailPattern) && s.length() > 0)
-                        {
-                            Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                        // other stuffs
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        // other stuffs
-                    }
-                });
 
                 params.put("username",uname);
                 params.put("password",pass);

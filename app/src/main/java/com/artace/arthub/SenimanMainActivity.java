@@ -17,7 +17,7 @@ public class SenimanMainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     String title;
-    SenimanHomeProfileActivity newFragment1;
+    SenimanHomeProfileFragment newFragment1;
     SenimanListTawaranFragment newFragment2;
 
     @Override
@@ -85,7 +85,7 @@ public class SenimanMainActivity extends AppCompatActivity {
                 return;
             }
 
-            newFragment1 = new SenimanHomeProfileActivity();
+            newFragment1 = new SenimanHomeProfileFragment();
             newFragment2 = new SenimanListTawaranFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.seniman_main_fragment_container, newFragment1);
