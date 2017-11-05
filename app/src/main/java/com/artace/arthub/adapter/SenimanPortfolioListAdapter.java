@@ -110,6 +110,10 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
                 Intent intent = new Intent(context, YoutubeWebViewActivity.class);
                 intent.putExtra("url", seniman.getPortfolio());
                 context.startActivity(intent);
+
+//                Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, "<<YOUTUBE_API_KEY>>", "<<Youtube Video ID>>", 0, true, false);
+//                context.startActivity(intent);
+
 //                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(seniman.getPortfolio())));
             }
         });
