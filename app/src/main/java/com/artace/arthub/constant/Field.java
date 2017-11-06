@@ -27,7 +27,8 @@ public class Field {
     public static final String KEAHLIAN_SPESIFIK = "keahlian_spesifik";
     public static final String FORMAT_SOLO_GRUP = "format_solo_grup";
 
-
+    //youtube api
+    public static final String YOUTUBE_API_KEY = "AIzaSyDu9rJYXDuPgMut8Ga6CMPMFUktZMkJRIQ";
 
     public Field(){
 
@@ -105,4 +106,5 @@ public class Field {
         return LOGIN_SHARED_PREFERENCES;
     }
 
+    public static String getYoutubeApiKey() {return YOUTUBE_API_KEY;}
 }

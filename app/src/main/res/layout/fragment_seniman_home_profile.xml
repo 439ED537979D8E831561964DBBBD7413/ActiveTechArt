@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.artace.arthub.SenimanHomeProfileActivity">
+    tools:context="com.artace.arthub.SenimanHomeProfileFragment">
 
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/seniman_home_profile_layoutHeader"
+        android:id="@+id/fragment_seniman_home_profile_layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:background="@drawable/background_head"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,41 +19,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/seniman_home_profile_imageSeniman"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="13dp"
-            android:src="@drawable/banyol_group"
+        <FrameLayout
+            android:id="@+id/event_detail_imageEvent_container"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="7dp">
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:padding="5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+            <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                android:id="@+id/fragment_seniman_home_profile_imageSeniman"
+                android:layout_width="85dp"
+                android:layout_height="85dp" />
+        </FrameLayout>
 
         <TextView
-            android:id="@+id/seniman_home_profile_namaSeniman"
+            android:id="@+id/fragment_seniman_home_profile_namaSeniman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Junaidi Karo"
             android:textColor="@color/colorWhiteText"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/seniman_home_profile_imageSeniman"
-            app:layout_constraintStart_toStartOf="@+id/seniman_home_profile_imageSeniman"
-            app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_imageSeniman" />
+            app:layout_constraintEnd_toEndOf="@+id/event_detail_imageEvent_container"
+            app:layout_constraintStart_toStartOf="@+id/event_detail_imageEvent_container"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_imageEvent_container" />
 
         <TextView
-            android:id="@+id/seniman_home_profile_keahlian"
+            android:id="@+id/fragment_seniman_home_profile_keahlian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Penyanyi, Gitaris "
             android:textColor="@color/colorWhiteText"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/seniman_home_profile_imageSeniman"
-            app:layout_constraintStart_toStartOf="@+id/seniman_home_profile_imageSeniman"
-            app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_namaSeniman" />
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_seniman_home_profile_namaSeniman"
+            app:layout_constraintStart_toStartOf="@+id/fragment_seniman_home_profile_namaSeniman"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_profile_namaSeniman" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -64,7 +74,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_layoutHeader">
+        app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_profile_layoutHeader">
 
 
         <android.support.constraint.ConstraintLayout
@@ -72,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="180dp"
-            app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_layoutHeader">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_profile_layoutHeader">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -89,17 +99,17 @@
                     android:layout_marginTop="7dp">
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_img4"
+                        android:id="@+id/fragment_seniman_home_profile_img4"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/call"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/seniman_home_profile_noTelp"
+                        app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_noTelp"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/seniman_home_profile_noTelp"
+                        android:id="@+id/fragment_seniman_home_profile_noTelp"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginEnd="10dp"
@@ -109,19 +119,19 @@
                         android:paddingLeft="10dp"
                         android:text="+6281 7300 1200"
                         android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_editNoTelp"
+                        android:id="@+id/fragment_seniman_home_profile_editNoTelp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="25dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/seniman_home_profile_noTelp"
+                        app:layout_constraintStart_toEndOf="@+id/fragment_seniman_home_profile_noTelp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pencil_abu" />
 
@@ -133,17 +143,17 @@
                     android:layout_marginTop="7dp">
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_img2"
+                        android:id="@+id/fragment_seniman_home_profile_img2"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/medium_gender"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/seniman_home_profile_jenisKelamin"
+                        app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_jenisKelamin"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/seniman_home_profile_jenisKelamin"
+                        android:id="@+id/fragment_seniman_home_profile_jenisKelamin"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_marginEnd="10dp"
@@ -153,19 +163,19 @@
                         android:paddingLeft="10dp"
                         android:text="Laki - Laki"
                         android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_editJenisKelamin"
+                        android:id="@+id/fragment_seniman_home_profile_editJenisKelamin"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="25dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/seniman_home_profile_jenisKelamin"
+                        app:layout_constraintStart_toEndOf="@+id/fragment_seniman_home_profile_jenisKelamin"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pencil_abu" />
 
@@ -177,38 +187,37 @@
                     android:layout_marginTop="7dp">
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_img3"
+                        android:id="@+id/fragment_seniman_home_profile_img3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/if_icons_user_1564534"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/seniman_home_profile_umur"
+                        app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_umur"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/seniman_home_profile_umur"
-                        android:layout_width="183dp"
+                        android:id="@+id/fragment_seniman_home_profile_umur"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/form_content_height"
-                        android:layout_marginLeft="10dp"
                         android:editable="false"
                         android:ems="8"
                         android:paddingLeft="10dp"
                         android:text="27"
                         android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/seniman_home_profile_editUmur"
+                        android:id="@+id/fragment_seniman_home_profile_editUmur"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="25dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/seniman_home_profile_umur"
+                        app:layout_constraintStart_toEndOf="@+id/fragment_seniman_home_profile_umur"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/pencil_abu" />
 
@@ -216,17 +225,28 @@
 
             </LinearLayout>
 
-            <VideoView
-                android:id="@+id/seniman_home_profile_videoSeniman"
+            <FrameLayout
+                android:id="@+id/fragment_seniman_home_layoutVideo_container"
                 android:layout_width="245dp"
                 android:layout_height="145dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.android.volley.toolbox.NetworkImageView
+                    android:id="@+id/fragment_seniman_home_profile_videoSeniman"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
 
             <Button
-                android:id="@+id/seniman_home_profile_btnUbahVideo"
+                android:id="@+id/fragment_seniman_home_profile_btnUbahVideo"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="245dp"
                 android:layout_height="wrap_content"
@@ -235,12 +255,12 @@
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/seniman_home_profile_videoSeniman"
-                app:layout_constraintStart_toStartOf="@+id/seniman_home_profile_videoSeniman"
-                app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_videoSeniman" />
+                app:layout_constraintEnd_toEndOf="@+id/fragment_seniman_home_layoutVideo_container"
+                app:layout_constraintStart_toStartOf="@+id/fragment_seniman_home_layoutVideo_container"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_layoutVideo_container" />
 
             <Button
-                android:id="@+id/seniman_home_profile_btnSimpan"
+                android:id="@+id/fragment_seniman_home_profile_btnSimpan"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -253,7 +273,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seniman_home_profile_btnUbahVideo" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_profile_btnUbahVideo" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
