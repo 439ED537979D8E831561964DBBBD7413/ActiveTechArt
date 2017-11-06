@@ -15,6 +15,9 @@ public class DatabaseConnection {
     //READ JENIS SENIMAN
     public  static String READ_JENIS_SENIMAN = BASE_URL+"jenis_seniman/JenisSeniman.php";
 
+    //UPLOAD
+    public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
+
     //INSERT REGISTER SENIMAN
     public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
@@ -65,4 +68,5 @@ public class DatabaseConnection {
     public static String getLogin(String username, String password) {
         return LOGIN + "?username="+username+"&password="+password;
     }
+
 }

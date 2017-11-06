@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_base"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.artace.arthub.SenimanListTawaranFragment">
 
     <android.support.v7.widget.CardView
         android:id="@+id/seniman_list_tawaran_cardView"
