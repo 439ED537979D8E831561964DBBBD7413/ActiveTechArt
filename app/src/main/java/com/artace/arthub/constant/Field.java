@@ -28,7 +28,8 @@ public class Field {
     public static final String FORMAT_SOLO_GRUP = "format_solo_grup";
 
     //youtube api
-    public static final String YOUTUBE_API_KEY = "AIzaSyDu9rJYXDuPgMut8Ga6CMPMFUktZMkJRIQ";
+    public static final String YOUTUBE_API_KEY = "AIzaSyA0KCIjEXYt79gqVdS5YpKMKKRjzE88_zY";
+
 
     public Field(){
 

@@ -104,8 +104,8 @@ public class SenimanHomeProfileFragment extends Fragment {
         umur = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_umur);
         portfolio = (NetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
 
-        portfolio.setImageUrl("https://img.youtube.com/vi/"+idThumbnail+"/0.jpg", AppController.getInstance().getImageLoader());
         imageSeniman.setImageUrl(Simage, AppController.getInstance().getImageLoader());
+        portfolio.setImageUrl("https://img.youtube.com/vi/"+idThumbnail+"/0.jpg", AppController.getInstance().getImageLoader());
         namaSeniman.setText(Snama);
         keahlianSeniman.setText(Skeahlian);
         no_telp.setText(Sno_telp);
@@ -115,7 +115,9 @@ public class SenimanHomeProfileFragment extends Fragment {
         portfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+idThumbnail));
+
+                Intent intent = new Intent(SenimanHomeProfileFragment.this.getContext(),YoutubePlayerViewActivity.class);
+                intent.putExtra("idThumbnailExtra", idThumbnail);
                 SenimanHomeProfileFragment.this.getContext().startActivity(intent);
             }
         });

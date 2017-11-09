@@ -56,7 +56,8 @@
         </activity>
         <activity android:name=".EoSenimanActivity" />
         <activity android:name=".ItemPortfolioList" />
-        <activity android:name=".SenimanMainActivity"></activity>
+        <activity android:name=".SenimanMainActivity" />
+        <activity android:name=".YoutubePlayerViewActivity"></activity>
     </application>
 
 </manifest>

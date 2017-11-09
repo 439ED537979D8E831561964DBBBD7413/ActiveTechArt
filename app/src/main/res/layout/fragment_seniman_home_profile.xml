@@ -241,6 +241,7 @@
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/fragment_seniman_home_profile_videoSeniman"
+                    android:fitsSystemWindows="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
