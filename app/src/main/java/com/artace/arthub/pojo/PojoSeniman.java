@@ -23,6 +23,14 @@ public class PojoSeniman {
         this.format_solo_grup = format_solo_grup;
     }
 
+    public PojoSeniman(int id_seniman, int id_user, String nama, String foto, String keahlian_spesifik) {
+        this.id_seniman = id_seniman;
+        this.id_user = id_user;
+        this.nama = nama;
+        this.foto = foto;
+        this.keahlian_spesifik = keahlian_spesifik;
+    }
+
     public int getId_seniman() {
         return id_seniman;
     }
