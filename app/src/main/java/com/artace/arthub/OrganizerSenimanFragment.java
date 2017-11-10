@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -72,7 +73,8 @@ public class OrganizerSenimanFragment extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     RequestQueue queue;
     String urlRead = DatabaseConnection.getReadSenimanList();
-    OrganizerMainActivity mainActivity = new OrganizerMainActivity();
+    OrganizerMainActivity mainActivity;
+    TextView mJudul, mSubJudul;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -112,11 +114,12 @@ public class OrganizerSenimanFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = (CoordinatorLayout) inflater.inflate(R.layout.fragment_organizer_seniman, container, false);
 
+        mainActivity = (OrganizerMainActivity) getActivity();
+
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.organizer_seniman_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(mainActivity.title);
 
         initCollapsingToolbar();
 
@@ -137,9 +140,26 @@ public class OrganizerSenimanFragment extends Fragment {
             }
         });
 
+        mJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_judul);
+        mSubJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_subjudul);
+
         getData();
 
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.seniman_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        if(mainActivity.title.equals("Musisi")){
+            mJudul.setText("Musisi Jalanan");
+            mSubJudul.setText("List Musisi Jalanan Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.seniman_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
+        else if(mainActivity.title.equals("Penari")){
+            mJudul.setText("Penari Lokal");
+            mSubJudul.setText("Temukan Penari Lokal Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.penari_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
+        else if(mainActivity.title.equals("Bondres")){
+            mJudul.setText("Bondres");
+            mSubJudul.setText("Lihat Bondres Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.bondres_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
 
 
         return rootView;
@@ -204,7 +224,7 @@ public class OrganizerSenimanFragment extends Fragment {
     private void initCollapsingToolbar() {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) rootView.findViewById(R.id.organizer_seniman_collapsing_toolbar);
-        collapsingToolbar.setTitle(mainActivity.title);
+        collapsingToolbar.setTitle(" ");
         AppBarLayout appBarLayout = (AppBarLayout) rootView.findViewById(R.id.organizer_seniman_appbar);
         appBarLayout.setExpanded(true);
 
@@ -222,7 +242,7 @@ public class OrganizerSenimanFragment extends Fragment {
                     collapsingToolbar.setTitle(mainActivity.title);
                     isShow = true;
                 } else if (isShow) {
-                    collapsingToolbar.setTitle(mainActivity.title);
+                    collapsingToolbar.setTitle(" ");
                     isShow = false;
                 }
             }
