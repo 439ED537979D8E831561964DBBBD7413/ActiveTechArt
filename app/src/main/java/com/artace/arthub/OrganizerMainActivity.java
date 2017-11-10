@@ -35,11 +35,11 @@ public class OrganizerMainActivity extends AppCompatActivity {
         if (getIntent() != null){
             Bundle extras = getIntent().getExtras();
             title = extras.getString("TITLE");
-            setToolbar(title);
+//            setToolbar(title);
         }
         else{
             title = savedInstanceState.getString("TITLE");
-            setToolbar(title);
+//            setToolbar(title);
         }
 
         initFragment(savedInstanceState);
@@ -103,13 +103,13 @@ public class OrganizerMainActivity extends AppCompatActivity {
         });
     }
 
-    private void setToolbar(String title){
-        mToolbar = (Toolbar) findViewById(R.id.organizer_main_toolbar);
-        setSupportActionBar(mToolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(title);
-    }
+//    private void setToolbar(String title){
+//        mToolbar = (Toolbar) findViewById(R.id.organizer_main_toolbar);
+//        setSupportActionBar(mToolbar);
+//        ActionBar ab = getSupportActionBar();
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setTitle(title);
+//    }
 
     private void initFragment(Bundle savedInstanceState){
         if (findViewById(R.id.organizer_main_fragment_container) != null) {

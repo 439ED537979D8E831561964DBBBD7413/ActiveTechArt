@@ -13,5 +13,7 @@
     <color name="green_button_color">#08ae9e</color>
     <color name="background_base">#ededed</color>
     <color name="color_tolak">#f5f5f5</color>
+    <color name="viewBg">#f1f5f8</color>
+
 </resources>
 

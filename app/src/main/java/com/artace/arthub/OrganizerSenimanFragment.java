@@ -1,12 +1,49 @@
 package com.artace.arthub;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.artace.arthub.adapter.EventAdapter;
+import com.artace.arthub.adapter.ListSenimanAdapter;
+import com.artace.arthub.connection.DatabaseConnection;
+import com.artace.arthub.constant.Field;
+import com.artace.arthub.controller.AppController;
+import com.artace.arthub.pojo.PojoEvent;
+import com.artace.arthub.pojo.PojoSeniman;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,6 +63,16 @@ public class OrganizerSenimanFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    CoordinatorLayout rootView;
+    RecyclerView recyclerView;
+    ListSenimanAdapter adapter;
+    List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();;
+    ProgressBar mLoadingAnim;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    RequestQueue queue;
+    String urlRead = DatabaseConnection.getReadSenimanList();
+    OrganizerMainActivity mainActivity = new OrganizerMainActivity();
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -63,8 +110,172 @@ public class OrganizerSenimanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_organizer_seniman, container, false);
+        rootView = (CoordinatorLayout) inflater.inflate(R.layout.fragment_organizer_seniman, container, false);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.organizer_seniman_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(mainActivity.title);
+
+        initCollapsingToolbar();
+
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_seniman_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        adapter = new ListSenimanAdapter(getContext(), senimanList);
+        recyclerView.setAdapter(adapter);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_seniman_swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
+
+        getData();
+
+        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.seniman_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+
+
+        return rootView;
+    }
+
+    public void getData(){
+        //Set loading anim
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_seniman_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
+
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
+        //empty eventList
+        senimanList.clear();
+
+
+        urlRead += "?id_jenis_seniman=1";
+
+        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try{
+                    JSONArray jr = response.getJSONArray(0);
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+
+                            PojoSeniman seniman = new PojoSeniman(obj.getInt("id_seniman"),obj.getInt("id_jenis_seniman"),obj.getInt("id_user"),obj.getString("nama"),obj.getString("jenis_kelamin"),obj.getString("portfolio"),obj.getString("no_hp"),obj.getString("umur"), DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("keahlian_spesifik"),obj.getString("format_solo_grup"));
+
+                            // adding event to events array
+                            senimanList.add(seniman);
+                            Log.d("OSFragment","Iterasi pertama");
+
+                        } catch (Exception e) {
+                            System.out.println("LOG gamao! = " + e.getMessage());
+                        } finally {
+                            //Notify adapter about data changes
+                            adapter.notifyItemChanged(i);
+                        }
+                    }
+                }catch (Exception e){
+                    Log.e("OSFragment","LOG gamao diluar! = " + e.getMessage());
+                }
+                finally {
+                    mLoadingAnim.setVisibility(View.GONE);
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+
+            }
+        });
+        //Adding JsonArrayRequest to Request Queue
+        queue.add(newsReq);
+    }
+
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) rootView.findViewById(R.id.organizer_seniman_collapsing_toolbar);
+        collapsingToolbar.setTitle(mainActivity.title);
+        AppBarLayout appBarLayout = (AppBarLayout) rootView.findViewById(R.id.organizer_seniman_appbar);
+        appBarLayout.setExpanded(true);
+
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle(mainActivity.title);
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(mainActivity.title);
+                    isShow = false;
+                }
+            }
+        });
+
+
+    }
+
+
+    /**
+     * RecyclerView item decoration - give equal margin around grid item
+     */
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

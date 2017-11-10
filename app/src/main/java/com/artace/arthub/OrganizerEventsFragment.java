@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +69,9 @@ public class OrganizerEventsFragment extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     ProgressBar mLoadingAnim;
     FloatingActionButton mFab;
-    FrameLayout rootView;
+    RelativeLayout rootView;
+    Toolbar mToolbar;
+    OrganizerMainActivity mainActivity;
 
     public OrganizerEventsFragment() {
         // Required empty public constructor
@@ -103,16 +108,24 @@ public class OrganizerEventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
+        rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_events_recyclerview);
         adapter = new EventAdapter(getContext(), eventList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerView.setAdapter(adapter);
 
-        final FrameLayout rootViewFinal = rootView;
+        final RelativeLayout rootViewFinal = rootView;
+        mainActivity = (OrganizerMainActivity) getActivity();
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_events_swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getEvents();
+            }
+        });
+
         mFab = (FloatingActionButton) rootView.findViewById(R.id.organizer_events_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,12 +135,11 @@ public class OrganizerEventsFragment extends Fragment {
             }
         });
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getEvents();
-            }
-        });
+        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_events_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(mainActivity.title);
 
         getEvents();
 

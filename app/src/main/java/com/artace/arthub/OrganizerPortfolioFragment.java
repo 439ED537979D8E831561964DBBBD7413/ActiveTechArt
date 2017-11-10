@@ -6,13 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -58,6 +62,9 @@ public class OrganizerPortfolioFragment extends Fragment {
     SenimanPortfolioListAdapter adapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
     ProgressBar mLoadingAnim;
+    Toolbar mToolbar;
+    OrganizerMainActivity mainActivity;
+    RelativeLayout rootView;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -96,32 +103,36 @@ public class OrganizerPortfolioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_portfolio, container, false);
+        rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_portfolio, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_portfolio_recyclerview);
         adapter = new SenimanPortfolioListAdapter(getContext(), senimanList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerView.setAdapter(adapter);
 
-        final FrameLayout rootViewFinal = rootView;
+        mainActivity = (OrganizerMainActivity) getActivity();
+
+        final RelativeLayout rootViewFinal = rootView;
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_portfolio_swipeRefreshLayout);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getEvents(rootViewFinal);
+                getEvents();
             }
         });
 
-        getEvents(rootView);
+        getEvents();
+
+        setToolbar();
 
         // Inflate the layout for this fragment
         return rootView;
 
     }
 
-    private void getEvents(FrameLayout rootView){
+    private void getEvents(){
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
 
@@ -132,8 +143,6 @@ public class OrganizerPortfolioFragment extends Fragment {
         //empty eventList
         senimanList.clear();
 
-        //Volley's inbuilt class to make Json array request
-        final FrameLayout rootViewFinal = rootView;
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
@@ -174,6 +183,14 @@ public class OrganizerPortfolioFragment extends Fragment {
         });
         //Adding JsonArrayRequest to Request Queue
         queue.add(newsReq);
+    }
+
+    private void setToolbar(){
+        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_portfolio_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(mainActivity.title);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
