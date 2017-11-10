@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArtHub.iml" filepath="$PROJECT_DIR$/ArtHub.iml" />
-      <module fileurl="file://E:\Project\ArtHub\.idea\ArtHub.iml" filepath="E:\Project\ArtHub\.idea\ArtHub.iml" />
       <module fileurl="file://D:\mine\artace\ArtHub\ArtHub.iml" filepath="D:\mine\artace\ArtHub\ArtHub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArtHub.iml" filepath="$PROJECT_DIR$/ArtHub.iml" />
+      <module fileurl="file://E:\Project\ArtHub\.idea\ArtHub.iml" filepath="E:\Project\ArtHub\.idea\ArtHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
