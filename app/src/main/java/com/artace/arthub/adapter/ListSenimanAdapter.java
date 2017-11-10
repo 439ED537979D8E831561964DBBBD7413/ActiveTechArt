@@ -58,9 +58,12 @@ public class ListSenimanAdapter extends RecyclerView.Adapter<ListSenimanAdapter.
         PojoSeniman seniman = senimanList.get(position);
         holder.nama.setText(seniman.getNama());
         holder.keahlianSpesifik.setText(seniman.getKeahlian_spesifik());
+        holder.foto.setTag(position);
 
         // loading album cover using Glide library
         Glide.with(mContext).load(seniman.getFoto()).into(holder.foto);
+
+
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
