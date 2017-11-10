@@ -19,6 +19,9 @@ public class DatabaseConnection {
     //UPLOAD
     public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
 
+    //UPDATE
+    public static String UPDATE_SENIMAN = BASE_URL+"seniman/UpdateSeniman.php";
+
     //INSERT
     public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
@@ -41,6 +44,10 @@ public class DatabaseConnection {
 
     public static String getInsertRegisterSeniman() {
         return INSERT_REGISTER_SENIMAN;
+    }
+
+    public static String getUpdateSeniman() {
+        return UPDATE_SENIMAN;
     }
 
     public static String getCreateEventOrganizer() {
