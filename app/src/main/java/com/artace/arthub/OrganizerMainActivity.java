@@ -1,12 +1,15 @@
 package com.artace.arthub;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.artace.arthub.ViewPlugins.DrawerMenu;
 import com.roughike.bottombar.BottomBar;
@@ -123,16 +126,22 @@ public class OrganizerMainActivity extends AppCompatActivity {
             newFragment3 = new OrganizerSenimanFragment();
             newFragment4 = new OrganizerDiundangFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.organizer_main_fragment_container, newFragment1);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Events");
 
-            transaction.add(R.id.organizer_main_fragment_container, newFragment2);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment2,"Portfolio");
             transaction.hide(newFragment2);
-            transaction.add(R.id.organizer_main_fragment_container, newFragment3);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Seniman");
             transaction.hide(newFragment3);
-            transaction.add(R.id.organizer_main_fragment_container, newFragment4);
+            transaction.add(R.id.organizer_main_fragment_container, newFragment4,"Diundang");
             transaction.hide(newFragment4);
             transaction.commit();
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("OrganizerMainActivity","On Activity Result Main Activity");
+
+    }
 }

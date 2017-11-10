@@ -1,13 +1,16 @@
 package com.artace.arthub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -57,9 +62,11 @@ public class OrganizerEventsFragment extends Fragment {
     String urlRead = DatabaseConnection.getReadEventorganizerEvents();
     RecyclerView recyclerView;
     List<PojoEvent> eventList = new ArrayList<PojoEvent>();
-    EventAdapter adapter;
+    public EventAdapter adapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
     ProgressBar mLoadingAnim;
+    FloatingActionButton mFab;
+    FrameLayout rootView;
 
     public OrganizerEventsFragment() {
         // Required empty public constructor
@@ -96,7 +103,7 @@ public class OrganizerEventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
+        rootView = (FrameLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_events_recyclerview);
         adapter = new EventAdapter(getContext(), eventList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -106,40 +113,50 @@ public class OrganizerEventsFragment extends Fragment {
         final FrameLayout rootViewFinal = rootView;
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_events_swipeRefreshLayout);
+        mFab = (FloatingActionButton) rootView.findViewById(R.id.organizer_events_fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),TambahEventActivity.class);
+                startActivityForResult(intent, 5);
+            }
+        });
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getEvents(rootViewFinal);
+                getEvents();
             }
         });
 
-        getEvents(rootView);
+        getEvents();
 
-        // Inflate the layout for this fragment
+
         return rootView;
 
     }
 
-    private void getEvents(FrameLayout rootView){
-        //Getting Instance of Volley Request Queue
-        queue = AppController.getInstance().getRequestQueue();
-
+    public void getEvents(){
         //Set loading anim
         mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_events_progressbar);
         mLoadingAnim.setVisibility(View.VISIBLE);
 
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
         //empty eventList
         eventList.clear();
 
-        //Volley's inbuilt class to make Json array request
-        final FrameLayout rootViewFinal = rootView;
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
         if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
             urlRead += "?id_event_organizer=" + sharedpreferences.getString(Field.getIdEventOrganizer(),null);
+            mFab.setVisibility(View.VISIBLE);
+        }
+        else{
+            mFab.setVisibility(View.GONE);
         }
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
@@ -181,6 +198,7 @@ public class OrganizerEventsFragment extends Fragment {
         });
         //Adding JsonArrayRequest to Request Queue
         queue.add(newsReq);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -205,6 +223,15 @@ public class OrganizerEventsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 //        mListener = null;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            getEvents();
+            Log.d("OrganizerEventsFragment","OnActivityResult triggered");
+        }
     }
 
     /**

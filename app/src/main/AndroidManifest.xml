@@ -44,7 +44,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.artace.arthub.MainActivity" />
         </activity>
-        <activity android:name=".TambahEventActivity" />
+        <activity android:name=".TambahEventActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.artace.arthub.OrganizerMainActivity" />
+        </activity>
         <activity android:name=".RegisterEventOrganizerActivity" />
         <activity android:name=".EventTerimaTolakActivity" />
         <activity
@@ -57,7 +61,7 @@
         <activity android:name=".EoSenimanActivity" />
         <activity android:name=".ItemPortfolioList" />
         <activity android:name=".SenimanMainActivity" />
-        <activity android:name=".YoutubePlayerViewActivity"></activity>
+        <activity android:name=".YoutubePlayerViewActivity" />
     </application>
 
 </manifest>

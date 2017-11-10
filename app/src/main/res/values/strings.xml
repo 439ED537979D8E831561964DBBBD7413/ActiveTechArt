@@ -9,4 +9,5 @@
     <!--Abaikan-->
     <item name="visible" type="id" />
     <item name="masked" type="id" />
+    <string name="title_activity_test">TestActivity</string>
 </resources>

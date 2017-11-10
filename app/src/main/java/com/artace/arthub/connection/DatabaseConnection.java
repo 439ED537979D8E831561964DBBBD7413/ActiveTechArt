@@ -19,15 +19,20 @@ public class DatabaseConnection {
     //UPLOAD
     public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
 
-    //INSERT REGISTER SENIMAN
+    //INSERT
     public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
+    public static String INSERT_EVENT = BASE_URL+"event/InsertEvent.php";
 
     //DIRECTORY
     public static String DIRECTORY_FOTO_USER = BASE_URL+"images/user/";
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
 
     public DatabaseConnection() {
+    }
+
+    public static String getInsertEvent() {
+        return INSERT_EVENT;
     }
 
     public static String getReadSenimanList() {
