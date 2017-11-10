@@ -7,20 +7,32 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.NetworkImageView;
 import com.artace.arthub.ViewPlugins.CircularNetworkImageView;
+import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
+import com.artace.arthub.utils.StringPostRequest;
+import com.artace.arthub.utils.VolleyResponseListener;
 import com.artace.arthub.utils.YoutubeId;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
@@ -39,11 +51,14 @@ public class SenimanHomeProfileFragment extends Fragment {
     RequestQueue queue;
     private String mParam1;
     private String mParam2;
+    public String Mno_hp,Mjenis_kelamin,Mumur,Mportfolio,id_seniman,Mnama;
     public TextView namaSeniman,keahlianSeniman;
-    public EditText no_telp,jenis_kelamin,umur;
+    public EditText no_hp,jenis_kelamin,umur,link_video,ubahvid;
     public SharedPreferences sharedpreferences;
     public CircularNetworkImageView imageSeniman;
     public NetworkImageView portfolio;
+    public FloatingActionButton fab,fabs;
+    public ImageView imgubahvid;
     boolean session;
 
 //    private OnFragmentInteractionListener mListener;
@@ -84,11 +99,11 @@ public class SenimanHomeProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.fragment_seniman_home_profile, container, false);
 
-        sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), MODE_PRIVATE);
         String Simage = sharedpreferences.getString(Field.getFOTO(),null);
         String Snama = sharedpreferences.getString(Field.getNAMA(),null);
         String Skeahlian= sharedpreferences.getString(Field.getKeahlianSpesifik(),null);
-        String Sno_telp = sharedpreferences.getString(Field.getNoHp(),null);
+        String Sno_hp = sharedpreferences.getString(Field.getNoHp(),null);
         String Sjenis_kelamin = sharedpreferences.getString(Field.getJenisKelamin(),null);
         String Sumur = sharedpreferences.getString(Field.getUMUR(),null);
         String Sportfolio = sharedpreferences.getString(Field.getPORTFOLIO(),null);
@@ -99,16 +114,22 @@ public class SenimanHomeProfileFragment extends Fragment {
         imageSeniman = (CircularNetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_imageSeniman);
         namaSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_namaSeniman);
         keahlianSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_keahlian);
-        no_telp = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_noTelp);
+        no_hp = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_noHp);
         jenis_kelamin = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelamin);
         umur = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_umur);
+        link_video = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         portfolio = (NetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
+
+        no_hp.setEnabled(false);
+        jenis_kelamin.setEnabled(false);
+        umur.setEnabled(false);
 
         imageSeniman.setImageUrl(Simage, AppController.getInstance().getImageLoader());
         portfolio.setImageUrl("https://img.youtube.com/vi/"+idThumbnail+"/0.jpg", AppController.getInstance().getImageLoader());
+        link_video.setText(Sportfolio);
         namaSeniman.setText(Snama);
         keahlianSeniman.setText(Skeahlian);
-        no_telp.setText(Sno_telp);
+        no_hp.setText(Sno_hp);
         jenis_kelamin.setText(Sjenis_kelamin);
         umur.setText(Sumur);
 
@@ -121,12 +142,86 @@ public class SenimanHomeProfileFragment extends Fragment {
                 SenimanHomeProfileFragment.this.getContext().startActivity(intent);
             }
         });
+        fab = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButton);
+        fabs = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonSave);
+        ubahvid = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
+        imgubahvid = (ImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
+        fabs.setVisibility(View.INVISIBLE);
+        ubahvid.setVisibility(View.GONE);
+        imgubahvid.setVisibility(View.GONE);
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                no_hp.setEnabled(true);
+                jenis_kelamin.setEnabled(true);
+                umur.setEnabled(true);
+//                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_black_24dp));
+                fab.setVisibility(View.GONE);
+                ubahvid.setVisibility(View.VISIBLE);
+                imgubahvid.setVisibility(View.VISIBLE);
+                fabs.setVisibility(View.VISIBLE);
+            }
+        });
+        fabs.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                submitForm();
+                no_hp.setEnabled(false);
+                jenis_kelamin.setEnabled(false);
+                umur.setEnabled(false);
+//                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_black_24dp));
+                fab.setVisibility(View.VISIBLE);
+                ubahvid.setVisibility(View.GONE);
+                imgubahvid.setVisibility(View.GONE);
+                fabs.setVisibility(View.INVISIBLE);
+            }
+        });
 
         // Inflate the layout for this fragment
         return rootView;
 
     }
+    private void submitForm(){
+        Mnama = namaSeniman.getText().toString();
+        Mportfolio = link_video.getText().toString();
+        Mno_hp = no_hp.getText().toString();
+        Mjenis_kelamin = jenis_kelamin.getText().toString();
+        Mumur = umur.getText().toString();
 
+        Map<String,String> params = new HashMap<String, String>();
+        params.put("no_hp",Mno_hp);
+        params.put("jenis_kelamin",Mjenis_kelamin);
+        params.put("umur",Mumur);
+        params.put("nama",Mnama);
+        params.put("portfolio",Mportfolio);
+
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        id_seniman = sharedpreferences.getString(Field.getIdSeniman(),null);
+        Log.d("LogUpdateSeniman","ID SENIMAN = "+id_seniman);
+        params.put("id_seniman",id_seniman);
+
+
+        StringPostRequest strReq = new StringPostRequest();
+        strReq.sendPost(getActivity(), params, DatabaseConnection.getUpdateSeniman(), new VolleyResponseListener() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("SenimanHomeProfile","Ada error : "+message);
+            }
+        });
+    }
+
+    public void finish() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("resultMessage", "UPDATE_SENIMAN");
+        getActivity().setResult(SenimanMainActivity.RESULT_OK,returnIntent);
+
+        super.getActivity().finish();
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
