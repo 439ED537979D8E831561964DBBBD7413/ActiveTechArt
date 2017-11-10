@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -53,12 +54,13 @@ public class SenimanHomeProfileFragment extends Fragment {
     private String mParam2;
     public String Mno_hp,Mjenis_kelamin,Mumur,Mportfolio,id_seniman,Mnama;
     public TextView namaSeniman,keahlianSeniman;
-    public EditText no_hp,jenis_kelamin,umur,link_video,ubahvid;
+    public EditText no_hp,umur,link_video,ubahvid;
     public SharedPreferences sharedpreferences;
     public CircularNetworkImageView imageSeniman;
     public NetworkImageView portfolio;
     public FloatingActionButton fab,fabs;
     public ImageView imgubahvid;
+    public Spinner jenis_kelamin;
     boolean session;
 
 //    private OnFragmentInteractionListener mListener;
@@ -115,11 +117,12 @@ public class SenimanHomeProfileFragment extends Fragment {
         namaSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_namaSeniman);
         keahlianSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_keahlian);
         no_hp = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_noHp);
-        jenis_kelamin = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelamin);
+        jenis_kelamin = (Spinner) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelamin);
         umur = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_umur);
         link_video = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         portfolio = (NetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
 
+        //SET FIELD DISABLE
         no_hp.setEnabled(false);
         jenis_kelamin.setEnabled(false);
         umur.setEnabled(false);
@@ -130,7 +133,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         namaSeniman.setText(Snama);
         keahlianSeniman.setText(Skeahlian);
         no_hp.setText(Sno_hp);
-        jenis_kelamin.setText(Sjenis_kelamin);
+//        jenis_kelamin.setSelection(Sjenis_kelamin);
         umur.setText(Sumur);
 
         portfolio.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +158,6 @@ public class SenimanHomeProfileFragment extends Fragment {
                 no_hp.setEnabled(true);
                 jenis_kelamin.setEnabled(true);
                 umur.setEnabled(true);
-//                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_black_24dp));
                 fab.setVisibility(View.GONE);
                 ubahvid.setVisibility(View.VISIBLE);
                 imgubahvid.setVisibility(View.VISIBLE);
@@ -169,7 +171,6 @@ public class SenimanHomeProfileFragment extends Fragment {
                 no_hp.setEnabled(false);
                 jenis_kelamin.setEnabled(false);
                 umur.setEnabled(false);
-//                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_black_24dp));
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
@@ -185,7 +186,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         Mnama = namaSeniman.getText().toString();
         Mportfolio = link_video.getText().toString();
         Mno_hp = no_hp.getText().toString();
-        Mjenis_kelamin = jenis_kelamin.getText().toString();
+        Mjenis_kelamin = jenis_kelamin.getSelectedItem().toString();
         Mumur = umur.getText().toString();
 
         Map<String,String> params = new HashMap<String, String>();
