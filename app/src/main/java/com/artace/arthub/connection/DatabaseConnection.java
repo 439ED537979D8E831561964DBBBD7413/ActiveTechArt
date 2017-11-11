@@ -27,6 +27,12 @@ public class DatabaseConnection {
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
     public static String INSERT_EVENT = BASE_URL+"event/InsertEvent.php";
 
+    //READ SENIMAN LIST TAWARAN
+    public static String READ_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanListTawaranTampil.php";
+
+    //UPDATE TERIMA TOLAK LIST TAWARAN
+    public static String UPDATE_TERIMA_TOLAK_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanUpdateTerimaTolakTawaranTampil.php";
+
     //DIRECTORY
     public static String DIRECTORY_FOTO_USER = BASE_URL+"images/user/";
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
@@ -36,6 +42,14 @@ public class DatabaseConnection {
 
     public static String getInsertEvent() {
         return INSERT_EVENT;
+    }
+
+    public static String getUpdateTerimaTolakTawaranTampil() {
+        return UPDATE_TERIMA_TOLAK_TAWARAN_TAMPIL;
+    }
+
+    public static String getReadTawaranTampil() {
+        return READ_TAWARAN_TAMPIL;
     }
 
     public static String getReadSenimanList() {

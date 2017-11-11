@@ -30,7 +30,7 @@ import com.artace.arthub.EoSenimanActivity;
 import com.artace.arthub.EventDetailActivity;
 import com.artace.arthub.R;
 import com.artace.arthub.ViewPlugins.CircularNetworkImageView;
-import com.artace.arthub.YoutubeWebViewActivity;
+import com.artace.arthub.YoutubePlayerViewActivity;
 import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
@@ -73,7 +73,7 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
         seniman = senimanList.get(position);
 
         YoutubeId generateYoutubeId = new YoutubeId();
-        String idThumbnail = generateYoutubeId.generateId(seniman.getPortfolio());
+        final String idThumbnail = generateYoutubeId.generateId(seniman.getPortfolio());
 
         holder.mNama.setText(seniman.getNama());
         holder.mFoto.setImageUrl(seniman.getFoto(), AppController.getInstance().getImageLoader());
@@ -107,8 +107,8 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, YoutubeWebViewActivity.class);
-                intent.putExtra("url", seniman.getPortfolio());
+                Intent intent = new Intent(context, YoutubePlayerViewActivity.class);
+                intent.putExtra("idThumbnailExtra", idThumbnail);
                 context.startActivity(intent);
 
 //                Intent intent = YouTubeStandalonePlayer.createVideoIntent(this, "<<YOUTUBE_API_KEY>>", "<<Youtube Video ID>>", 0, true, false);

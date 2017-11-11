@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_list_tawaran_linearLayoutTop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_base"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_list_tawaran_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_tawaran_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_list_tawaran_layoutLeftImage"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_linearLayoutBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.00999999"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <FrameLayout
+                    android:id="@+id/item_list_tawaran_imageEvent_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp" />
+
+                    <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                        android:id="@+id/item_list_tawaran_imageEvent"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_eo"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="104dp"
+                    android:text=" SubStar Live "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBackgroundPrimaryText"
+                    app:layout_constraintEnd_toEndOf="@+id/item_list_tawaran_imageEvent_container"
+                    app:layout_constraintStart_toStartOf="@+id/item_list_tawaran_imageEvent_container"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_list_tawaran_layoutRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="7dp"
+                android:paddingTop="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_linearLayoutBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/item_list_tawaran_layoutLeftImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread">
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_namaEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="20dp"
+                    android:text=" Festival SkyAvenue"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_tanggalEvent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.53999996" />
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_tanggalEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="20 Oktober 2017"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_namaEvent" />
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_tempatEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Istora Senayan"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_tanggalEvent" />
+
+                <!--divider-->
+
+                <View
+                    android:id="@+id/item_list_tawaran_view1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorUnderlineDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_tempatEvent" />
+
+                <!--end divider-->
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_hargaEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="IDR 500.000,- "
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_view1" />
+
+                <View
+                    android:id="@+id/item_list_tawaran_viewKeterangan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorUnderlineDivider"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_hargaEvent" />
+
+                <TextView
+                    android:id="@+id/item_list_tawaran_keterangan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="keterangan "
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_viewKeterangan" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/item_list_tawaran_linearLayoutBtn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="0dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:padding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_layoutRight"
+                app:layout_constraintVertical_bias="1.0">
+
+                <Button
+                    android:id="@+id/item_list_tawaran_btnTolak"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_tolak"
+                    android:text="TOLAK"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/item_list_tawaran_btnTerima" />
+
+                <Button
+                    android:id="@+id/item_list_tawaran_btnTerima"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:background="@color/green_button_color"
+                    android:padding="0dp"
+                    android:text="TERIMA"
+                    android:textColor="@color/colorWhiteText"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
