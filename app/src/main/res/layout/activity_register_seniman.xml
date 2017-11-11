@@ -187,6 +187,7 @@
                         android:padding="@dimen/form_content_padding"
                         android:ems="10"
                         android:hint="Password"
+                        android:inputType="textPassword"
                         android:textColorHint="@color/colorSecondaryText" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -226,6 +227,7 @@
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
+                        android:inputType="textPersonName"
                         android:ems="10"
                         android:hint="Nama"
                         android:textColorHint="@color/colorSecondaryText" />
@@ -350,6 +352,7 @@
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
                         android:ems="10"
+                        android:inputType="phone"
                         android:hint="Nomor HP"
                         android:textColorHint="@color/colorSecondaryText" />
 
@@ -391,6 +394,7 @@
                         android:layout_marginTop="@dimen/form_content_marginTop"
                         android:padding="@dimen/form_content_padding"
                         android:ems="10"
+                        android:inputType="number"
                         android:hint="Umur"
                         android:textColorHint="@color/colorSecondaryText" />
 

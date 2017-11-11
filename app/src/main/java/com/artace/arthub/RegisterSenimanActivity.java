@@ -51,6 +51,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterSenimanActivity extends AppCompatActivity {
 
@@ -156,7 +158,27 @@ public class RegisterSenimanActivity extends AppCompatActivity {
         mDaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitForm(bitmapFoto);
+
+                String userS = mUsername.getText().toString();
+                String passS = mPassword.getText().toString();
+                String namaS = mNama.getText().toString();
+                String umurS = mUmur.getText().toString();
+                String nohpS = mNoHp.getText().toString();
+                String portfolioS = mPortfolio.getText().toString();
+                String keahlianS = mKeahlian.getText().toString();
+
+                if (userS.trim().length()>0 && namaS.trim().length()>0 && umurS.trim().length()>0 && nohpS.trim().length()>0 && keahlianS.trim().length()>0 && portfolioS.trim().length()>0) {
+                    if (passS.trim().length()>5){
+                        submitForm(bitmapFoto);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Password minimal 6 karakter", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(RegisterSenimanActivity.this, "Data harus lengkap", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

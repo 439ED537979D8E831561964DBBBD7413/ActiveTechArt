@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -29,7 +31,9 @@ import com.artace.arthub.utils.StringPostRequest;
 import com.artace.arthub.utils.VolleyResponseListener;
 import com.artace.arthub.utils.YoutubeId;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -59,6 +63,8 @@ public class SenimanHomeProfileFragment extends Fragment {
     public NetworkImageView portfolio;
     public FloatingActionButton fab,fabs;
     public ImageView imgubahvid;
+    public Spinner spinnerJK;
+    List<String> listDisplayJK;
     boolean session;
 
 //    private OnFragmentInteractionListener mListener;
@@ -147,6 +153,8 @@ public class SenimanHomeProfileFragment extends Fragment {
         fabs = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonSave);
         ubahvid = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         imgubahvid = (ImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
+        spinnerJK = (Spinner) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelaminSpinner);
+
         fabs.setVisibility(View.INVISIBLE);
         ubahvid.setVisibility(View.GONE);
         imgubahvid.setVisibility(View.GONE);
@@ -154,12 +162,14 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 no_hp.setEnabled(true);
-                jenis_kelamin.setEnabled(true);
+                jenis_kelamin.setVisibility(View.GONE);
                 umur.setEnabled(true);
                 fab.setVisibility(View.GONE);
                 ubahvid.setVisibility(View.VISIBLE);
                 imgubahvid.setVisibility(View.VISIBLE);
                 fabs.setVisibility(View.VISIBLE);
+                spinnerJK.setVisibility(View.VISIBLE);
+                fillJenisKelaminSpinner();
             }
         });
         fabs.setOnClickListener(new View.OnClickListener(){
@@ -167,12 +177,13 @@ public class SenimanHomeProfileFragment extends Fragment {
             public void onClick(View v) {
                 submitForm();
                 no_hp.setEnabled(false);
-                jenis_kelamin.setEnabled(false);
+                jenis_kelamin.setVisibility(View.VISIBLE);
                 umur.setEnabled(false);
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
                 fabs.setVisibility(View.INVISIBLE);
+                spinnerJK.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -184,7 +195,8 @@ public class SenimanHomeProfileFragment extends Fragment {
         Mnama = namaSeniman.getText().toString();
         Mportfolio = link_video.getText().toString();
         Mno_hp = no_hp.getText().toString();
-        Mjenis_kelamin = jenis_kelamin.getText().toString();
+        String Mjenis_kelamin;
+        Mjenis_kelamin = listDisplayJK.get(spinnerJK.getSelectedItemPosition());
         Mumur = umur.getText().toString();
 
         Map<String,String> params = new HashMap<String, String>();
@@ -213,14 +225,19 @@ public class SenimanHomeProfileFragment extends Fragment {
             }
         });
     }
+    private void fillJenisKelaminSpinner(){
 
-    public void finish() {
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("resultMessage", "UPDATE_SENIMAN");
-        getActivity().setResult(SenimanMainActivity.RESULT_OK,returnIntent);
+        listDisplayJK = new ArrayList<String>();
 
-        super.getActivity().finish();
+        listDisplayJK.add("Pria");
+        listDisplayJK.add("Wanita");
+        listDisplayJK.add("Group Campuran");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item, listDisplayJK);
+
+        spinnerJK.setAdapter(dataAdapter);
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {

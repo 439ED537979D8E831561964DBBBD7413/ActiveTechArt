@@ -30,6 +30,9 @@ public class DatabaseConnection {
     //READ SENIMAN LIST TAWARAN
     public static String READ_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanListTawaranTampil.php";
 
+    //READ DETAIL SENIMAN
+    public static String READ_DETAIL_SENIMAN = BASE_URL+"seniman/ReadDetailSeniman.php";
+
     //UPDATE TERIMA TOLAK LIST TAWARAN
     public static String UPDATE_TERIMA_TOLAK_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanUpdateTerimaTolakTawaranTampil.php";
 
@@ -70,6 +73,10 @@ public class DatabaseConnection {
 
     public static String getReadJenisSeniman() {
         return READ_JENIS_SENIMAN;
+    }
+
+    public static String getReadDetailSeniman() {
+        return READ_DETAIL_SENIMAN;
     }
 
     public static String getDeleteEvent(int id_event) {
