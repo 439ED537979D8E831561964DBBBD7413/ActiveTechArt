@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ public class EoSenimanActivity extends AppCompatActivity {
     String urlRead;
     public SharedPreferences sharedpreferences;
     public NetworkImageView portfolio;
+    private Context context;
 
 
     @Override
@@ -45,12 +48,13 @@ public class EoSenimanActivity extends AppCompatActivity {
         urlRead = DatabaseConnection.getReadDetailSeniman() + "?id_seniman=" + String.valueOf(id_seniman);
 
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.eo_seniman_toolbar);
-//        (AppCompatActivity).setSupportActionBar(toolbar);
-//        ActionBar ab = (AppCompatActivity).getSupportActionBar();
-//        ab.setDisplayHomeAsUpEnabled(true);
-//
-//        initCollapsingToolbar();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.eo_seniman_toolbar);
+        ((AppCompatActivity)this).setSupportActionBar(toolbar);
+        ActionBar ab = ((AppCompatActivity)this).getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        initCollapsingToolbar();
+
 
         getDetailSeniman();
     }
@@ -58,6 +62,18 @@ public class EoSenimanActivity extends AppCompatActivity {
     private void getDetailSeniman() {
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
+
+        Button btnBeriTawaran = (Button) findViewById(R.id.eo_seniman_btnBeriTawaranTampil);
+
+        SharedPreferences sharedpreferences = this.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+        if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
+            btnBeriTawaran.setVisibility(View.VISIBLE);
+        }
+        else{
+            btnBeriTawaran.setVisibility(View.GONE);
+        }
+
         //Volley's inbuilt class to make Json array request
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
@@ -68,10 +84,6 @@ public class EoSenimanActivity extends AppCompatActivity {
                         try {
 
                             JSONObject obj = (JSONObject) jr.get(i);
-
-//                            sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), MODE_PRIVATE);
-//                            String Sportfolio = sharedpreferences.getString(Field.getPORTFOLIO(),null);
-
 
                             int idSeniman = obj.getInt("id_seniman");
 //                            int idEventOrganizer = obj.getInt("id_event_organizer");
@@ -114,6 +126,8 @@ public class EoSenimanActivity extends AppCompatActivity {
                                 }
                             });
 
+
+
                         } catch (Exception e) {
                             System.out.println("LOG gamao! = " + e.getMessage());
                         }
@@ -133,33 +147,33 @@ public class EoSenimanActivity extends AppCompatActivity {
         queue.add(newsReq);
     }
 
-//    private void initCollapsingToolbar() {
-//        final CollapsingToolbarLayout collapsingToolbar =
-//                (CollapsingToolbarLayout) findViewById(R.id.eo_seniman_collapsing_toolbar);
-//        collapsingToolbar.setTitle(" ");
-//        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.eo_seniman_appbar);
-//        appBarLayout.setExpanded(true);
-//
-//        // hiding & showing the title when toolbar expanded & collapsed
-//        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-//            boolean isShow = false;
-//            int scrollRange = -1;
-//
-//            @Override
-//            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//                if (scrollRange == -1) {
-//                    scrollRange = appBarLayout.getTotalScrollRange();
-//                }
-//                if (scrollRange + verticalOffset == 0) {
-//                    collapsingToolbar.setTitle(mainActivity.title);
-//                    isShow = true;
-//                } else if (isShow) {
-//                    collapsingToolbar.setTitle(" ");
-//                    isShow = false;
-//                }
-//            }
-//        });
-//
-//    }
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.eo_seniman_collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.eo_seniman_appbar);
+        appBarLayout.setExpanded(true);
+
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle("Detail Seniman");
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
+
+    }
 }
 

@@ -66,6 +66,36 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_seniman_home_profile_frameFab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragment_seniman_home_profile_floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/edit3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorWhiteText" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragment_seniman_home_profile_floatingActionButtonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/cancel3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorWhiteText" />
+    </FrameLayout>
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -240,25 +270,27 @@
                     android:layout_height="match_parent" />
             </FrameLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_seniman_home_layoutVideo_container"
-            app:layout_constraintStart_toStartOf="@+id/fragment_seniman_home_layoutVideo_container"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_layoutVideo_container">
-            <ImageView
-                android:id="@+id/fragment_seniman_home_profile_img4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_youtube"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_linkVideo"
-                app:layout_constraintVertical_bias="0.74" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_seniman_home_layoutVideo_container"
+                app:layout_constraintStart_toStartOf="@+id/fragment_seniman_home_layoutVideo_container"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_seniman_home_layoutVideo_container">
+
+                <ImageView
+                    android:id="@+id/fragment_seniman_home_profile_img4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_youtube"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_linkVideo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.74" />
 
                 <EditText
                     android:id="@+id/fragment_seniman_home_profile_linkVideo"
@@ -268,31 +300,9 @@
                     android:text="Link Portfolio"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/fragment_seniman_home_profile_img4"/>
-        </android.support.constraint.ConstraintLayout>
+                    app:layout_constraintStart_toEndOf="@+id/fragment_seniman_home_profile_img4" />
+            </android.support.constraint.ConstraintLayout>
 
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fragment_seniman_home_profile_floatingActionButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="270dp"
-                android:clickable="true"
-                android:src="@drawable/pencil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fragment_seniman_home_profile_floatingActionButtonSave"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="270dp"
-                android:clickable="true"
-                android:src="@drawable/info2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
