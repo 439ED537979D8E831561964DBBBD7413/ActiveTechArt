@@ -6,7 +6,21 @@ public class PojoSeniman {
     private int id_seniman,id_jenis_seniman,id_user;
     private String nama,jenis_kelamin,portfolio,no_hp,umur,foto,keahlian_spesifik,format_solo_grup;
 
+    private String status,namaevent;
+    private int id_tawaran_tampil;
+
     public PojoSeniman() {
+    }
+
+    public PojoSeniman(int id_seniman, int id_jenis_seniman, String nama, String foto, String keahlian_spesifik, String status, int id_tawaran_tampil, String namaevent) {
+        this.id_seniman = id_seniman;
+        this.id_jenis_seniman = id_jenis_seniman;
+        this.nama = nama;
+        this.foto = foto;
+        this.keahlian_spesifik = keahlian_spesifik;
+        this.status = status;
+        this.id_tawaran_tampil = id_tawaran_tampil;
+        this.namaevent = namaevent;
     }
 
     public PojoSeniman(int id_seniman, int id_jenis_seniman, int id_user, String nama, String jenis_kelamin, String portfolio, String no_hp, String umur, String foto, String keahlian_spesifik, String format_solo_grup) {
@@ -29,6 +43,26 @@ public class PojoSeniman {
         this.nama = nama;
         this.foto = foto;
         this.keahlian_spesifik = keahlian_spesifik;
+    }
+
+    public int getId_tawaran_tampil() {
+        return id_tawaran_tampil;
+    }
+
+    public String getNamaevent() {
+        return namaevent;
+    }
+
+    public void setId_tawaran_tampil(int id_tawaran_tampil) {
+        this.id_tawaran_tampil = id_tawaran_tampil;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getId_seniman() {

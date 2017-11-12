@@ -75,6 +75,7 @@ public class OrganizerSenimanFragment extends Fragment {
     String urlRead = DatabaseConnection.getReadSenimanList();
     OrganizerMainActivity mainActivity;
     TextView mJudul, mSubJudul;
+    int idJenisSeniman;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -140,26 +141,9 @@ public class OrganizerSenimanFragment extends Fragment {
             }
         });
 
-        mJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_judul);
-        mSubJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_subjudul);
+        initHeader();
 
         getData();
-
-        if(mainActivity.title.equals("Musisi")){
-            mJudul.setText("Musisi Jalanan");
-            mSubJudul.setText("List Musisi Jalanan Berkualitas");
-            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.seniman_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
-        }
-        else if(mainActivity.title.equals("Penari")){
-            mJudul.setText("Penari Lokal");
-            mSubJudul.setText("Temukan Penari Lokal Berkualitas");
-            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.penari_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
-        }
-        else if(mainActivity.title.equals("Bondres")){
-            mJudul.setText("Bondres");
-            mSubJudul.setText("Lihat Bondres Berkualitas");
-            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.bondres_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
-        }
 
 
         return rootView;
@@ -177,7 +161,7 @@ public class OrganizerSenimanFragment extends Fragment {
         senimanList.clear();
 
 
-        urlRead += "?id_jenis_seniman=1";
+        urlRead += "?id_jenis_seniman="+idJenisSeniman;
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
@@ -248,7 +232,30 @@ public class OrganizerSenimanFragment extends Fragment {
             }
         });
 
+    }
 
+    private void initHeader(){
+        mJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_judul);
+        mSubJudul = (TextView) rootView.findViewById(R.id.organizer_seniman_subjudul);
+
+        if(mainActivity.title.equals("Musisi")){
+            idJenisSeniman = 1;
+            mJudul.setText("Musisi Jalanan");
+            mSubJudul.setText("List Musisi Jalanan Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.seniman_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
+        else if(mainActivity.title.equals("Penari")){
+            idJenisSeniman = 2;
+            mJudul.setText("Penari Lokal");
+            mSubJudul.setText("Temukan Penari Lokal Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.penari_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
+        else if(mainActivity.title.equals("Bondres")){
+            idJenisSeniman = 3;
+            mJudul.setText("Bondres");
+            mSubJudul.setText("Lihat Bondres Berkualitas");
+            Picasso.with(getActivity().getApplicationContext()).load(R.drawable.bondres_bg).into((ImageView) rootView.findViewById(R.id.organizer_seniman_backdrop));
+        }
     }
 
 

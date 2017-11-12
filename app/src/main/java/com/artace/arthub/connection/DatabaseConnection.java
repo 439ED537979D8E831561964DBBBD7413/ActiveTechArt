@@ -8,9 +8,11 @@ public class DatabaseConnection {
     public static String READ_EVENTORGANIZER_EVENTS = BASE_URL+"eventorganizer/EventOrganizerEvents.php";
     public static String READ_SENIMAN_LIST = BASE_URL+"seniman/ReadListSeniman.php";
     public static String READ_EVENT_DETAIL = BASE_URL+"event/DetailEvent.php";
+    public static String READ_LIST_TAWARAN_TAMPIL = BASE_URL+"tawaran_tampil/ReadListTawaranTampil.php";
 
     //DELETE
     public static String DELETE_EVENT = BASE_URL+"event/DeleteEvent.php";
+    public static String DELETE_TAWARAN_TAMPIL = BASE_URL+"tawaran_tampil/DeleteTawaranTampil.php";
     //LOGIN
     public static String LOGIN = BASE_URL+"login/Login.php";
     //READ JENIS SENIMAN
@@ -49,6 +51,14 @@ public class DatabaseConnection {
 
     public static String getUpdateTerimaTolakTawaranTampil() {
         return UPDATE_TERIMA_TOLAK_TAWARAN_TAMPIL;
+    }
+
+    public static String getReadListTawaranTampil() {
+        return READ_LIST_TAWARAN_TAMPIL;
+    }
+
+    public static String getDeleteTawaranTampil() {
+        return DELETE_TAWARAN_TAMPIL;
     }
 
     public static String getReadTawaranTampil() {

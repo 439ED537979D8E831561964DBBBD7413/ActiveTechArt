@@ -80,7 +80,6 @@ public class ListSenimanAdapter extends RecyclerView.Adapter<ListSenimanAdapter.
 
         holder.foto.setImageUrl(seniman.getFoto(), AppController.getInstance().getImageLoader());
 
-
     }
 
 

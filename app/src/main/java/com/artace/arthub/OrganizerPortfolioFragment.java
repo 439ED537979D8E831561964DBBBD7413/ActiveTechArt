@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -29,6 +30,7 @@ import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 import com.artace.arthub.pojo.PojoSeniman;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -65,6 +67,7 @@ public class OrganizerPortfolioFragment extends Fragment {
     Toolbar mToolbar;
     OrganizerMainActivity mainActivity;
     RelativeLayout rootView;
+    int idJenisSeniman;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -143,6 +146,17 @@ public class OrganizerPortfolioFragment extends Fragment {
         //empty eventList
         senimanList.clear();
 
+        if(mainActivity.title.equals("Musisi")){
+            idJenisSeniman = 1;
+        }
+        else if(mainActivity.title.equals("Penari")){
+            idJenisSeniman = 2;
+        }
+        else if(mainActivity.title.equals("Bondres")){
+            idJenisSeniman = 3;
+        }
+
+        urlRead += "?id_jenis_seniman="+idJenisSeniman;
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
