@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:src="@drawable/dialog_tawaran_tampil"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:background="#FFFFBB33"
+        android:contentDescription="@string/app_name" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dialog_harga_tawaran_img8"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/if_currency"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
+            android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dialog_harga_tawaran_img8"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/dialog_harga_tawaran_tampil_text"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/form_content_height"
+                android:layout_marginTop="@dimen/form_content_marginTop"
+                android:ems="10"
+                android:hint="Harga Tawaran"
+                android:inputType="phone"
+                android:padding="@dimen/form_content_padding"
+                android:textColorHint="@color/colorSecondaryText" />
+
+        </android.support.design.widget.TextInputLayout>
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

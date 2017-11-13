@@ -28,6 +28,7 @@ public class DatabaseConnection {
     public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
     public static String INSERT_EVENT = BASE_URL+"event/InsertEvent.php";
+    public static String INSERT_TAWARAN_TAMPIL = BASE_URL+"tawaran_tampil/InsertTawaranTampil.php";
 
     //READ SENIMAN LIST TAWARAN
     public static String READ_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanListTawaranTampil.php";
@@ -46,6 +47,10 @@ public class DatabaseConnection {
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
 
     public DatabaseConnection() {
+    }
+
+    public static String getInsertTawaranTampil() {
+        return INSERT_TAWARAN_TAMPIL;
     }
 
     public static String getReadListSenimanDetailEvent() {

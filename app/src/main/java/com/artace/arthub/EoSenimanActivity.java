@@ -36,6 +36,7 @@ public class EoSenimanActivity extends AppCompatActivity {
     public SharedPreferences sharedpreferences;
     public NetworkImageView portfolio;
     private Context context;
+    Button beriTawaran;
 
 
     @Override
@@ -54,7 +55,6 @@ public class EoSenimanActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         initCollapsingToolbar();
-
 
         getDetailSeniman();
     }
@@ -86,7 +86,20 @@ public class EoSenimanActivity extends AppCompatActivity {
                             JSONObject obj = (JSONObject) jr.get(i);
 
                             int idSeniman = obj.getInt("id_seniman");
+                            final int idSenimanFinal = idSeniman;
 //                            int idEventOrganizer = obj.getInt("id_event_organizer");
+
+                            beriTawaran = (Button) findViewById(R.id.eo_seniman_btnBeriTawaranTampil);
+                            beriTawaran.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(EoSenimanActivity.this, EventKirimTawaranTampilActivty.class);
+                                    Bundle extras = new Bundle();
+                                    extras.putString("id_seniman",String.valueOf(idSenimanFinal));
+                                    intent.putExtras(extras);
+                                    startActivity(intent);
+                                }
+                            });
 
                             TextView namaSeniman = (TextView) findViewById(R.id.eo_seniman_namaSeniman);
                             namaSeniman.setText(obj.getString("nama"));

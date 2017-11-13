@@ -67,7 +67,8 @@
             >
         </activity>
         <activity android:name=".YoutubePlayerViewActivity" />
-        <activity android:name=".ListSenimanDetailEventActivity"></activity>
+        <activity android:name=".ListSenimanDetailEventActivity" />
+        <activity android:name=".EventKirimTawaranTampilActivty"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_event_kttlinearLayoutTop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_base"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_event_kttcardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_event_kttlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_event_kttlayoutLeftImage"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:id="@+id/item_event_kttimageEvent_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp" />
+
+                    <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                        android:id="@+id/item_event_kttimageEvent"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/item_event_ktteo"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text=" SubStar Live "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBackgroundPrimaryText"
+                    app:layout_constraintEnd_toEndOf="@+id/item_event_kttimageEvent_container"
+                    app:layout_constraintStart_toStartOf="@+id/item_event_kttimageEvent_container"
+                    app:layout_constraintTop_toBottomOf="@+id/item_event_kttimageEvent_container" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_event_kttlayoutRight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/item_event_kttlayoutLeftImage"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/item_event_kttnamaEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text=" Festival SkyAvenue"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/item_event_ktttanggalEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="20 Oktober 2017"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/item_event_kttnamaEvent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_event_kttnamaEvent" />
+
+                <TextView
+                    android:id="@+id/item_event_ktttempatEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="Istora Senayan"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/item_event_kttnamaEvent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_event_ktttanggalEvent" />
+
+                <!--divider-->
+
+                <View
+                    android:id="@+id/item_event_kttview1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/MasukSebagaiIndustri"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/colorUnderlineDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_event_ktttempatEvent" />
+
+                <!--end divider-->
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/item_event_kttlinearLayoutBtn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:padding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_event_kttlayoutLeftImage">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/green_button_color">
+
+                    <Button
+                        android:id="@+id/item_event_kttbtnDetail"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="PILIH"
+                        android:textColor="@color/colorWhiteText"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
