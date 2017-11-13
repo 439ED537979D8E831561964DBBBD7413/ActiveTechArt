@@ -79,6 +79,7 @@ public class SenimanMainActivity extends AppCompatActivity {
         ab.setTitle(title);
     }
 
+
     private void initFragment(Bundle savedInstanceState){
         if (findViewById(R.id.seniman_main_fragment_container) != null) {
 
