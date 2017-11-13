@@ -99,7 +99,7 @@ public class EventKirimTawaranTampilAdapter extends RecyclerView.Adapter<EventKi
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 event = eventList.get(positionFinal);
-                                kirimTawaranTampil(event.getId_event(), positionFinal);
+                                kirimTawaranTampil(event.getId_event(), nominal.getText().toString(), positionFinal);
                                 dialog.dismiss();
                             }
                         })
@@ -115,12 +115,13 @@ public class EventKirimTawaranTampilAdapter extends RecyclerView.Adapter<EventKi
 
     }
 
-    public void kirimTawaranTampil(int id_event, int position){
+    public void kirimTawaranTampil(int id_event, String harga, int position){
         final int positionFinal = position;
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("id_event",String.valueOf(id_event));
         params.put("id_seniman",activity.id_seniman);
+        params.put("harga",harga);
 
         StringPostRequest strReq = new StringPostRequest();
         strReq.sendPost(context, params, DatabaseConnection.getInsertTawaranTampil(), new VolleyResponseListener() {
