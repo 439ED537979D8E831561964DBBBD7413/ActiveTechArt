@@ -122,6 +122,7 @@ public class EventKirimTawaranTampilAdapter extends RecyclerView.Adapter<EventKi
         params.put("id_event",String.valueOf(id_event));
         params.put("id_seniman",activity.id_seniman);
         params.put("harga",harga);
+        params.put("status","Pending");
 
         StringPostRequest strReq = new StringPostRequest();
         strReq.sendPost(context, params, DatabaseConnection.getInsertTawaranTampil(), new VolleyResponseListener() {
