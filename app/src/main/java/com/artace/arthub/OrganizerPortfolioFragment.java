@@ -11,11 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -30,7 +30,6 @@ import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 import com.artace.arthub.pojo.PojoSeniman;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -59,6 +58,7 @@ public class OrganizerPortfolioFragment extends Fragment {
 
     RequestQueue queue;
     String urlRead = DatabaseConnection.getReadSenimanList();
+    String urlReadJenisSeniman = DatabaseConnection.getReadJenisSeniman();
     RecyclerView recyclerView;
     List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();
     SenimanPortfolioListAdapter adapter;
@@ -67,7 +67,6 @@ public class OrganizerPortfolioFragment extends Fragment {
     Toolbar mToolbar;
     OrganizerMainActivity mainActivity;
     RelativeLayout rootView;
-    int idJenisSeniman;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -119,23 +118,55 @@ public class OrganizerPortfolioFragment extends Fragment {
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_portfolio_swipeRefreshLayout);
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getEvents();
-            }
-        });
 
-        getEvents();
+
+        if(mainActivity.title.equals("Musisi")){
+            final String id_jenis_seniman = "1";
+
+            getEvents(id_jenis_seniman);
+
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    getEvents(id_jenis_seniman);
+                }
+            });
+
+        }
+        else if(mainActivity.title.equals("Penari")){
+            final String id_jenis_seniman = "2";
+            getEvents(id_jenis_seniman);
+
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    getEvents(id_jenis_seniman);
+                }
+            });
+        }
+        else if(mainActivity.title.equals("Bondres")){
+
+            final String id_jenis_seniman = "3";
+
+            getEvents(id_jenis_seniman);
+
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    getEvents(id_jenis_seniman);
+                }
+            });
+        }
+
+
 
         setToolbar();
-
         // Inflate the layout for this fragment
         return rootView;
 
     }
 
-    private void getEvents(){
+    private void getEvents(String id_jenis_seniman){
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
 
@@ -146,21 +177,13 @@ public class OrganizerPortfolioFragment extends Fragment {
         //empty eventList
         senimanList.clear();
 
-        if(mainActivity.title.equals("Musisi")){
-            idJenisSeniman = 1;
-        }
-        else if(mainActivity.title.equals("Penari")){
-            idJenisSeniman = 2;
-        }
-        else if(mainActivity.title.equals("Bondres")){
-            idJenisSeniman = 3;
-        }
-
-        urlRead += "?id_jenis_seniman="+idJenisSeniman;
+        urlRead += "?id_jenis_seniman="+id_jenis_seniman;
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+
+
                 try{
                     JSONArray jr = response.getJSONArray(0);
                     for (int i = 0; i < jr.length(); i++) {

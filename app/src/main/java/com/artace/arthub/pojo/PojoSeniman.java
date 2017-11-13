@@ -3,7 +3,7 @@ package com.artace.arthub.pojo;
 
 public class PojoSeniman {
 
-    private int id_seniman,id_jenis_seniman,id_user;
+    private int id_seniman,id_jenis_seniman,id_user,id_event;
     private String nama,jenis_kelamin,portfolio,no_hp,umur,foto,keahlian_spesifik,format_solo_grup;
 
     private String status,namaevent;
@@ -21,6 +21,20 @@ public class PojoSeniman {
         this.status = status;
         this.id_tawaran_tampil = id_tawaran_tampil;
         this.namaevent = namaevent;
+    }
+
+    public PojoSeniman(int id_seniman, int id_event, String nama, String jenis_kelamin, String portfolio, String no_hp, String umur, String foto, String keahlian_spesifik, String format_solo_grup, String status) {
+        this.id_seniman = id_seniman;
+        this.id_event = id_event;
+        this.nama = nama;
+        this.jenis_kelamin = jenis_kelamin;
+        this.portfolio = portfolio;
+        this.no_hp = no_hp;
+        this.umur = umur;
+        this.foto = foto;
+        this.keahlian_spesifik = keahlian_spesifik;
+        this.format_solo_grup = format_solo_grup;
+        this.status = status;
     }
 
     public PojoSeniman(int id_seniman, int id_jenis_seniman, int id_user, String nama, String jenis_kelamin, String portfolio, String no_hp, String umur, String foto, String keahlian_spesifik, String format_solo_grup) {
@@ -55,14 +69,6 @@ public class PojoSeniman {
 
     public void setId_tawaran_tampil(int id_tawaran_tampil) {
         this.id_tawaran_tampil = id_tawaran_tampil;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getId_seniman() {
@@ -143,6 +149,22 @@ public class PojoSeniman {
 
     public void setKeahlian_spesifik(String keahlian_spesifik) {
         this.keahlian_spesifik = keahlian_spesifik;
+    }
+
+    public int getId_event() {
+        return id_event;
+    }
+
+    public void setId_event(int id_event) {
+        this.id_event = id_event;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getFormat_solo_grup() {

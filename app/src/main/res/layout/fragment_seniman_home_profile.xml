@@ -253,8 +253,8 @@
 
             <FrameLayout
                 android:id="@+id/fragment_seniman_home_layoutVideo_container"
-                android:layout_width="245dp"
-                android:layout_height="145dp"
+                android:layout_width="240dp"
+                android:layout_height="165dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout"
@@ -267,7 +267,7 @@
 
                 <com.android.volley.toolbox.NetworkImageView
                     android:id="@+id/fragment_seniman_home_profile_videoSeniman"
-                    android:fitsSystemWindows="true"
+                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>

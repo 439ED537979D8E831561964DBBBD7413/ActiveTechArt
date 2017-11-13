@@ -14,13 +14,13 @@
     <application
         android:name=".controller.AppController"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
@@ -64,6 +64,7 @@
         <activity android:name=".ItemPortfolioList" />
         <activity android:name=".SenimanMainActivity" />
         <activity android:name=".YoutubePlayerViewActivity" />
+        <activity android:name=".ListSenimanDetailEventActivity"></activity>
     </application>
 
 </manifest>

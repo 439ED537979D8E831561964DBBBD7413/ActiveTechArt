@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +57,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         this.context = context;
         this.eventList = eventList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.fragment = fragment;
+            this.fragment = fragment;
 
     }
 
@@ -79,10 +80,20 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         holder.namaEo.setText(event.getEo());
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
         holder.keterangan.setText(event.getKeterangan());
-
-
         holder.btnTerima.setTag(position);
         holder.btnTolak.setTag(position);
+        holder.btnCancel.setTag(position);
+
+        if (event.getStatus().equals("Confirmed")){
+            holder.btnTerima.setVisibility(View.GONE);
+            holder.btnTolak.setVisibility(View.GONE);
+            holder.btnCancel.setVisibility(View.VISIBLE);
+        }
+        else if (event.getStatus().equals("Pending")){
+            holder.btnTerima.setVisibility(View.VISIBLE);
+            holder.btnTolak.setVisibility(View.VISIBLE);
+            holder.btnCancel.setVisibility(View.GONE);
+        }
         //OnClicks
 
         holder.listCard.setOnClickListener(new View.OnClickListener() {
@@ -102,11 +113,29 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
             }
         });
 
+        holder.btnTerima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (Integer) view.getTag();
+                final int positionFinal = position;
+                String status = "Confirmed";
+
+                event = eventList.get(positionFinal);
+                updateEvent(event.getId_tawaran_tampil(), context, status);
+
+                holder.btnTerima.setVisibility(View.GONE);
+                holder.btnTolak.setVisibility(View.GONE);
+                holder.btnCancel.setVisibility(View.VISIBLE);
+            }
+        });
+
         holder.btnTolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int position = (Integer) view.getTag();
                 final int positionFinal = position;
+                final String status = "Rejected";
+
                 AlertDialog.Builder alertDialogBuilder =
                         new AlertDialog.Builder(context)
                                 .setTitle("Apakah anda yakin ?")
@@ -114,8 +143,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         event = eventList.get(positionFinal);
-                                        tolakEvent(dialog,event.getId_tawaran_tampil(), context, positionFinal);
-                                        fragment.getEvents();
+                                        updateEvent(event.getId_tawaran_tampil(), context, status);
                                     }
                                 })
                                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -125,22 +153,43 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
                                 });
 
                 alertDialogBuilder.show();
+            }
+        });
 
+        holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = (Integer) view.getTag();
+                final int positionFinal = position;
+                final String status = "Pending";
+
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(context)
+                                .setTitle("Apakah anda yakin ?")
+                                .setMessage("Event yang anda cancel dapat di terima lagi")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        event = eventList.get(positionFinal);
+                                        updateEvent(event.getId_tawaran_tampil(), context, status);
+                                        holder.btnTerima.setVisibility(View.VISIBLE);
+                                        holder.btnTolak.setVisibility(View.VISIBLE);
+                                        holder.btnCancel.setVisibility(View.GONE);
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                alertDialogBuilder.show();
             }
         });
     }
 
-    public void tolakEvent(DialogInterface dialog, int id_tawaran_tampil, Context context, int position){
+    public void updateEvent(int id_tawaran_tampil, Context context, String status){
 
-        final DialogInterface dialogFinal = dialog;
         final Context contextFinal = context;
-        final int positionFinal = position;
-        final ProgressDialog pDialog = new ProgressDialog(contextFinal);
-        pDialog.setCancelable(false);
-        pDialog.setMessage("Menolak Event...");
-        pDialog.show();
-
-        String status = "Rejected";
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("id_tawaran_tampil",Integer.toString(id_tawaran_tampil));
@@ -150,17 +199,13 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         strReq.sendPost(contextFinal, params, DatabaseConnection.getUpdateTerimaTolakTawaranTampil(), new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
-
-                pDialog.hide();
-                Log.e("UpdateTolak","Ada error : ");
             }
 
             @Override
             public void onError(String message) {
-                Log.e("UpdateTolak","Ada error : "+message);
+                Log.e("UpdateTerima","Ada error : "+message);
             }
         });
-
     }
 
     @Override
@@ -173,7 +218,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         private View topKeterangan;
         private TextView namaEvent, tanggalEvent, tempatEvent,namaEo,hargaEvent,keterangan;
         private CircularNetworkImageView imageEvent;
-        private Button btnTerima, btnTolak;
+        private Button btnTerima, btnTolak, btnCancel;
         private CardView listCard;
 
         public MyViewHolder(View itemView) {
@@ -191,6 +236,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
             imageEvent = (CircularNetworkImageView) itemView.findViewById(R.id.item_list_tawaran_imageEvent);
             btnTerima = (Button) itemView.findViewById(R.id.item_list_tawaran_btnTerima);
             btnTolak = (Button) itemView.findViewById(R.id.item_list_tawaran_btnTolak);
+            btnCancel = (Button) itemView.findViewById(R.id.item_list_tawaran_btnCancel);
         }
     }
 }

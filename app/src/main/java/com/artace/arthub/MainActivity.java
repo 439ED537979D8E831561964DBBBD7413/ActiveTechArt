@@ -1,9 +1,11 @@
 package com.artace.arthub;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         //END : TOOLBAR
+
+        SharedPreferences sharedpreferences = this.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+
+        Boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(), false);
+        if (session){
+            Intent intent = new Intent(MainActivity.this,SenimanMainActivity.class);
+            startActivity(intent);
+        }
 
         //START : DRAWER MENU
 
@@ -140,12 +150,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //langsung keluar
     @Override
     public void onBackPressed() {
+
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
 }
 
