@@ -88,17 +88,15 @@ public class EventKirimTawaranTampilAdapter extends RecyclerView.Adapter<EventKi
                 final int positionFinal = position;
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                final View dialogView = inflater.inflate(R.layout.item_event_kirim_tawaran_tampil, null);
-                builder.setView(dialogView);
+                final View dialogView = inflater.inflate(R.layout.dialog_harga_tawaran_tampil, null);
 
-                final EditText nominal = (EditText) dialogView.findViewById(R.id.dialog_harga_tawaran_tampil_text);
-
-                builder.setView(inflater.inflate(R.layout.item_event_kirim_tawaran_tampil, null))
+                builder.setView(dialogView)
 
                         .setPositiveButton("kirim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 event = eventList.get(positionFinal);
+                                final EditText nominal = (EditText) dialogView.findViewById(R.id.dialog_harga_tawaran_tampil_text);
                                 kirimTawaranTampil(event.getId_event(), nominal.getText().toString(), positionFinal);
                                 dialog.dismiss();
                             }
@@ -155,15 +153,13 @@ public class EventKirimTawaranTampilAdapter extends RecyclerView.Adapter<EventKi
         public MyViewHolder(View itemView) {
 
             super(itemView);
-            namaEvent = (TextView) itemView.findViewById(R.id.item_event_list_namaEvent);
-            tanggalEvent = (TextView) itemView.findViewById(R.id.item_event_list_tanggalEvent);
-            tempatEvent = (TextView) itemView.findViewById(R.id.item_event_list_tempatEvent);
-            namaEo = (TextView) itemView.findViewById(R.id.item_event_list_eo);
+            namaEvent = (TextView) itemView.findViewById(R.id.item_event_kttnamaEvent);
+            tanggalEvent = (TextView) itemView.findViewById(R.id.item_event_ktttanggalEvent);
+            tempatEvent = (TextView) itemView.findViewById(R.id.item_event_ktttempatEvent);
+            namaEo = (TextView) itemView.findViewById(R.id.item_event_ktteo);
             // Volley's NetworkImageView which will load Image from URL
-            imageEvent = (NetworkImageView) itemView.findViewById(R.id.item_event_list_imageEvent);
-            btnDetail = (Button) itemView.findViewById(R.id.item_event_list_btnDetail);
-            btnHapus = (Button) itemView.findViewById(R.id.item_event_list_btnHapus);
-            deleteContainer = (FrameLayout) itemView.findViewById(R.id.item_event_list_hapusContainer);
+            imageEvent = (NetworkImageView) itemView.findViewById(R.id.item_event_kttimageEvent);
+            btnDetail = (Button) itemView.findViewById(R.id.item_event_kttbtnDetail);
         }
     }
 

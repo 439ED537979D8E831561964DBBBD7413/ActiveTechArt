@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -94,6 +95,8 @@ public class EventKirimTawaranTampilActivty extends AppCompatActivity {
             urlRead += "&id_seniman=" + id_seniman;
             urlRead += "&ref=EventKirimTawaranTampilActivity";
         }
+
+        Log.d("EventKtt","id_eo = "+sharedpreferences.getString(Field.getIdEventOrganizer(),null)+" id_seniman = "+id_seniman);
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
