@@ -85,6 +85,7 @@ public class TambahEventActivity extends AppCompatActivity {
 
                             }
                         }, mYear, mMonth, mDay);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });

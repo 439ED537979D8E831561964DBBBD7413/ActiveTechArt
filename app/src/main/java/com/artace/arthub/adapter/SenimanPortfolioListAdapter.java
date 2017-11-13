@@ -88,7 +88,7 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
         SharedPreferences sharedpreferences = context.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
-        if (session || sharedpreferences.getString(Field.getJenisUser(),null) == "event_organizer"){
+//        if (session || sharedpreferences.getString(Field.getJenisUser(),null) == "event_organizer"){
             holder.mProfileContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -102,7 +102,7 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
                     context.startActivity(intent);
                 }
             });
-        }
+        //}
 
         holder.mThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

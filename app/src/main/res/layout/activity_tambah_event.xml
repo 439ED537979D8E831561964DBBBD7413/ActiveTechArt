@@ -109,6 +109,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
+                        android:focusable="false"
+                        android:editable="false"
                         android:padding="@dimen/form_content_padding"
                         android:ems="10"
                         android:hint="Tanggal Event"

@@ -30,7 +30,7 @@
 
                 <ImageView
                     android:id="@+id/organizer_seniman_backdrop"
-                    android:src="@drawable/background_head"
+                    android:src="@drawable/bg_head"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"

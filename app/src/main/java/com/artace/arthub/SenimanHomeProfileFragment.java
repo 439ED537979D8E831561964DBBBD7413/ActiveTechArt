@@ -61,7 +61,7 @@ public class SenimanHomeProfileFragment extends Fragment {
     public SharedPreferences sharedpreferences;
     public CircularNetworkImageView imageSeniman;
     public NetworkImageView portfolio;
-    public FloatingActionButton fab,fabs;
+    public FloatingActionButton fab,fabs,fabc;
     public ImageView imgubahvid;
     public Spinner spinnerJK;
     List<String> listDisplayJK;
@@ -151,11 +151,13 @@ public class SenimanHomeProfileFragment extends Fragment {
         });
         fab = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButton);
         fabs = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonSave);
+        fabc = (FloatingActionButton) rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonCancel);
         ubahvid = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         imgubahvid = (ImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
         spinnerJK = (Spinner) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelaminSpinner);
 
         fabs.setVisibility(View.INVISIBLE);
+        fabc.setVisibility(View.INVISIBLE);
         ubahvid.setVisibility(View.GONE);
         imgubahvid.setVisibility(View.GONE);
         fab.setOnClickListener(new View.OnClickListener(){
@@ -168,6 +170,7 @@ public class SenimanHomeProfileFragment extends Fragment {
                 ubahvid.setVisibility(View.VISIBLE);
                 imgubahvid.setVisibility(View.VISIBLE);
                 fabs.setVisibility(View.VISIBLE);
+                fabc.setVisibility(View.VISIBLE);
                 spinnerJK.setVisibility(View.VISIBLE);
                 fillJenisKelaminSpinner();
             }
@@ -183,13 +186,60 @@ public class SenimanHomeProfileFragment extends Fragment {
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
                 fabs.setVisibility(View.INVISIBLE);
+                fabc.setVisibility(View.INVISIBLE);
                 spinnerJK.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        fabc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                no_hp.setEnabled(false);
+                jenis_kelamin.setVisibility(View.VISIBLE);
+                umur.setEnabled(false);
+                fab.setVisibility(View.VISIBLE);
+                ubahvid.setVisibility(View.GONE);
+                imgubahvid.setVisibility(View.GONE);
+                fabs.setVisibility(View.INVISIBLE);
+                fabc.setVisibility(View.INVISIBLE);
+                spinnerJK.setVisibility(View.INVISIBLE);
+                Intent intent = getActivity().getIntent();
+                getActivity().finish();
+                startActivity(intent);
             }
         });
 
         // Inflate the layout for this fragment
         return rootView;
 
+    }
+    private void fillJenisKelaminSpinner(){
+
+        listDisplayJK = new ArrayList<String>();
+        sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), MODE_PRIVATE);
+        String Sjenis_kelamin = sharedpreferences.getString(Field.getJenisKelamin(),null);
+
+        if (Sjenis_kelamin.equals("Wanita"))
+        {
+            listDisplayJK.add(Sjenis_kelamin);
+            listDisplayJK.add("Pria");
+            listDisplayJK.add("Group Campuran");
+        }
+        else if (Sjenis_kelamin.equals("Pria"))
+        {
+            listDisplayJK.add(Sjenis_kelamin);
+            listDisplayJK.add("Wanita");
+            listDisplayJK.add("Group Campuran");
+        }
+        else if (Sjenis_kelamin.equals("Group Campuran"))
+        {
+            listDisplayJK.add(Sjenis_kelamin);
+            listDisplayJK.add("Pria");
+            listDisplayJK.add("Wanita");
+        }
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item, listDisplayJK);
+
+        spinnerJK.setAdapter(dataAdapter);
     }
     private void submitForm(){
         Mnama = namaSeniman.getText().toString();
@@ -225,18 +275,7 @@ public class SenimanHomeProfileFragment extends Fragment {
             }
         });
     }
-    private void fillJenisKelaminSpinner(){
 
-        listDisplayJK = new ArrayList<String>();
-
-        listDisplayJK.add("Pria");
-        listDisplayJK.add("Wanita");
-        listDisplayJK.add("Group Campuran");
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item, listDisplayJK);
-
-        spinnerJK.setAdapter(dataAdapter);
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
