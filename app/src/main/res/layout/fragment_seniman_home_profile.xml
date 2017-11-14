@@ -98,13 +98,13 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp">
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:id="@+id/fragment_seniman_home_profile_img1"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="15dp"
                         android:src="@drawable/ic_call_64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_noHp"
@@ -114,8 +114,8 @@
                         android:id="@+id/fragment_seniman_home_profile_noHp"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/form_content_height"
-                        android:layout_marginLeft="10dp"
-                        android:ems="8"
+                        android:layout_marginLeft="25dp"
+                        android:ems="9"
                         android:enabled="false"
                         android:inputType="phone"
                         android:paddingLeft="10dp"
@@ -136,9 +136,9 @@
 
                     <ImageView
                         android:id="@+id/fragment_seniman_home_profile_img2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="15dp"
                         android:src="@drawable/medium_gender"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_jenisKelaminSpinner"
@@ -148,10 +148,9 @@
                         android:id="@+id/fragment_seniman_home_profile_jenisKelamin"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="9"
                         android:enabled="false"
-                        android:ems="8"
                         android:paddingLeft="10dp"
                         android:text="Laki - Laki"
                         android:textColorHint="@color/colorSecondaryText"
@@ -159,25 +158,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <Spinner
                         android:id="@+id/fragment_seniman_home_profile_jenisKelaminSpinner"
                         style="@style/SpinnerTheme"
-                        android:layout_width="170dp"
+                        android:layout_width="200dp"
                         android:layout_height="50dp"
-                        android:visibility="invisible"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:ems="8"
+                        android:layout_marginLeft="20dp"
+                        android:ems="9"
                         android:paddingLeft="5dp"
                         android:textSize="18sp"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -188,9 +184,9 @@
 
                     <ImageView
                         android:id="@+id/fragment_seniman_home_profile_img3"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="15dp"
                         android:src="@drawable/ic_user_64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_umur"
@@ -200,10 +196,9 @@
                         android:id="@+id/fragment_seniman_home_profile_umur"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/form_content_height"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:ems="9"
                         android:enabled="false"
-                        android:ems="8"
                         android:inputType="number"
                         android:paddingLeft="10dp"
                         android:text="27"
@@ -237,6 +232,19 @@
                     android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/fragment_seniman_home_imageMask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundWtihOpacity" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/fragment_seniman_home_profile_imageYoutube"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo_youtube_merah"/>
             </FrameLayout>
 
             <android.support.constraint.ConstraintLayout

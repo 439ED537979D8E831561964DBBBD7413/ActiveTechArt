@@ -127,7 +127,6 @@ public class EoSenimanActivity extends AppCompatActivity {
                             NetworkImageView portfolioSeniman = (NetworkImageView) findViewById(R.id.eo_seniman_videoSeniman);
                             portfolioSeniman.setImageUrl("https://img.youtube.com/vi/" + idThumbnail + "/0.jpg", AppController.getInstance().getImageLoader());
 
-
 //                            fotoSeniman = (NetworkImageView) findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
                             portfolioSeniman.setOnClickListener(new View.OnClickListener() {
                                 @Override

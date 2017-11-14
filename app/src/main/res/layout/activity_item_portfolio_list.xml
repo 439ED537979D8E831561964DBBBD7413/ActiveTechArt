@@ -52,6 +52,19 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"/>
 
+                    <ImageView
+                        android:id="@+id/item_portfolio_list_imageMask"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/backgroundWtihOpacity" />
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/item_portfolio_list_imageYoutube"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo_youtube_merah"/>
+
                 </FrameLayout>
 
 
