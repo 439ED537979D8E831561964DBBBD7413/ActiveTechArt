@@ -136,7 +136,10 @@ public class SenimanListTawaranFragment extends Fragment{
         final FrameLayout rootViewFinal = rootView;
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        String id_seniman = sharedpreferences.getString(Field.getIdSeniman(),null);
+        if (id_seniman == null){
 
+        }
             urlRead += "?id_seniman=" + sharedpreferences.getString(Field.getIdSeniman(), null);
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {

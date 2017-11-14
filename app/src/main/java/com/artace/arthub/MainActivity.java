@@ -57,10 +57,14 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences = this.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
 
         Boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(), false);
-        if (session){
+        String jenisSeniman = sharedpreferences.getString(Field.getJenisUser(),null);
+
+        if (session && jenisSeniman.equals("seniman")){
             Intent intent = new Intent(MainActivity.this,SenimanMainActivity.class);
+            intent.putExtra("id_seniman",sharedpreferences.getString(Field.getIdSeniman(),null));
             startActivity(intent);
         }
+
 
         //START : DRAWER MENU
 

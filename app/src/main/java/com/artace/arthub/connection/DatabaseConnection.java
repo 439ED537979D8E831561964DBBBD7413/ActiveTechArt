@@ -32,6 +32,9 @@ public class DatabaseConnection {
     //READ SENIMAN LIST TAWARAN
     public static String READ_TAWARAN_TAMPIL = BASE_URL+"seniman/SenimanListTawaranTampil.php";
 
+    //READ LIST SENIMAN DETAIL EVENT
+    public static String READ_LIST_SENIMAN_DETAIL_EVENT = BASE_URL+"seniman/ListSenimanEventDetail.php";
+
     //READ DETAIL SENIMAN
     public static String READ_DETAIL_SENIMAN = BASE_URL+"seniman/ReadDetailSeniman.php";
 
@@ -43,6 +46,10 @@ public class DatabaseConnection {
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
 
     public DatabaseConnection() {
+    }
+
+    public static String getReadListSenimanDetailEvent() {
+        return READ_LIST_SENIMAN_DETAIL_EVENT;
     }
 
     public static String getInsertEvent() {
