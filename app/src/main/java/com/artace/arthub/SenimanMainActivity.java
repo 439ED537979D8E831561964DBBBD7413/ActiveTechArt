@@ -98,7 +98,9 @@ public class SenimanMainActivity extends AppCompatActivity {
             transaction.hide(newFragment2);
             transaction.commit();
         }
+
     }
+
     //langsung keluar
     @Override
     public void onBackPressed() {

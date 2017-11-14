@@ -28,7 +28,7 @@
     <com.roughike.bottombar.BottomBar
         android:id="@+id/seniman_main_bottombar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="57dp"
         android:layout_alignParentBottom="true"
         app:bb_behavior="shifting"
         app:bb_showShadow="true"

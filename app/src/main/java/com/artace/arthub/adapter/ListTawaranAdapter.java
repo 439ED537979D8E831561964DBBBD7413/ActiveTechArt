@@ -121,7 +121,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
                 String status = "Confirmed";
 
                 event = eventList.get(positionFinal);
-                updateEvent(event.getId_tawaran_tampil(), context, status);
+                updateEvent(event.getId_tawaran_tampil(), context, status, positionFinal);
 
                 holder.btnTerima.setVisibility(View.GONE);
                 holder.btnTolak.setVisibility(View.GONE);
@@ -143,7 +143,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         event = eventList.get(positionFinal);
-                                        updateEvent(event.getId_tawaran_tampil(), context, status);
+                                        updateEvent(event.getId_tawaran_tampil(), context, status, positionFinal);
                                     }
                                 })
                                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -170,7 +170,8 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         event = eventList.get(positionFinal);
-                                        updateEvent(event.getId_tawaran_tampil(), context, status);
+                                        updateEvent(event.getId_tawaran_tampil(), context, status, positionFinal);
+
                                         holder.btnTerima.setVisibility(View.VISIBLE);
                                         holder.btnTolak.setVisibility(View.VISIBLE);
                                         holder.btnCancel.setVisibility(View.GONE);
@@ -187,9 +188,10 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         });
     }
 
-    public void updateEvent(int id_tawaran_tampil, Context context, String status){
+    public void updateEvent(int id_tawaran_tampil, Context context, final String status, int position){
 
         final Context contextFinal = context;
+        final int positionFinal = position;
 
         Map<String,String> params = new HashMap<String, String>();
         params.put("id_tawaran_tampil",Integer.toString(id_tawaran_tampil));
@@ -199,6 +201,10 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         strReq.sendPost(contextFinal, params, DatabaseConnection.getUpdateTerimaTolakTawaranTampil(), new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
+                if(status == "Rejected"){
+                    eventList.remove(positionFinal);
+                    notifyDataSetChanged();
+                }
             }
 
             @Override

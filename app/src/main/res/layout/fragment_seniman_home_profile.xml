@@ -72,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:isScrollContainer="false"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +105,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/call"
+                        android:src="@drawable/ic_call_64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_noHp"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -192,7 +193,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/if_icons_user_1564534"
+                        android:src="@drawable/ic_user_64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/fragment_seniman_home_profile_umur"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -267,7 +268,6 @@
                     android:id="@+id/fragment_seniman_home_profile_linkVideo"
                     android:layout_width="245dp"
                     android:layout_height="50dp"
-                    android:editable="false"
                     android:text="Link Portfolio"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
