@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
@@ -68,8 +69,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.namaEo.setText(event.getEo());
         holder.imageEvent.setImageUrl(event.getFoto(), AppController.getInstance().getImageLoader());
 
-        holder.btnDetail.setTag(position);
-
         SharedPreferences sharedpreferences = context.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
 
@@ -78,6 +77,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             holder.btnHapus.setBackgroundColor(context.getResources().getColor(R.color.primary));
         }
 
+        holder.btnDetail.setTag(position);
         holder.btnHapus.setTag(position);
 
         //OnClicks

@@ -80,7 +80,7 @@ public class SenimanPortfolioListAdapter extends RecyclerView.Adapter<SenimanPor
         holder.mThumbnail.setImageUrl("https://img.youtube.com/vi/"+idThumbnail+"/0.jpg", AppController.getInstance().getImageLoader());
         holder.mKeahlianSpesifik.setText(seniman.getKeahlian_spesifik());
         holder.mJenisKelamin.setText(seniman.getJenis_kelamin());
-        holder.mUmur.setText(seniman.getUmur());
+        holder.mUmur.setText(seniman.getUmur()+" thn");
 
         holder.mProfileContainer.setTag(position);
         holder.mThumbnail.setTag(position);

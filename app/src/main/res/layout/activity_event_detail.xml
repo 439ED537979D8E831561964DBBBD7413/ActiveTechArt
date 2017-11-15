@@ -19,9 +19,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/event_detail_layoutHeader"
-        android:layout_marginTop="@dimen/materialize_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/materialize_toolbar"
         android:background="@drawable/bg_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -32,212 +32,230 @@
         <FrameLayout
             android:id="@+id/event_detail_imageEvent_container"
             android:layout_width="90dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="95dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="12dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <ProgressBar
                 style="?android:attr/progressBarStyle"
-                android:layout_width="85dp"
-                android:layout_height="85dp" />
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"/>
+
             <com.artace.arthub.ViewPlugins.CircularNetworkImageView
                 android:id="@+id/event_detail_imageEvent"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                />
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"/>
         </FrameLayout>
 
         <TextView
             android:id="@+id/event_detail_namaevent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:textColor="@color/colorWhiteText"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/event_detail_imageEvent_container"
             app:layout_constraintStart_toStartOf="@+id/event_detail_imageEvent_container"
-            app:layout_constraintTop_toBottomOf="@+id/event_detail_imageEvent_container" />
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_imageEvent_container"
+            android:layout_marginTop="2dp"
+            android:paddingBottom="15dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/event_detail_btnListSeniman"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_detail_layoutHeader">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            app:layout_constraintBottom_toTopOf="@+id/event_detail_btnListSeniman">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_detail_layoutHeader">
 
-            <ImageView
-                android:id="@+id/event_detail_img1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_account_circle_black_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="250dp"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/event_detail_img1"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/event_detail_btnListSeniman">
 
-                <EditText
-                    android:id="@+id/event_detail_namaeo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:hint="Nama Event Organizer"
-                    android:ems="10"
-                    android:paddingLeft="10dp"
-                    android:textColorHint="@color/colorSecondaryText"
-                    android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/event_detail_img1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </android.support.design.widget.TextInputLayout>
-        </android.support.constraint.ConstraintLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/event_detail_img1"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp">
+                    <EditText
+                        android:id="@+id/event_detail_namaeo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:ems="11"
+                        android:focusable="false"
+                        android:hint="Nama Event Organizer"
+                        android:paddingLeft="10dp"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/event_detail_img2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/date"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="250dp"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/event_detail_img2"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:id="@+id/event_detail_tanggalevent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:hint="Tanggal Event"
-                    android:ems="10"
-                    android:paddingLeft="10dp"
-                    android:textColorHint="@color/colorSecondaryText"
-                    android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/event_detail_img2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/date"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </android.support.design.widget.TextInputLayout>
-        </android.support.constraint.ConstraintLayout>
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/event_detail_img2"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/event_detail_img3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/location"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <EditText
+                        android:id="@+id/event_detail_tanggalevent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:ems="11"
+                        android:focusable="false"
+                        android:hint="Tanggal Event"
+                        android:paddingLeft="10dp"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="250dp"
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/event_detail_img3"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:id="@+id/event_detail_lokasi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:hint="Lokasi Event"
-                    android:ems="10"
-                    android:paddingLeft="10dp"
-                    android:textColorHint="@color/colorSecondaryText"
-                    android:textSize="20sp"/>
+                <ImageView
+                    android:id="@+id/event_detail_img3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </android.support.design.widget.TextInputLayout>
-        </android.support.constraint.ConstraintLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/event_detail_img3"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp">
+                    <EditText
+                        android:id="@+id/event_detail_lokasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:ems="11"
+                        android:focusable="false"
+                        android:hint="Lokasi Event"
+                        android:paddingLeft="10dp"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
-            <ImageView
-                android:id="@+id/event_detail_img4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/info2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="250dp"
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:layout_marginLeft="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/event_detail_img4"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="10dp">
 
-                <EditText
-                    android:id="@+id/event_detail_keterangan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:ems="10"
-                    android:hint="Keterangan"
-                    android:paddingLeft="10dp"
-                    android:textColorHint="@color/colorSecondaryText"
-                    android:textSize="20sp"
-                     />
-            </android.support.design.widget.TextInputLayout>
-        </android.support.constraint.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/event_detail_img4"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/info2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/event_detail_img4"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/event_detail_keterangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:editable="false"
+                        android:ems="11"
+                        android:focusable="false"
+                        android:hint="Keterangan"
+                        android:paddingLeft="10dp"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/event_detail_btnListSeniman"
