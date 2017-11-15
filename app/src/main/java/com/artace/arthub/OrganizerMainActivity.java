@@ -89,6 +89,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     transaction.hide(newFragment4);
 
                     transaction.commit();
+                    newFragment3.setToolbar();
                 }
                 else if (tabId == R.id.tab_diundang) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -103,6 +104,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     transaction.hide(newFragment3);
 
                     transaction.commit();
+                    newFragment4.setToolbar();
                 }
             }
         });

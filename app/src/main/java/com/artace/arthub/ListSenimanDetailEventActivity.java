@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class ListSenimanDetailEventActivity extends AppCompatActivity {
         this.setSupportActionBar(toolbar);
         ActionBar ab = this.getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("List Seniman");
 
         recyclerView = (RecyclerView) findViewById(R.id.list_seniman_detail_event_recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getApplicationContext(), 2);
@@ -185,6 +187,18 @@ public class ListSenimanDetailEventActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

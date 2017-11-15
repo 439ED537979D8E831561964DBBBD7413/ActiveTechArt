@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -65,7 +67,7 @@ public class OrganizerPortfolioFragment extends Fragment {
     private String mParam2;
 
     RequestQueue queue;
-    String urlRead = DatabaseConnection.getReadSenimanList();
+    String urlRead;
     String urlReadJenisSeniman = DatabaseConnection.getReadJenisSeniman();
     RecyclerView recyclerView;
     List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();
@@ -77,6 +79,7 @@ public class OrganizerPortfolioFragment extends Fragment {
     RelativeLayout rootView;
     SearchView searchView;
     SearchView.OnQueryTextListener queryTextListener;
+    String id_jenis_seniman;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -128,47 +131,25 @@ public class OrganizerPortfolioFragment extends Fragment {
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_portfolio_swipeRefreshLayout);
 
-
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
 
         if(mainActivity.title.equals("Musisi")){
-            final String id_jenis_seniman = "1";
-
-            getEvents(id_jenis_seniman);
-
-            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    getEvents(id_jenis_seniman);
-                }
-            });
+            id_jenis_seniman = "1";
 
         }
         else if(mainActivity.title.equals("Penari")){
-            final String id_jenis_seniman = "2";
-            getEvents(id_jenis_seniman);
-
-            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    getEvents(id_jenis_seniman);
-                }
-            });
+            id_jenis_seniman = "2";
         }
         else if(mainActivity.title.equals("Bondres")){
-
-            final String id_jenis_seniman = "3";
-
-            getEvents(id_jenis_seniman);
-
-            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    getEvents(id_jenis_seniman);
-                }
-            });
+            id_jenis_seniman = "3";
         }
 
-
+        getData();
 
         setToolbar();
         // Inflate the layout for this fragment
@@ -176,20 +157,36 @@ public class OrganizerPortfolioFragment extends Fragment {
 
     }
 
-    private void getEvents(String id_jenis_seniman){
-        //Getting Instance of Volley Request Queue
-        queue = AppController.getInstance().getRequestQueue();
-
+    private void initGetData(){
         //Set loading anim
         mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_portfolio_progressbar);
         mLoadingAnim.setVisibility(View.VISIBLE);
+    }
 
-        //empty eventList
-        senimanList.clear();
-
+    public void getData(){
+        urlRead = DatabaseConnection.getReadSenimanList();
         urlRead += "?id_jenis_seniman="+id_jenis_seniman;
+        Log.d("OrganizerSF","URL = "+urlRead);
+        //empty list
+        senimanList.clear();
+        requestData(urlRead);
+    }
 
-        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+    public void getDataSearch(String searchString){
+        urlRead = DatabaseConnection.getReadSenimanList();
+        urlRead += "?id_jenis_seniman="+id_jenis_seniman+"&search="+searchString;
+        urlRead = urlRead.replaceAll(" ","%20");
+        //empty list
+        senimanList.clear();
+        requestData(urlRead);
+    }
+
+    private void requestData(String url){
+        initGetData();
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
+        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
@@ -247,21 +244,23 @@ public class OrganizerPortfolioFragment extends Fragment {
         inflater.inflate(R.menu.menu_search, menu);
         MenuItem cari = menu.findItem(R.id.searchbox);
 
-        SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
+        final SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
         MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
         MenuItemCompat.setActionView(cari, searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("OrganizerPort","Search Text Submit");
+                showSoftwareKeyboard(false);
+                getDataSearch(query);
                 return true;
             }
             @Override
             public boolean onQueryTextChange(String query) {
-                Log.d("OrganizerPort","Search Text Change");
+//                getDataSearch(query);
 
                 return true;
             }
+
         });
         searchView.setOnClickListener(new View.OnClickListener() {
                                           @Override
@@ -270,6 +269,14 @@ public class OrganizerPortfolioFragment extends Fragment {
                                           }
                                       }
         );
+    }
+
+
+    protected void showSoftwareKeyboard(boolean showKeyboard){
+        final Activity activity = getActivity();
+        final InputMethodManager inputManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), showKeyboard ? InputMethodManager.SHOW_FORCED : InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override

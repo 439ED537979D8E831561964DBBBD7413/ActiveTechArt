@@ -376,6 +376,7 @@ public class OrganizerSenimanFragment extends Fragment {
 
                 return true;
             }
+
         });
         searchView.setOnClickListener(new View.OnClickListener() {
                                           @Override
