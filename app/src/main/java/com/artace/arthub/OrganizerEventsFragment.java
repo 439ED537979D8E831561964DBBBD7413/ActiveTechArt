@@ -103,12 +103,12 @@ public class OrganizerEventsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_events, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_events_recyclerview);
         adapter = new EventAdapter(getContext(), eventList);
@@ -136,17 +136,21 @@ public class OrganizerEventsFragment extends Fragment {
             }
         });
 
-        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_events_toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
-        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setTitle(mainActivity.title);
+        setToolbar();
 
         getEvents();
 
 
         return rootView;
 
+    }
+
+    public void setToolbar(){
+        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_events_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle(mainActivity.title);
     }
 
     public void getEvents(){
@@ -220,7 +224,6 @@ public class OrganizerEventsFragment extends Fragment {
         switch (item.getItemId()){
             case android.R.id.home:
                 getActivity().onBackPressed();
-                return true;
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -10,6 +11,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,17 +19,22 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -44,6 +51,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +82,7 @@ public class OrganizerSenimanFragment extends Fragment {
     ProgressBar mLoadingAnim;
     SwipeRefreshLayout mSwipeRefreshLayout;
     RequestQueue queue;
-    String urlRead = DatabaseConnection.getReadSenimanList();
+    String urlRead;
     OrganizerMainActivity mainActivity;
     TextView mJudul, mSubJudul;
     int idJenisSeniman;
@@ -114,6 +123,7 @@ public class OrganizerSenimanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         rootView = (CoordinatorLayout) inflater.inflate(R.layout.fragment_organizer_seniman, container, false);
 
         mainActivity = (OrganizerMainActivity) getActivity();
@@ -142,6 +152,8 @@ public class OrganizerSenimanFragment extends Fragment {
             }
         });
 
+
+
         initHeader();
 
         getData();
@@ -150,21 +162,37 @@ public class OrganizerSenimanFragment extends Fragment {
         return rootView;
     }
 
-    public void getData(){
+    private void initGetData(){
         //Set loading anim
         mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_seniman_progressbar);
         mLoadingAnim.setVisibility(View.VISIBLE);
+    }
 
+    public void getData(){
+        urlRead = DatabaseConnection.getReadSenimanList();
+        urlRead += "?id_jenis_seniman="+idJenisSeniman;
+        Log.d("OrganizerSF","URL = "+urlRead);
+        //empty list
+        senimanList.clear();
+        requestData(urlRead);
+    }
+
+    public void getDataSearch(String searchString){
+        urlRead = DatabaseConnection.getReadSenimanList();
+        urlRead += "?id_jenis_seniman="+idJenisSeniman+"&search="+searchString;
+        urlRead = urlRead.replaceAll(" ","%20");
+        Log.d("OrganizerSF","URL = "+urlRead);
+        //empty list
+        senimanList.clear();
+        requestData(urlRead);
+    }
+
+    public void requestData(String url){
+        initGetData();
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
 
-        //empty eventList
-        senimanList.clear();
-
-
-        urlRead += "?id_jenis_seniman="+idJenisSeniman;
-
-        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
@@ -316,6 +344,46 @@ public class OrganizerSenimanFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void showSoftwareKeyboard(boolean showKeyboard){
+        final Activity activity = getActivity();
+        final InputMethodManager inputManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), showKeyboard ? InputMethodManager.SHOW_FORCED : InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem cari = menu.findItem(R.id.searchbox);
+
+        final SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(cari, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                showSoftwareKeyboard(false);
+                getDataSearch(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+//                getDataSearch(query);
+
+                return true;
+            }
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
     }
 
     // TODO: Rename method, update argument and hook method into UI event

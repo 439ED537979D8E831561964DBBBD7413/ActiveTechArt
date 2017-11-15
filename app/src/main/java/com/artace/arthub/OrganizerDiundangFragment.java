@@ -222,7 +222,7 @@ public class OrganizerDiundangFragment extends Fragment {
         queue.add(newsReq);
     }
 
-    private void setToolbar(){
+    public void setToolbar(){
         mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_diundang_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();

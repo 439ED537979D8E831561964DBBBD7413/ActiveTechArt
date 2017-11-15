@@ -34,6 +34,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:bb_behavior="shifting"
+        android:elevation="4dp"
         app:bb_showShadow="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
 

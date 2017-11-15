@@ -1,24 +1,30 @@
 package com.artace.arthub;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +37,7 @@ import com.artace.arthub.constant.Field;
 import com.artace.arthub.controller.AppController;
 import com.artace.arthub.pojo.PojoEvent;
 import com.artace.arthub.pojo.PojoSeniman;
+import com.mikepenz.iconics.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,6 +75,8 @@ public class OrganizerPortfolioFragment extends Fragment {
     Toolbar mToolbar;
     OrganizerMainActivity mainActivity;
     RelativeLayout rootView;
+    SearchView searchView;
+    SearchView.OnQueryTextListener queryTextListener;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -100,12 +109,12 @@ public class OrganizerPortfolioFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_portfolio, container, false);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_portfolio_recyclerview);
         adapter = new SenimanPortfolioListAdapter(getContext(), senimanList);
@@ -223,7 +232,7 @@ public class OrganizerPortfolioFragment extends Fragment {
         queue.add(newsReq);
     }
 
-    private void setToolbar(){
+    public void setToolbar(){
         mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_portfolio_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
@@ -232,14 +241,46 @@ public class OrganizerPortfolioFragment extends Fragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem cari = menu.findItem(R.id.searchbox);
 
-        switch (item.getItemId()){
-            case android.R.id.home:
-                getActivity().onBackPressed();
+        SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(cari, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("OrganizerPort","Search Text Submit");
                 return true;
-        }
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                Log.d("OrganizerPort","Search Text Change");
 
+                return true;
+            }
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // Not implemented here
+                return false;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
