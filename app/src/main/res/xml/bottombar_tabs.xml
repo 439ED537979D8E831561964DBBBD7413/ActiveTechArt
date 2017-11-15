@@ -1,16 +1,16 @@
 <tabs>
     <tab
-        id="@+id/tab_events"
-        icon="@drawable/ic_view_list"
-        title="Events" />
+        id="@+id/tab_seniman"
+        icon="@drawable/ic_group"
+        title="Seniman" />
     <tab
         id="@+id/tab_portfolio"
         icon="@drawable/ic_video_library"
         title="Portfolio" />
     <tab
-        id="@+id/tab_seniman"
-        icon="@drawable/ic_group"
-        title="Seniman" />
+        id="@+id/tab_events"
+        icon="@drawable/ic_view_list"
+        title="Events" />
     <tab
         id="@+id/tab_diundang"
         icon="@drawable/ic_contact_mail"

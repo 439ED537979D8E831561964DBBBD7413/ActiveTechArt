@@ -19,9 +19,9 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
     String title;
-    OrganizerEventsFragment newFragment1;
+    OrganizerSenimanFragment newFragment1;
     OrganizerPortfolioFragment newFragment2;
-    OrganizerSenimanFragment newFragment3;
+    OrganizerEventsFragment newFragment3;
     OrganizerDiundangFragment newFragment4;
 
     @Override
@@ -59,7 +59,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_events) {
+                if (tabId == R.id.tab_seniman) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment1);
 
@@ -79,7 +79,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.commit();
                 }
-                else if (tabId == R.id.tab_seniman) {
+                else if (tabId == R.id.tab_events) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment3);
 
@@ -121,9 +121,9 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 return;
             }
 
-            newFragment1 = new OrganizerEventsFragment();
+            newFragment1 = new OrganizerSenimanFragment();
             newFragment2 = new OrganizerPortfolioFragment();
-            newFragment3 = new OrganizerSenimanFragment();
+            newFragment3 = new OrganizerEventsFragment();
             newFragment4 = new OrganizerDiundangFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Events");

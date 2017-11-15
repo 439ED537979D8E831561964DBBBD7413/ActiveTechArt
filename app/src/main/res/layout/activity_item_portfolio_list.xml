@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="13dp"
-                    android:text="Text View"
+                    android:text="Text View asd s df as df as fa s f asdf "
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/item_portfolio_list_fotoSeniman"
@@ -127,10 +127,10 @@
 
                 <ImageView
                     android:id="@+id/item_portfolio_list_img_1"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="14dp"
                     android:src="@drawable/medium_gender_gray"
                     app:layout_constraintEnd_toStartOf="@+id/item_portfolio_list_jkSeniman"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -148,24 +148,24 @@
 
                 <ImageView
                     android:id="@+id/item_portfolio_list_img_2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginRight="6dp"
                     android:src="@drawable/ic_account_circle_gray_64dp"
                     app:layout_constraintEnd_toStartOf="@+id/item_portfolio_list_umurSeniman"
-                    app:layout_constraintTop_toBottomOf="@+id/item_portfolio_list_img_1" />
+                    app:layout_constraintTop_toTopOf="@+id/item_portfolio_list_keahlianSeniman" />
 
                 <TextView
                     android:id="@+id/item_portfolio_list_umurSeniman"
                     android:layout_width="95dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="1dp"
                     android:text="TextView"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_portfolio_list_jkSeniman" />
+                    app:layout_constraintStart_toStartOf="@+id/item_portfolio_list_jkSeniman"
+                    app:layout_constraintTop_toTopOf="@+id/item_portfolio_list_img_2" />
 
 
             </android.support.constraint.ConstraintLayout>
