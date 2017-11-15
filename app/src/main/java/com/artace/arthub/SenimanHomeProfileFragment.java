@@ -106,7 +106,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.fragment_seniman_home_profile, container, false);
 
         sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), MODE_PRIVATE);
-        String Simage = sharedpreferences.getString(Field.getFOTO(),null);
+        final String Simage = sharedpreferences.getString(Field.getFOTO(),null);
         String Snama = sharedpreferences.getString(Field.getNAMA(),null);
         String Skeahlian= sharedpreferences.getString(Field.getKeahlianSpesifik(),null);
         String Sno_hp = sharedpreferences.getString(Field.getNoHp(),null);
@@ -121,14 +121,12 @@ public class SenimanHomeProfileFragment extends Fragment {
         namaSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_namaSeniman);
         keahlianSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_keahlian);
         no_hp = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_noHp);
-        jenis_kelamin = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelamin);
         umur = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_umur);
         link_video = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         portfolio = (NetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
 
         //SET FIELD DISABLE
         no_hp.setEnabled(false);
-        jenis_kelamin.setEnabled(false);
         umur.setEnabled(false);
 
         imageSeniman.setImageUrl(Simage, AppController.getInstance().getImageLoader());
@@ -137,8 +135,17 @@ public class SenimanHomeProfileFragment extends Fragment {
         namaSeniman.setText(Snama);
         keahlianSeniman.setText(Skeahlian);
         no_hp.setText(Sno_hp);
-        jenis_kelamin.setText(Sjenis_kelamin);
         umur.setText(Sumur);
+
+        imageSeniman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SenimanHomeProfileFragment.this.getContext(),ShowPictureActivity.class);
+                intent.putExtra("imageViewExtra",Simage);
+                startActivity(intent);
+            }
+        });
+
 
         portfolio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +162,8 @@ public class SenimanHomeProfileFragment extends Fragment {
         ubahvid = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
         imgubahvid = (ImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
         spinnerJK = (Spinner) rootView.findViewById(R.id.fragment_seniman_home_profile_jenisKelaminSpinner);
-
+        fillJenisKelaminSpinner();
+        spinnerJK.setEnabled(false);
         fabs.setVisibility(View.INVISIBLE);
         fabc.setVisibility(View.INVISIBLE);
         ubahvid.setVisibility(View.GONE);
@@ -164,15 +172,14 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 no_hp.setEnabled(true);
-                jenis_kelamin.setVisibility(View.GONE);
                 umur.setEnabled(true);
                 fab.setVisibility(View.GONE);
                 ubahvid.setVisibility(View.VISIBLE);
                 imgubahvid.setVisibility(View.VISIBLE);
                 fabs.setVisibility(View.VISIBLE);
                 fabc.setVisibility(View.VISIBLE);
-                spinnerJK.setVisibility(View.VISIBLE);
-                fillJenisKelaminSpinner();
+                spinnerJK.setEnabled(true);
+//                fillJenisKelaminSpinner();
             }
         });
         fabs.setOnClickListener(new View.OnClickListener(){
@@ -180,14 +187,13 @@ public class SenimanHomeProfileFragment extends Fragment {
             public void onClick(View v) {
                 submitForm();
                 no_hp.setEnabled(false);
-                jenis_kelamin.setVisibility(View.VISIBLE);
                 umur.setEnabled(false);
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
                 fabs.setVisibility(View.INVISIBLE);
                 fabc.setVisibility(View.INVISIBLE);
-                spinnerJK.setVisibility(View.INVISIBLE);
+                spinnerJK.setEnabled(false);
 
             }
         });
@@ -195,14 +201,14 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 no_hp.setEnabled(false);
-                jenis_kelamin.setVisibility(View.VISIBLE);
                 umur.setEnabled(false);
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
                 fabs.setVisibility(View.INVISIBLE);
                 fabc.setVisibility(View.INVISIBLE);
-                spinnerJK.setVisibility(View.INVISIBLE);
+                spinnerJK.setEnabled(false);
+
                 Intent intent = getActivity().getIntent();
                 getActivity().finish();
                 startActivity(intent);
@@ -237,6 +243,12 @@ public class SenimanHomeProfileFragment extends Fragment {
             listDisplayJK.add("Pria");
             listDisplayJK.add("Wanita");
         }
+        else
+        {
+            listDisplayJK.add("Pria");
+            listDisplayJK.add("Wanita");
+            listDisplayJK.add("Group Campuran");
+        }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item, listDisplayJK);
 
         spinnerJK.setAdapter(dataAdapter);
@@ -256,6 +268,14 @@ public class SenimanHomeProfileFragment extends Fragment {
         params.put("nama",Mnama);
         params.put("portfolio",Mportfolio);
 
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putBoolean(Field.getSessionStatus(), true);
+        editor.putString(Field.getJenisKelamin(), Mjenis_kelamin);
+        editor.putString(Field.getNoHp(), Mno_hp);
+        editor.putString(Field.getUMUR(), Mumur);
+        editor.putString(Field.getPORTFOLIO(), Mportfolio);
+        editor.commit();
+
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         id_seniman = sharedpreferences.getString(Field.getIdSeniman(),null);
         Log.d("LogUpdateSeniman","ID SENIMAN = "+id_seniman);
@@ -266,7 +286,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         strReq.sendPost(getActivity(), params, DatabaseConnection.getUpdateSeniman(), new VolleyResponseListener() {
             @Override
             public void onResponse(String response) {
-
+//                finish();
             }
 
             @Override
@@ -276,7 +296,13 @@ public class SenimanHomeProfileFragment extends Fragment {
         });
     }
 
-
+//    public void finish() {
+//        Intent returnIntent = new Intent();
+//        returnIntent.putExtra("resultMessage", "UPDATE_SENIMAN");
+//        getActivity().setResult(getActivity().RESULT_OK,returnIntent);
+//
+//        super.getActivity().finish();
+//    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
@@ -315,4 +341,5 @@ public class SenimanHomeProfileFragment extends Fragment {
 //        // TODO: Update argument type and name
 //        void onFragmentInteraction(Uri uri);
 //    }
+
 }

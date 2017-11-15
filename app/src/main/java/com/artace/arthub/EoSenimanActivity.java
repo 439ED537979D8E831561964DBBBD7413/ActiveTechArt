@@ -88,6 +88,8 @@ public class EoSenimanActivity extends AppCompatActivity {
 
                             int idSeniman = obj.getInt("id_seniman");
                             final int idSenimanFinal = idSeniman;
+                            final String fotoFinal = DatabaseConnection.BASE_URL + obj.getString("foto");
+
 //                            int idEventOrganizer = obj.getInt("id_event_organizer");
 
                             beriTawaran = (Button) findViewById(R.id.eo_seniman_btnBeriTawaranTampil);
@@ -119,6 +121,15 @@ public class EoSenimanActivity extends AppCompatActivity {
 
                             NetworkImageView fotoSeniman = (NetworkImageView) findViewById(R.id.eo_seniman_imageSeniman);
                             fotoSeniman.setImageUrl(DatabaseConnection.getBaseUrl() + obj.getString("foto"), AppController.getInstance().getImageLoader());
+                            fotoSeniman.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(EoSenimanActivity.this ,ShowPictureActivity.class);
+                                    intent.putExtra("imageViewExtra",fotoFinal);
+                                    startActivity(intent);
+                                }
+                            });
+
 
                             String Sportfolio = obj.getString("portfolio");
 

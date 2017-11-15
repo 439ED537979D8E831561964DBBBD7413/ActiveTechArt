@@ -31,6 +31,48 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/form_content_marginLeft"
+                    android:paddingTop="11dp"
+                    android:text="Upload Foto"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorSecondaryText" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+            <ImageView
+                android:id="@+id/register_seniman_viewFoto"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_launcher" />
+
+                <Button
+                    android:id="@+id/register_seniman_btnFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/register_seniman_viewFoto"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorAccent"
+                    android:text="browse foto"
+                    android:textColor="@color/colorWhiteText"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -442,7 +484,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Perempuan"
+                    android:text="Wanita"
                     android:textColor="@color/colorSecondaryText" />
 
                 <RadioButton
@@ -456,37 +498,7 @@
 
             </RadioGroup>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="@dimen/form_content_marginLeft"
-                    android:paddingTop="11dp"
-                    android:text="Upload Foto"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/colorSecondaryText" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/register_seniman_viewFoto"
-                android:paddingLeft="10dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/ic_account_circle_gray_128dp" />
-
-            <Button
-                android:id="@+id/register_seniman_btnFoto"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/form_content_marginLeft"
-                android:background="@color/colorButtonForm"
-                android:text="browse"
-                android:textColor="@color/colorWhiteText" />
 
             <Button
                 android:id="@+id/register_seniman_submit"

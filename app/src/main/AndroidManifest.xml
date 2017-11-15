@@ -62,13 +62,13 @@
         </activity>
         <activity android:name=".EoSenimanActivity" />
         <activity android:name=".ItemPortfolioList" />
-        <activity android:name=".SenimanMainActivity"
-            android:windowSoftInputMode="adjustPan"
-            >
-        </activity>
+        <activity
+            android:name=".SenimanMainActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".YoutubePlayerViewActivity" />
         <activity android:name=".ListSenimanDetailEventActivity" />
-        <activity android:name=".EventKirimTawaranTampilActivty"></activity>
+        <activity android:name=".EventKirimTawaranTampilActivty" />
+        <activity android:name=".ShowPictureActivity"></activity>
     </application>
 
 </manifest>

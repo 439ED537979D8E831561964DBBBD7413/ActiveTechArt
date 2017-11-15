@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.artace.arthub.ViewPlugins.DrawerMenu;
 import com.roughike.bottombar.BottomBar;
@@ -79,7 +79,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     transaction.hide(newFragment4);
 
                     transaction.commit();
-                    newFragment2.setToolbar();
                 }
                 else if (tabId == R.id.tab_events) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -94,6 +93,10 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 else if (tabId == R.id.tab_diundang) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment4);
+                    if (newFragment4.senimanList.size() == 0){
+                        Toast.makeText(getApplicationContext() ,"Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
+                    newFragment4.getData();
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment2);
@@ -128,11 +131,11 @@ public class OrganizerMainActivity extends AppCompatActivity {
             newFragment3 = new OrganizerEventsFragment();
             newFragment4 = new OrganizerDiundangFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Seniman");
+            transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Events");
 
             transaction.add(R.id.organizer_main_fragment_container, newFragment2,"Portfolio");
             transaction.hide(newFragment2);
-            transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Events");
+            transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Seniman");
             transaction.hide(newFragment3);
             transaction.add(R.id.organizer_main_fragment_container, newFragment4,"Diundang");
             transaction.hide(newFragment4);
@@ -145,11 +148,5 @@ public class OrganizerMainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("OrganizerMainActivity","On Activity Result Main Activity");
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return false;
     }
 }

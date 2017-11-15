@@ -15,57 +15,72 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
+        android:elevation="10dp"
         android:clickable="true">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/item_event_list_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="0dp">
+            android:padding="0dp"
+            android:elevation="@dimen/materialize_baseline_grid_x10">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/item_event_list_layoutLeftImage"
                 android:layout_width="100dp"
                 android:layout_height="150dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorUnderlineDivider"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="1dp"
+                android:paddingTop="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <FrameLayout
-                    android:id="@+id/item_event_list_imageEvent_container"
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/item_event_list_topLeftLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <ProgressBar
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp" />
-                    <com.artace.arthub.ViewPlugins.CircularNetworkImageView
-                        android:id="@+id/item_event_list_imageEvent"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        />
-                </FrameLayout>
+                    android:layout_height="match_parent"
+                    android:background="@color/cardview_light_background">
 
-                <TextView
-                    android:id="@+id/item_event_list_eo"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text=" SubStar Live "
-                    android:textAlignment="center"
-                    android:textColor="@color/colorBackgroundPrimaryText"
-                    app:layout_constraintEnd_toEndOf="@+id/item_event_list_imageEvent_container"
-                    app:layout_constraintStart_toStartOf="@+id/item_event_list_imageEvent_container"
-                    app:layout_constraintTop_toBottomOf="@+id/item_event_list_imageEvent_container" />
+                    <FrameLayout
+                        android:id="@+id/item_event_list_imageEvent_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp" />
+
+                        <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                            android:id="@+id/item_event_list_imageEvent"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/item_event_list_eo"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text=" SubStar Live "
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintEnd_toEndOf="@+id/item_event_list_imageEvent_container"
+                        app:layout_constraintStart_toStartOf="@+id/item_event_list_imageEvent_container"
+                        app:layout_constraintTop_toBottomOf="@+id/item_event_list_imageEvent_container" />
+
+                </android.support.constraint.ConstraintLayout>
 
             </android.support.constraint.ConstraintLayout>
 
@@ -83,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="13dp"
                     android:text=" Festival SkyAvenue"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="22sp"
@@ -94,7 +109,6 @@
                     android:id="@+id/item_event_list_tanggalEvent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
                     android:text="20 Oktober 2017"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/item_event_list_namaEvent"
@@ -104,7 +118,6 @@
                     android:id="@+id/item_event_list_tempatEvent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
                     android:text="Istora Senayan"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/item_event_list_namaEvent"
@@ -118,7 +131,7 @@
                     android:layout_height="1dp"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/MasukSebagaiIndustri"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/colorUnderlineDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -145,6 +158,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/color_tolak">
+
                     <Button
                         android:id="@+id/item_event_list_btnHapus"
                         style="?android:attr/buttonStyleSmall"
@@ -166,6 +180,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/green_button_color">
+
                     <Button
                         android:id="@+id/item_event_list_btnDetail"
                         style="?android:attr/buttonStyleSmall"
