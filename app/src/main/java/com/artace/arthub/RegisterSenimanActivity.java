@@ -130,6 +130,9 @@ public class RegisterSenimanActivity extends AppCompatActivity {
         mNoHp = (EditText) findViewById(R.id.register_seniman_nohp);
         mUmur = (EditText) findViewById(R.id.register_seniman_umur);
 
+        mDaftar.setEnabled(false);
+        mDaftar.setBackgroundColor(getResources().getColor(R.color.colorSecondaryText));
+
         mGroupStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -244,7 +247,7 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                     jenis_kelamin = "Pria";
                 }
                 else if(mPerempuan.isChecked()){
-                    jenis_kelamin = "Perempuan";
+                    jenis_kelamin = "Wanita";
                 }
                 else{
                     jenis_kelamin = "Group Campuran";
