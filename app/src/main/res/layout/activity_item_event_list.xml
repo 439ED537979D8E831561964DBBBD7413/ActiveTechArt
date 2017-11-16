@@ -72,7 +72,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/item_event_list_layoutRight"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/item_event_list_layoutLeftImage"
@@ -116,7 +116,7 @@
                     android:layout_height="1dp"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/MasukSebagaiIndustri"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/colorUnderlineDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
