@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,7 +78,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             holder.deleteContainer.setVisibility(View.GONE);
             holder.btnHapus.setBackgroundColor(context.getResources().getColor(R.color.primary));
         }
-
         holder.btnDetail.setTag(position);
         holder.btnHapus.setTag(position);
 

@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -179,7 +180,7 @@ public class OrganizerDiundangFragment extends Fragment {
         }
 
         urlRead += "?id_jenis_seniman="+idJenisSeniman+"&id_event_organizer="+id_event_organizer;
-        Log.d("DiundangFrag","id eo : "+id_event_organizer);
+        Log.e("DiundangFrag","id eo : "+id_event_organizer);
 
         JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
             @Override
@@ -206,10 +207,12 @@ public class OrganizerDiundangFragment extends Fragment {
                     }
                 }catch (Exception e){
                     Log.e("DiundangFrag","LOG gamao diluar! = " + e.getMessage());
+
                 }
                 finally {
                     mLoadingAnim.setVisibility(View.GONE);
                     mSwipeRefreshLayout.setRefreshing(false);
+
                 }
             }
         }, new Response.ErrorListener() {

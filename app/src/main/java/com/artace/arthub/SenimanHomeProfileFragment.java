@@ -106,7 +106,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         ConstraintLayout rootView = (ConstraintLayout) inflater.inflate(R.layout.fragment_seniman_home_profile, container, false);
 
         sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), MODE_PRIVATE);
-        String Simage = sharedpreferences.getString(Field.getFOTO(),null);
+        final String Simage = sharedpreferences.getString(Field.getFOTO(),null);
         String Snama = sharedpreferences.getString(Field.getNAMA(),null);
         String Skeahlian= sharedpreferences.getString(Field.getKeahlianSpesifik(),null);
         String Sno_hp = sharedpreferences.getString(Field.getNoHp(),null);
@@ -139,6 +139,15 @@ public class SenimanHomeProfileFragment extends Fragment {
         no_hp.setText(Sno_hp);
         jenis_kelamin.setText(Sjenis_kelamin);
         umur.setText(Sumur);
+
+        imageSeniman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SenimanHomeProfileFragment.this.getContext(),ShowPictureActivity.class);
+                intent.putExtra("imageViewExtra",Simage);
+                startActivity(intent);
+            }
+        });
 
         portfolio.setOnClickListener(new View.OnClickListener() {
             @Override

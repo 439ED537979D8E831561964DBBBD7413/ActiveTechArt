@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.artace.arthub.ViewPlugins.DrawerMenu;
 import com.roughike.bottombar.BottomBar;
@@ -92,6 +93,9 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 else if (tabId == R.id.tab_diundang) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment4);
+                    if (newFragment4.senimanList.size() == 0){
+                        Toast.makeText(getApplicationContext() ,"Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
                     newFragment4.getData();
 
                     transaction.hide(newFragment1);
