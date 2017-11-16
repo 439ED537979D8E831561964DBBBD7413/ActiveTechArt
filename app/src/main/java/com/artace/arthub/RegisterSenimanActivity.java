@@ -150,6 +150,8 @@ public class RegisterSenimanActivity extends AppCompatActivity {
             }
         });
 
+        mLaki.setSelected(true);
+
         mFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -10,19 +11,24 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -115,6 +121,9 @@ public class OrganizerDiundangFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
         rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_organizer_diundang, container, false);
 
         mainActivity = (OrganizerMainActivity) getActivity();
@@ -150,18 +159,7 @@ public class OrganizerDiundangFragment extends Fragment {
     }
 
     public void getData(){
-        Log.d("DiundangFrag","start get data");
-        //Set loading anim
-        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_diundang_progressbar);
-        mLoadingAnim.setVisibility(View.VISIBLE);
-
-        //Getting Instance of Volley Request Queue
-        queue = AppController.getInstance().getRequestQueue();
-
-        //empty eventList
-        senimanList.clear();
-        adapter.notifyDataSetChanged();
-
+        urlRead = DatabaseConnection.getReadListTawaranTampil();
         SharedPreferences sharedpreferences = getActivity().getApplicationContext().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
         String id_event_organizer = "";
@@ -182,7 +180,51 @@ public class OrganizerDiundangFragment extends Fragment {
         urlRead += "?id_jenis_seniman="+idJenisSeniman+"&id_event_organizer="+id_event_organizer;
         Log.e("DiundangFrag","id eo : "+id_event_organizer);
 
-        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+        senimanList.clear();
+        requestData(urlRead);
+    }
+
+    public void getDataSearch(String searchString){
+        urlRead = DatabaseConnection.getReadListTawaranTampil();
+        SharedPreferences sharedpreferences = getActivity().getApplicationContext().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+        String id_event_organizer = "";
+        if (session || sharedpreferences.getString(Field.getIdEventOrganizer(),null) != null){
+            id_event_organizer = sharedpreferences.getString(Field.getIdEventOrganizer(),null);
+        }
+
+        if(mainActivity.title.equals("Musisi")){
+            idJenisSeniman = 1;
+        }
+        else if(mainActivity.title.equals("Penari")){
+            idJenisSeniman = 2;
+        }
+        else if(mainActivity.title.equals("Bondres")){
+            idJenisSeniman = 3;
+        }
+
+        urlRead += "?id_jenis_seniman="+idJenisSeniman+"&id_event_organizer="+id_event_organizer+"&search="+searchString;
+        Log.e("DiundangFrag","id eo : "+id_event_organizer);
+        urlRead = urlRead.replaceAll(" ","%20");
+
+        //empty list
+        senimanList.clear();
+        requestData(urlRead);
+    }
+
+    public void requestData(String url){
+
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_diundang_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
+
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
+        //empty eventList
+        senimanList.clear();
+        adapter.notifyDataSetChanged();
+
+        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
@@ -224,6 +266,48 @@ public class OrganizerDiundangFragment extends Fragment {
         });
         //Adding JsonArrayRequest to Request Queue
         queue.add(newsReq);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem cari = menu.findItem(R.id.searchbox);
+
+        final SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(cari, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                showSoftwareKeyboard(false);
+                getDataSearch(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+//                getDataSearch(query);
+
+                return true;
+            }
+
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
+    }
+
+
+    protected void showSoftwareKeyboard(boolean showKeyboard){
+        final Activity activity = getActivity();
+        final InputMethodManager inputManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), showKeyboard ? InputMethodManager.SHOW_FORCED : InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public void setToolbar(){

@@ -79,6 +79,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     transaction.hide(newFragment4);
 
                     transaction.commit();
+                    newFragment2.setToolbar();
                 }
                 else if (tabId == R.id.tab_events) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

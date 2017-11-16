@@ -1,5 +1,6 @@
 package com.artace.arthub;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,17 +8,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -63,7 +69,7 @@ public class OrganizerEventsFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
     RequestQueue queue;
-    String urlRead = DatabaseConnection.getReadEventorganizerEvents();
+    String urlRead;
     RecyclerView recyclerView;
     List<PojoEvent> eventList = new ArrayList<PojoEvent>();
     public EventAdapter adapter;
@@ -154,16 +160,7 @@ public class OrganizerEventsFragment extends Fragment {
     }
 
     public void getEvents(){
-        //Set loading anim
-        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_events_progressbar);
-        mLoadingAnim.setVisibility(View.VISIBLE);
-
-        //Getting Instance of Volley Request Queue
-        queue = AppController.getInstance().getRequestQueue();
-
-        //empty eventList
-        eventList.clear();
-
+        urlRead = DatabaseConnection.getReadEventorganizerEvents();
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
@@ -176,7 +173,41 @@ public class OrganizerEventsFragment extends Fragment {
             mFab.setVisibility(View.GONE);
         }
 
-        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+        eventList.clear();
+        requestData(urlRead);
+    }
+
+    public void getDataSearch(String searchString){
+        urlRead = DatabaseConnection.getReadEventorganizerEvents();
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
+
+        if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
+            urlRead += "?id_event_organizer=" + sharedpreferences.getString(Field.getIdEventOrganizer(),null);
+            mFab.setVisibility(View.VISIBLE);
+            urlRead += "&search="+searchString;
+        }
+        else {
+            urlRead += "?search="+searchString;
+            mFab.setVisibility(View.GONE);
+        }
+        urlRead = urlRead.replaceAll(" ","%20");
+        eventList.clear();
+        requestData(urlRead);
+    }
+
+    public void requestData(String url){
+        //Set loading anim
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_events_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
+
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+
+        //empty eventList
+        eventList.clear();
+
+        JsonArrayRequest newsReq = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try{
@@ -219,13 +250,56 @@ public class OrganizerEventsFragment extends Fragment {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem cari = menu.findItem(R.id.searchbox);
+
+        final SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
+        MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+        MenuItemCompat.setActionView(cari, searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                showSoftwareKeyboard(false);
+                getDataSearch(query);
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+//                getDataSearch(query);
+
+                return true;
+            }
+
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
+    }
+
+
+    protected void showSoftwareKeyboard(boolean showKeyboard){
+        final Activity activity = getActivity();
+        final InputMethodManager inputManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), showKeyboard ? InputMethodManager.SHOW_FORCED : InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case android.R.id.home:
-                getActivity().onBackPressed();
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // Not implemented here
+                return false;
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -64,11 +64,14 @@
         <activity android:name=".ItemPortfolioList" />
         <activity
             android:name=".SenimanMainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".YoutubePlayerViewActivity" />
         <activity android:name=".ListSenimanDetailEventActivity" />
         <activity android:name=".EventKirimTawaranTampilActivty" />
-        <activity android:name=".ShowPictureActivity"></activity>
+        <activity android:name=".ShowPictureActivity" />
+        <activity android:name=".TentangAplikasiActivity" />
+        <activity android:name=".IntroActivity"
+            android:theme="@style/AppTheme.NoActionBarAtAll"/>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import com.artace.arthub.MainActivity;
 import com.artace.arthub.R;
 import com.artace.arthub.RegisterEventOrganizerActivity;
 import com.artace.arthub.RegisterSenimanActivity;
+import com.artace.arthub.TentangAplikasiActivity;
 import com.artace.arthub.connection.DatabaseConnection;
 import com.artace.arthub.constant.Field;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -126,7 +127,7 @@ public class DrawerMenu {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         if (drawerItem.getIdentifier() == 1){
-                            Intent intent = new Intent(contextFinal,LoginActivity.class);
+                            Intent intent = new Intent(contextFinal,TentangAplikasiActivity.class);
                             contextFinal.startActivity(intent);
                         }
                         if (drawerItem.getIdentifier() == 2){
@@ -181,6 +182,10 @@ public class DrawerMenu {
                         }
                         if (drawerItem.getIdentifier() == 3){
                             Intent intent = new Intent(contextFinal, RegisterEventOrganizerActivity.class);
+                            contextFinal.startActivity(intent);
+                        }
+                        if (drawerItem.getIdentifier() == 3){
+                            Intent intent = new Intent(contextFinal, TentangAplikasiActivity.class);
                             contextFinal.startActivity(intent);
                         }
                         return false;

@@ -157,17 +157,10 @@ public class OrganizerPortfolioFragment extends Fragment {
 
     }
 
-    private void initGetData(){
-        //Set loading anim
-        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_portfolio_progressbar);
-        mLoadingAnim.setVisibility(View.VISIBLE);
-    }
-
     public void getData(){
         urlRead = DatabaseConnection.getReadSenimanList();
         urlRead += "?id_jenis_seniman="+id_jenis_seniman;
-        Log.d("OrganizerSF","URL = "+urlRead);
-        //empty list
+
         senimanList.clear();
         requestData(urlRead);
     }
@@ -182,7 +175,9 @@ public class OrganizerPortfolioFragment extends Fragment {
     }
 
     private void requestData(String url){
-        initGetData();
+        //Set loading anim
+        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_portfolio_progressbar);
+        mLoadingAnim.setVisibility(View.VISIBLE);
         //Getting Instance of Volley Request Queue
         queue = AppController.getInstance().getRequestQueue();
 
@@ -281,13 +276,13 @@ public class OrganizerPortfolioFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // Not implemented here
-                return false;
-            default:
-                break;
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
