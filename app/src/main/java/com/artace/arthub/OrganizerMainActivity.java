@@ -92,6 +92,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 else if (tabId == R.id.tab_diundang) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment4);
+                    newFragment4.getData();
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment2);

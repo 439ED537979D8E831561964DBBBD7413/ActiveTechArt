@@ -159,6 +159,7 @@ public class OrganizerDiundangFragment extends Fragment {
 
         //empty eventList
         senimanList.clear();
+        adapter.notifyDataSetChanged();
 
         SharedPreferences sharedpreferences = getActivity().getApplicationContext().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
         boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
