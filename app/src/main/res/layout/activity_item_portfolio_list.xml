@@ -108,11 +108,11 @@
 
                 <TextView
                     android:id="@+id/item_portfolio_list_namaSeniman"
-                    android:layout_width="150dp"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="13dp"
-                    android:text="Text View asd s df as df as fa s f asdf "
+                    android:text="Bali Reggae Wastika"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/item_portfolio_list_fotoSeniman"
@@ -120,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/item_portfolio_list_keahlianSeniman"
-                    android:layout_width="150dp"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"

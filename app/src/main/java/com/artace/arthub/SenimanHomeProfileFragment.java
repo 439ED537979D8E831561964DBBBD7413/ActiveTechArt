@@ -287,6 +287,9 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onResponse(String response) {
 //                finish();
+                Intent intent = getActivity().getIntent();
+                getActivity().finish();
+                startActivity(intent);
             }
 
             @Override

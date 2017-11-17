@@ -83,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -251,6 +252,7 @@
                         android:textColorHint="@color/colorSecondaryText"
                         android:textSize="16sp" />
                 </android.support.design.widget.TextInputLayout>
+
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>

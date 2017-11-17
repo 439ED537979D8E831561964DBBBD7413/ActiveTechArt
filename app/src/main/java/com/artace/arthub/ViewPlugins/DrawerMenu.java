@@ -184,7 +184,7 @@ public class DrawerMenu {
                             Intent intent = new Intent(contextFinal, RegisterEventOrganizerActivity.class);
                             contextFinal.startActivity(intent);
                         }
-                        if (drawerItem.getIdentifier() == 3){
+                        if (drawerItem.getIdentifier() == 4){
                             Intent intent = new Intent(contextFinal, TentangAplikasiActivity.class);
                             contextFinal.startActivity(intent);
                         }
