@@ -23,175 +23,85 @@
             android:layout_height="match_parent"
             android:padding="0dp">
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/item_list_tawaran_layoutLeftImage"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:background="@color/colorUnderlineDivider"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="1dp"
-                android:paddingTop="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_linearLayoutBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/list_tawaran_topLeftLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardview_light_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <FrameLayout
-                        android:id="@+id/item_list_tawaran_imageEvent_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:scaleType="fitCenter"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ProgressBar
-                            style="?android:attr/progressBarStyle"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp" />
-
-                        <com.artace.arthub.ViewPlugins.CircularNetworkImageView
-                            android:id="@+id/item_list_tawaran_imageEvent"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/item_list_tawaran_eo"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text=" kjhkhk Live "
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryText"
-                        app:layout_constraintEnd_toEndOf="@+id/item_list_tawaran_imageEvent_container"
-                        app:layout_constraintStart_toStartOf="@+id/item_list_tawaran_imageEvent_container"
-                        app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_imageEvent_container" />
-
-                </android.support.constraint.ConstraintLayout>
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/item_list_tawaran_layoutRight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="7dp"
-                android:paddingTop="2dp"
-                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_linearLayoutBtn"
+            <ImageView
+                android:id="@+id/item_list_tawaran_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/event"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/item_list_tawaran_layoutLeftImage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/item_list_tawaran_namaEvent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="20dp"
-                    android:text=" Festival SkyAvenue"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="22sp"
-                    app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_tanggalEvent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.53999996" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:background="@drawable/gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/item_list_tawaran_tanggalEvent"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="20 Oktober 2017"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_namaEvent" />
+            <TextView
+                android:id="@+id/item_event_kttNamaEvent"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Party Day"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_penyelenggaraevent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/item_list_tawaran_tempatEvent"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="Istora Senayan"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_tanggalEvent" />
+            <TextView
+                android:id="@+id/item_list_tawaran_tanggalevent"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Minggu, 11 Februari 2018"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/item_event_kttNamaEvent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <!--divider-->
+            <TextView
+                android:id="@+id/item_list_tawaran_penyelenggaraevent"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Bali Party Professional's"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/item_list_tawaran_linearLayoutBtn"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <View
-                    android:id="@+id/item_list_tawaran_view1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/colorUnderlineDivider"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_tempatEvent" />
-
-                <!--end divider-->
-
-                <TextView
-                    android:id="@+id/item_list_tawaran_hargaEvent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="IDR 500.000,- "
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_view1" />
-
-                <View
-                    android:id="@+id/item_list_tawaran_viewKeterangan"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorUnderlineDivider"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_hargaEvent" />
-
-                <TextView
-                    android:id="@+id/item_list_tawaran_keterangan"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:text="keterangan "
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_viewKeterangan" />
-
-            </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/item_list_tawaran_harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Rp. 500.000,-"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <LinearLayout
                 android:id="@+id/item_list_tawaran_linearLayoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="0dp"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:padding="0dp"
                 android:visibility="visible"
@@ -200,7 +110,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintHorizontal_weight="2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_layoutRight"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_tawaran_image"
                 app:layout_constraintVertical_bias="1.0">
 
                 <Button
@@ -211,7 +121,7 @@
                     android:layout_weight="1"
                     android:background="@color/color_tolak"
                     android:text="TOLAK"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="@color/primaryTextBlack"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -241,7 +151,7 @@
                     android:layout_weight="0"
                     android:background="@color/color_tolak"
                     android:text="Cancel"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="#000000"
                     android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"

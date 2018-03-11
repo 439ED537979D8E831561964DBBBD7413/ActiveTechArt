@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context="com.artace.arthub.RegisterSenimanActivity">
+    tools:context="com.artace.ruangbudaya.RegisterSenimanActivity">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -72,82 +73,6 @@
                     android:textColor="@color/colorWhiteText"
                     android:textSize="10dp" />
             </RelativeLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/register_seniman_img2"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/list"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="@dimen/form_textInputLayout_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
-                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img2"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <Spinner
-                        android:id="@+id/register_seniman_jenis"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:padding="10dp"
-                        android:textColor="@color/colorSecondaryText" />
-
-                </android.support.design.widget.TextInputLayout>
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/register_seniman_img7"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="8dp"
-                    android:src="@drawable/list"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="@dimen/form_textInputLayout_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
-                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img7"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <Spinner
-                        android:id="@+id/register_seniman_statusgroup"
-                        style="@style/SpinnerTheme"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:padding="10dp"
-                        android:textColor="@color/colorSecondaryText" />
-
-                </android.support.design.widget.TextInputLayout>
-            </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -282,47 +207,6 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/register_seniman_img5"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/like"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.74" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="@dimen/form_textInputLayout_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
-                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img5"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <EditText
-                        android:id="@+id/register_seniman_keahlian"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
-                        android:ems="10"
-                        android:hint="Keahlian Spesifik (ex:Gitaris,Vokalis)"
-                        android:textColorHint="@color/colorSecondaryText" />
-
-                </android.support.design.widget.TextInputLayout>
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
                     android:id="@+id/register_seniman_img6"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -400,104 +284,6 @@
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/register_seniman_img9"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_account_circle_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.74" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="@dimen/form_textInputLayout_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
-                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
-                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img9"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <EditText
-                        android:id="@+id/register_seniman_umur"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:hint="Umur"
-                        android:textColorHint="@color/colorSecondaryText" />
-
-                </android.support.design.widget.TextInputLayout>
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="@dimen/form_content_marginLeft"
-                    android:paddingTop="11dp"
-                    android:text="Jenis Kelamin"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/colorSecondaryText" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-
-            <RadioGroup
-                android:id="@+id/jeniskelamin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="8dp"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/register_seniman_laki"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Laki-laki"
-                    android:textColor="@color/colorSecondaryText" />
-
-                <RadioButton
-                    android:id="@+id/register_seniman_perempuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Wanita"
-                    android:textColor="@color/colorSecondaryText" />
-
-                <RadioButton
-                    android:id="@+id/register_seniman_jk_campur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="10dp"
-                    android:text="Group Campuran"
-                    android:textColor="@color/colorSecondaryText" />
-
-            </RadioGroup>
-
 
 
             <Button

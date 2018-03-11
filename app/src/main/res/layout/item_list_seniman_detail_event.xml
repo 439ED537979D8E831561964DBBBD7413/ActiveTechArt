@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,7 +13,7 @@
         android:elevation="5dp"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -22,7 +23,10 @@
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/item_list_seniman_detail_event_nama"
@@ -33,19 +37,24 @@
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/album_title" />
+                android:textSize="@dimen/album_title"
+                card_view:layout_constraintBottom_toTopOf="@+id/item_list_seniman_detail_event_subtitle"
+                 />
 
             <TextView
                 android:id="@+id/item_list_seniman_detail_event_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_list_seniman_detail_event_nama"
+                android:layout_marginBottom="8dp"
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:textSize="@dimen/songs_count" />
+                android:textSize="@dimen/songs_count"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                />
 
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
 

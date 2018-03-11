@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_base"
-    tools:context="com.artace.arthub.EventKirimTawaranTampilActivty">
+    tools:context="com.artace.ruangbudaya.EventKirimTawaranTampilActivty">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

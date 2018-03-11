@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_base"
-    tools:context="com.artace.arthub.SenimanListTawaranFragment">
+    tools:context="com.artace.ruangbudaya.SenimanListTawaranFragment">
 
     <ProgressBar
         android:id="@+id/fragment_seniman_list_tawaran_progressbar"

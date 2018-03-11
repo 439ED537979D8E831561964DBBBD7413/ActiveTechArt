@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.artace.arthub">
+    package="com.artace.ruangbudaya">
 
     <!-- PERMISSION -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,47 +19,47 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".RegisterSenimanActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.artace.arthub.MainActivity" />
+                android:value="com.artace.ruangbudaya.MainActivity" />
         </activity>
         <activity
             android:name=".OrganizerMainActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.artace.arthub.MainActivity" />
+                android:value="com.artace.ruangbudaya.MainActivity" />
         </activity>
         <activity android:name=".TambahEventActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.artace.arthub.OrganizerMainActivity" />
+                android:value="com.artace.ruangbudaya.OrganizerMainActivity" />
         </activity>
         <activity android:name=".RegisterEventOrganizerActivity" />
-        <activity android:name=".EventTerimaTolakActivity" />
         <activity
             android:name=".EventDetailActivity"
             android:parentActivityName=".OrganizerMainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.artace.arthub.OrganizerMainActivity" />
+                android:value="com.artace.ruangbudaya.OrganizerMainActivity" />
         </activity>
         <activity android:name=".EoSenimanActivity" />
-        <activity android:name=".ItemPortfolioList" />
         <activity
             android:name=".SenimanMainActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -68,8 +68,15 @@
         <activity android:name=".EventKirimTawaranTampilActivty" />
         <activity android:name=".ShowPictureActivity" />
         <activity android:name=".TentangAplikasiActivity" />
-        <activity android:name=".IntroActivity"
-            android:theme="@style/AppTheme.NoActionBarAtAll"/>
+        <activity
+            android:name=".IntroActivity"
+            android:theme="@style/AppTheme.NoActionBarAtAll" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".GenerateQrCodeActivity"></activity>
     </application>
 
 </manifest>

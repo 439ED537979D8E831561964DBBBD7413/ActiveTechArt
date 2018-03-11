@@ -1,12 +1,8 @@
 <tabs>
     <tab
         id="@+id/tab_seniman"
-        icon="@drawable/ic_group"
-        title="Seniman" />
-    <tab
-        id="@+id/tab_portfolio"
         icon="@drawable/ic_video_library"
-        title="Portfolio" />
+        title="Seniman" />
     <tab
         id="@+id/tab_events"
         icon="@drawable/ic_view_list"
@@ -15,6 +11,10 @@
         id="@+id/tab_diundang"
         icon="@drawable/ic_contact_mail"
         title="Diundang" />
+    <tab
+        id="@+id/tab_info"
+        icon="@drawable/info_bottom16"
+        title="Info" />
 </tabs>
 
 <!--<tabs>-->

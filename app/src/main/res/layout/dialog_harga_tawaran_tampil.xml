@@ -3,13 +3,6 @@
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="wrap_content">
-    <ImageView
-        android:src="@drawable/dialog_tawaran_tampil"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="fitXY"
-        android:background="#FFFFBB33"
-        android:contentDescription="@string/app_name" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/organizer_info_bidang_seni_slider"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.daimajia.slider.library.SliderLayout>
+
+            <com.daimajia.slider.library.Indicators.PagerIndicator
+                android:id="@+id/organizer_info_bidang_seni_indicatorslider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="256dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.daimajia.slider.library.Indicators.PagerIndicator>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_slider">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/organizer_info_bidang_seni_card_tari"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:elevation="2dp"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/organizer_info_bidang_seni_imageTari"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/image12"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:background="@drawable/gradient"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_txtTari"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Sanggar Tari"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/image12"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_descTari"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/image12" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/organizer_info_bidang_seni_card_musisi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:elevation="2dp"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_card_tari">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/organizer_info_bidang_seni_imageMusisi"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/image16"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:background="@drawable/gradient"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_txtMusisi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Musisi"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/image16"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_descMusisi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/image16" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/organizer_info_bidang_seni_card_wayang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:elevation="2dp"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.166"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_card_musisi">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/organizer_info_bidang_seni_imageWayang"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/image15"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:background="@drawable/gradient"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_txtWayang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Pewayangan"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/image15"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_descWayang"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/image15" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/organizer_info_bidang_seni_card_teater"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:elevation="2dp"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_card_wayang">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/organizer_info_bidang_seni_imageTeater"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/image13"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:background="@drawable/gradient"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_textTeater"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Pewayangan"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/image13"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_descTeater"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/image13" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/organizer_info_bidang_seni_card_komedian"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:elevation="2dp"
+                    app:cardCornerRadius="7dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.166"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_card_teater">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/organizer_info_bidang_seni_imageKomedian"
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/image11"
+                            android:layout_width="0dp"
+                            android:layout_height="160dp"
+                            android:background="@drawable/gradient"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_textKomedian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="Komedian"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/image11"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/organizer_info_bidang_seni_descKomedian"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_imageKomedian" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/organizer_info_bidang_seni_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+</android.support.constraint.ConstraintLayout>

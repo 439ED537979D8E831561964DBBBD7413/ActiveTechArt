@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context="com.artace.arthub.TambahEventActivity">
+    tools:context="com.artace.ruangbudaya.TambahEventActivity">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

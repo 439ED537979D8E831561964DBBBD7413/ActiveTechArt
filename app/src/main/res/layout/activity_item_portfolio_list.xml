@@ -89,17 +89,19 @@
                     style="?android:attr/progressBarStyle"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                <com.artace.ruangbudaya.ViewPlugins.CircularNetworkImageView
                     android:id="@+id/item_portfolio_list_fotoSeniman"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="5dp"
                     android:paddingLeft="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -110,65 +112,17 @@
                     android:id="@+id/item_portfolio_list_namaSeniman"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_light"
                     android:text="Bali Reggae Wastika"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="#000000"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/item_portfolio_list_fotoSeniman"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/item_portfolio_list_keahlianSeniman"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Text View"
-                    app:layout_constraintStart_toEndOf="@+id/item_portfolio_list_fotoSeniman"
-                    app:layout_constraintTop_toBottomOf="@+id/item_portfolio_list_namaSeniman" />
-
-                <ImageView
-                    android:id="@+id/item_portfolio_list_img_1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="14dp"
-                    android:src="@drawable/medium_gender_gray"
-                    app:layout_constraintEnd_toStartOf="@+id/item_portfolio_list_jkSeniman"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/item_portfolio_list_jkSeniman"
-                    android:layout_width="95dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="15dp"
-                    android:text="TextView"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/item_portfolio_list_img_2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginRight="6dp"
-                    android:src="@drawable/ic_account_circle_gray_64dp"
-                    app:layout_constraintEnd_toStartOf="@+id/item_portfolio_list_umurSeniman"
-                    app:layout_constraintTop_toTopOf="@+id/item_portfolio_list_keahlianSeniman" />
-
-                <TextView
-                    android:id="@+id/item_portfolio_list_umurSeniman"
-                    android:layout_width="95dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:text="TextView"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/item_portfolio_list_jkSeniman"
-                    app:layout_constraintTop_toTopOf="@+id/item_portfolio_list_img_2" />
 
 
             </android.support.constraint.ConstraintLayout>

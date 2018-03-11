@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.artace.arthub.EoSenimanActivity">
+    tools:context="com.artace.ruangbudaya.EoSenimanActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/eo_seniman_appbar"
         android:layout_width="match_parent"
         android:layout_height="185dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintBottom_toTopOf="@+id/eo_seniman_scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,11 +32,11 @@
 
                 <ImageView
                     android:id="@+id/organizer_seniman_backdrop"
-                    android:src="@drawable/bg_head"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    android:background="@drawable/bghead2"
                     app:layout_collapseMode="parallax" />
 
                 <LinearLayout
@@ -47,7 +46,7 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                <!--<ProgressBar-->
+                    <!--<ProgressBar-->
                     <!--style="?android:attr/progressBarStyle"-->
                     <!--android:padding="5dp"-->
                     <!--android:layout_width="80dp"-->
@@ -58,7 +57,7 @@
                     <!--app:layout_constraintEnd_toEndOf="parent"-->
                     <!--app:layout_constraintStart_toStartOf="parent"-->
                     <!--app:layout_constraintTop_toTopOf="parent"/>-->
-                    <com.artace.arthub.ViewPlugins.CircularNetworkImageView
+                    <com.artace.ruangbudaya.ViewPlugins.CircularNetworkImageView
                         android:id="@+id/eo_seniman_imageSeniman"
                         android:layout_width="86dp"
                         android:layout_height="90dp"
@@ -103,6 +102,144 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/eo_seniman_dataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="300dp"
+        app:layout_constraintTop_toBottomOf="@+id/eo_seniman_appbar">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/eo_seniman_img4"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_call_64dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/eo_seniman_noTelp"
+                    android:layout_width="175dp"
+                    android:layout_height="@dimen/form_content_height"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="8dp"
+                    android:editable="false"
+                    android:ems="9"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/eo_seniman_img4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/eo_seniman_img3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/info2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/eo_seniman_keterangan"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="8dp"
+                    android:editable="false"
+                    android:ems="9"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/eo_seniman_img3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/eo_seniman_videoSenimanFrame"
+            android:layout_width="245dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/eo_seniman_videoSeniman"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/eo_seniman_imageMask"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/backgroundWtihOpacity" />
+
+            <ImageView
+                android:id="@+id/eo_seniman_imageYoutube"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_youtube_merah" />
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/eo_seniman_btnBeriTawaranTampil"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:background="@color/green_button_color"
+        android:text="Beri Tawaran Tampil"
+        android:textColor="@color/colorWhiteText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <!--<ScrollView-->
         <!--android:id="@+id/scrollView"-->
         <!--android:layout_width="match_parent"-->
@@ -113,184 +250,4 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent">-->
 
-    <ScrollView
-        android:id="@+id/eo_seniman_scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eo_seniman_appbar">
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/eo_seniman_dataLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="300dp"
-            app:layout_constraintTop_toBottomOf="@+id/eo_seniman_appbar">
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:id="@+id/eo_seniman_img4"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_call_64dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/eo_seniman_noTelp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="15dp"
-                        android:editable="false"
-                        android:ems="9"
-                        android:paddingLeft="10dp"
-                        android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/eo_seniman_img4"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:id="@+id/eo_seniman_img2"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/medium_gender"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/eo_seniman_jenisKelamin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="15dp"
-                        android:editable="false"
-                        android:ems="9"
-                        android:paddingLeft="10dp"
-                        android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/eo_seniman_img2"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:id="@+id/eo_seniman_img3"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_user_64dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/eo_seniman_Umur"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/form_content_height"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="15dp"
-                        android:editable="false"
-                        android:ems="9"
-                        android:paddingLeft="10dp"
-                        android:textColorHint="@color/colorSecondaryText"
-                        android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/eo_seniman_img3"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </android.support.constraint.ConstraintLayout>
-
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/eo_seniman_videoSenimanFrame"
-                android:layout_width="245dp"
-                android:layout_height="165dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <ProgressBar
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <com.android.volley.toolbox.NetworkImageView
-                    android:id="@+id/eo_seniman_videoSeniman"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-
-                <ImageView
-                    android:id="@+id/eo_seniman_imageMask"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/backgroundWtihOpacity" />
-
-                <ImageView
-                    android:id="@+id/eo_seniman_imageYoutube"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/logo_youtube_merah" />
-            </FrameLayout>
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-    <Button
-        android:id="@+id/eo_seniman_btnBeriTawaranTampil"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/green_button_color"
-        android:text="Beri Tawaran Tampil"
-        android:textColor="@color/colorWhiteText"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

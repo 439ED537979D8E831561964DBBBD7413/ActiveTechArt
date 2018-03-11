@@ -37,6 +37,15 @@
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax" />
 
+                <ImageView
+                    android:id="@+id/organizer_seniman_backdropopacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,6 +57,7 @@
                         android:id="@+id/organizer_seniman_judul"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
                         android:text="Musisi Jalanan"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/backdrop_title" />

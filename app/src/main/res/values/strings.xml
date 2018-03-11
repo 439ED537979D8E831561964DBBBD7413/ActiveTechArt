@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">ArtHub</string>
-    <string name="seniman">Seniman</string>
-    <string name="eventorganizer">Event Organizer</string>
+    <string name="app_name">RuangBudaya</string>
+    <string name="seniman">Kelompok Seniman</string>
+    <string name="penyelenggaraacara">Penyelenggara Acara</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -10,4 +10,10 @@
     <item name="visible" type="id" />
     <item name="masked" type="id" />
     <string name="title_activity_test">TestActivity</string>
+
+    <string name="generate_qr_round">Touch to generate a QR code (round device)</string>
+    <string name="generate_qr_square">Touch to generate a QR code (square device)</string>
+    <string name="string_to_encode">https://androidbycode.wordpress.com/</string>
+    <string name="encode_error">Unable to generate QR Code</string>
+    <string name="qr_image_description">QR Code Image</string>
 </resources>
