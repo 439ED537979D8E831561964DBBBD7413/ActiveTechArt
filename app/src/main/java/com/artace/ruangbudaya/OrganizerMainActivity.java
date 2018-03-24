@@ -65,27 +65,48 @@ public class OrganizerMainActivity extends AppCompatActivity {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment1);
 
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
+
                     transaction.hide(newFragment2);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
 
                     transaction.commit();
                 }
                 else if (tabId == R.id.tab_events) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.show(newFragment2);
-
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
+
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
 
                     transaction.commit();
                     newFragment2.setToolbar();
@@ -96,11 +117,22 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment2);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
+
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
 
                     transaction.commit();
                     newFragment3.setToolbar();
@@ -112,10 +144,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
 
                         transaction.commit();
                         newFragmentTeater.setToolbar();
@@ -126,10 +154,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
 
                         transaction.commit();
                         newFragmentPenari.setToolbar();
@@ -139,10 +163,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
 
                         transaction.commit();
                         newFragmentMusisi.setToolbar();
@@ -152,10 +172,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
                         transaction.commit();
                         newFragmentWayang.setToolbar();
                     }
@@ -164,10 +180,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
 
                         transaction.commit();
                         newFragmentKomedian.setToolbar();
