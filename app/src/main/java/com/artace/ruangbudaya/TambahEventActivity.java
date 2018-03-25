@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +17,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
 import com.artace.ruangbudaya.connection.DatabaseConnection;
 import com.artace.ruangbudaya.constant.Field;
@@ -32,9 +44,11 @@ public class TambahEventActivity extends AppCompatActivity {
 
     EditText tambah_event_tanggalevent, mNama, mTempat, mKeterangan;
     String nama, tanggal, tempat, keterangan, id_eo, foto;
+    ImageView mFoto;
     DatePickerDialog datePickerDialog;
-    Button mSubmit, mFoto;
+    Button mSubmit, mBrowseFoto;
     Toolbar mToolbar;
+    Bitmap bitmapFoto;
     Volley mPostCommentResponse;
 
     @Override
@@ -47,9 +61,10 @@ public class TambahEventActivity extends AppCompatActivity {
         mNama = (EditText) findViewById(R.id.tambah_event_namaevent);
         mTempat = (EditText) findViewById(R.id.tambah_event_lokasi);
         mKeterangan = (EditText) findViewById(R.id.tambah_event_keterangan);
-        mFoto = (Button) findViewById(R.id.tambah_event_browse_foto);
+        mFoto = (ImageView) findViewById(R.id.tambah_event_imgView);
+        mBrowseFoto = (Button) findViewById(R.id.tambah_event_browse_foto);
         mSubmit = (Button) findViewById(R.id.tambah_event_submit);
-        mFoto.setOnClickListener(new View.OnClickListener() {
+        mBrowseFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -60,7 +75,7 @@ public class TambahEventActivity extends AppCompatActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitForm();
+                submitForm(bitmapFoto);
             }
         });
 
@@ -92,6 +107,32 @@ public class TambahEventActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+
+            //getting the image Uri
+            Uri imageUri = data.getData();
+            try {
+                //getting bitmap object from uri
+                bitmapFoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+                //displaying selected image to imageview
+                mFoto.setImageBitmap(bitmapFoto);
+
+//                mSubmit.setEnabled(true);
+//                mSubmit.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void setToolbar() {
@@ -102,37 +143,66 @@ public class TambahEventActivity extends AppCompatActivity {
         ab.setTitle("Tambah Event");
     }
 
-    private void submitForm(){
-        nama = mNama.getText().toString();
-        tempat = mTempat.getText().toString();
-        keterangan = mKeterangan.getText().toString();
-        tanggal = tambah_event_tanggalevent.getText().toString();
+    private void submitForm(final Bitmap bitmap){
 
         Map<String,String> params = new HashMap<String, String>();
-        params.put("nama",nama);
-        params.put("tanggal",tanggal);
-        params.put("lokasi",tempat);
-        params.put("keterangan",keterangan);
-
-        SharedPreferences sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-        id_eo = sharedpreferences.getString(Field.getIdPenyelenggaraAcara(),null);
-        Log.d("LogTambahEvent","ID EO = "+id_eo);
-        params.put("id_penyelenggara_acara",id_eo);
 
 
-        StringPostRequest strReq = new StringPostRequest();
-        strReq.sendPost(this, params, DatabaseConnection.getInsertEvent(), new VolleyResponseListener() {
+
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, DatabaseConnection.getInsertEvent(),
+            new Response.Listener<NetworkResponse>() {
+                @Override
+                public void onResponse(NetworkResponse response) {
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("resultMessage", "TAMBAH_EVENT");
+                    setResult(TambahEventActivity.RESULT_OK,returnIntent);
+                    try{
+                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                        Log.d("TambahEvent",res);
+                    }
+                    catch (Exception e){
+                        Log.d("TambahEvent",e.getMessage().toString());
+                    }
+
+            }},
+
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                    }){
+
             @Override
-            public void onResponse(String response) {
-                finish();
-            }
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                final String nama = mNama.getText().toString();
+                final String tempat = mTempat.getText().toString();
+                final String keterangan = mKeterangan.getText().toString();
+                final String tanggal = tambah_event_tanggalevent.getText().toString();
 
-            @Override
-            public void onError(String message) {
-                Log.e("TambahEventActivity","Ada error : "+message);
+                params.put("nama",nama);
+                params.put("nama_lokasi",tempat);
+                params.put("keterangan",keterangan);
+                params.put("tanggal",tanggal);
+                SharedPreferences sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
+                id_eo = sharedpreferences.getString(Field.getIdPenyelenggaraAcara(),null);
+                Log.d("LogTambahEvent","ID EO = "+id_eo);
+                params.put("id_penyelenggara_acara",id_eo);
+
+                return params;
             }
-        });
+        @Override
+        protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
+            Map<String, VolleyMultipartRequest.DataPart> params = new HashMap<>();
+            long imagename = System.currentTimeMillis();
+            params.put("pic", new VolleyMultipartRequest.DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+            return params;
+        }};
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -148,10 +218,11 @@ public class TambahEventActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("resultMessage", "TAMBAH_EVENT");
-        setResult(TambahEventActivity.RESULT_OK,returnIntent);
 
-        super.finish();
+    }
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }
