@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,7 +123,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     }
 
-    public void deleteEvent(DialogInterface dialog, int id_acara, Context context, int position){
+    public void deleteEvent(DialogInterface dialog, final int id_acara, Context context, int position){
 
         String delete_url = DatabaseConnection.getDeleteEvent(id_acara);
 
@@ -142,6 +143,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
                 try {
                     int success = response.getInt("success");
+                    Log.d("EventAdapterTry",String.valueOf(response.getInt("success")));
 
                     if (success == 1) {
                         pDialog.dismiss();
@@ -156,7 +158,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                     }
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e("EventAdapterTry",e.getMessage());
+                    Log.e("EventAdapterTry","id_acara = "+id_acara);
                 }
 
             }
@@ -164,7 +167,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.e("EventAdapter", error.getMessage().toString());
+                Log.e("EventAdapter","id_acara = "+id_acara);
             }
         });
 

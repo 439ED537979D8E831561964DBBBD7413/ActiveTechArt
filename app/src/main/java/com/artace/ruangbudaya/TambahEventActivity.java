@@ -1,6 +1,7 @@
 package com.artace.ruangbudaya;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +39,12 @@ import com.artace.ruangbudaya.connection.DatabaseConnection;
 import com.artace.ruangbudaya.constant.Field;
 import com.artace.ruangbudaya.utils.StringPostRequest;
 import com.artace.ruangbudaya.utils.VolleyResponseListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 
 public class TambahEventActivity extends AppCompatActivity {
@@ -46,15 +53,21 @@ public class TambahEventActivity extends AppCompatActivity {
     String nama, tanggal, tempat, keterangan, id_eo, foto;
     ImageView mFoto;
     DatePickerDialog datePickerDialog;
-    Button mSubmit, mBrowseFoto;
+    Button mSubmit, mBrowseFoto, mPick;
     Toolbar mToolbar;
     Bitmap bitmapFoto;
     Volley mPostCommentResponse;
+    int status;
+    int PLACE_PICKER_REQUEST;
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_event);
+        PLACE_PICKER_REQUEST = 1;
+
+        googlePlayServiceCheck();
 
         setToolbar();
 
@@ -76,6 +89,14 @@ public class TambahEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 submitForm(bitmapFoto);
+            }
+        });
+
+        mPick = (Button) findViewById(R.id.tambah_event_pick_map);
+        mPick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickLocation();
             }
         });
 
@@ -127,12 +148,43 @@ public class TambahEventActivity extends AppCompatActivity {
 
 //                mSubmit.setEnabled(true);
 //                mSubmit.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                if (requestCode == 100){
+                    status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+                }
+                if (requestCode == PLACE_PICKER_REQUEST){
 
+                    Place place = PlacePicker.getPlace(data, this);
+                    latitude = place.getLatLng().latitude;
+                    longitude = place.getLatLng().longitude;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+    }
+
+    private void googlePlayServiceCheck(){
+        status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (status != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
+                GooglePlayServicesUtil.getErrorDialog(status, this,
+                        100).show();
+            }
+        }
+    }
+
+    private void pickLocation(){
+        if (status == ConnectionResult.SUCCESS) {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            try {
+                startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+            } catch (GooglePlayServicesRepairableException e) {
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setToolbar() {
@@ -144,13 +196,11 @@ public class TambahEventActivity extends AppCompatActivity {
     }
 
     private void submitForm(final Bitmap bitmap){
-
-        Map<String,String> params = new HashMap<String, String>();
-
-
-
-
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, DatabaseConnection.getInsertEvent(),
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Menambah Event...");
+        pDialog.show();
+        Request volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, DatabaseConnection.getInsertEvent(),
             new Response.Listener<NetworkResponse>() {
                 @Override
                 public void onResponse(NetworkResponse response) {
@@ -164,6 +214,7 @@ public class TambahEventActivity extends AppCompatActivity {
                     catch (Exception e){
                         Log.d("TambahEvent",e.getMessage().toString());
                     }
+                    pDialog.dismiss();
 
             }},
 
@@ -186,6 +237,8 @@ public class TambahEventActivity extends AppCompatActivity {
                 params.put("nama_lokasi",tempat);
                 params.put("keterangan",keterangan);
                 params.put("tanggal",tanggal);
+                params.put("latitude",String.valueOf(latitude));
+                params.put("longitude",String.valueOf(longitude));
                 SharedPreferences sharedpreferences = getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
                 id_eo = sharedpreferences.getString(Field.getIdPenyelenggaraAcara(),null);
                 Log.d("LogTambahEvent","ID EO = "+id_eo);
