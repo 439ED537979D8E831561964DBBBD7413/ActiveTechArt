@@ -67,11 +67,21 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment2);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
+                    if (title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if (title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if (title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if (title.equals("Komedian")){
+                        transaction.hide(newFragmentKomedian);
+                    }
 
                     transaction.commit();
                 }
@@ -81,11 +91,21 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
+                    if (title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if (title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if (title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if (title.equals("Komedian")){
+                        transaction.hide(newFragmentKomedian);
+                    }
 
                     transaction.commit();
                     newFragment2.setToolbar();
@@ -96,11 +116,21 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment2);
-                    transaction.hide(newFragmentPenari);
-                    transaction.hide(newFragmentWayang);
-                    transaction.hide(newFragmentMusisi);
-                    transaction.hide(newFragmentTeater);
-                    transaction.hide(newFragmentKomedian);
+                    if (title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if (title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if (title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if (title.equals("Komedian")){
+                        transaction.hide(newFragmentKomedian);
+                    }
 
                     transaction.commit();
                     newFragment3.setToolbar();
@@ -112,63 +142,44 @@ public class OrganizerMainActivity extends AppCompatActivity {
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
 
                         transaction.commit();
                         newFragmentTeater.setToolbar();
                     }
-                    else if(title.equals("Tari")){
+                    if(title.equals("Tari")){
                         transaction.show(newFragmentPenari);
 
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
-
+//
                         transaction.commit();
                         newFragmentPenari.setToolbar();
                     }
-                    else if (title.equals("Musisi")){
+                    if (title.equals("Musisi")){
                         transaction.show(newFragmentMusisi);
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
-
+//
                         transaction.commit();
                         newFragmentMusisi.setToolbar();
                     }
-                    else if (title.equals("Wayang")){
+                    if (title.equals("Wayang")){
                         transaction.show(newFragmentWayang);
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-                        transaction.hide(newFragmentKomedian);
+//
                         transaction.commit();
                         newFragmentWayang.setToolbar();
                     }
-                    else if (title.equals("Komedian")){
+                    if (title.equals("Komedian")){
                         transaction.show(newFragmentKomedian);
                         transaction.hide(newFragment1);
                         transaction.hide(newFragment2);
                         transaction.hide(newFragment3);
-                        transaction.hide(newFragmentPenari);
-                        transaction.hide(newFragmentWayang);
-                        transaction.hide(newFragmentMusisi);
-                        transaction.hide(newFragmentTeater);
-
+//
                         transaction.commit();
                         newFragmentKomedian.setToolbar();
                     }
@@ -199,17 +210,18 @@ public class OrganizerMainActivity extends AppCompatActivity {
             if (getIntent() != null){
                 Bundle extras = getIntent().getExtras();
                 title = extras.getString("TITLE");
+//                title = "Tari";
 //            setToolbar(title);
             }
             else{
                 title = savedInstanceState.getString("TITLE");
 //            setToolbar(title);
+//                title = "Tari";
             }
 
             newFragment1 = new OrganizerSenimanFragment();
             newFragment2 = new OrganizerEventsFragment();
             newFragment3 = new OrganizerDiundangFragment();
-
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Seniman");
@@ -219,27 +231,27 @@ public class OrganizerMainActivity extends AppCompatActivity {
             transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Diundang");
             transaction.hide(newFragment3);
 
+            if (title.equals("Wayang")){
+                newFragmentWayang = new OrganizerInfoBidangSeniWayangFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentWayang,"Wayang");
+                transaction.hide(newFragmentWayang);
+            }
             if (title.equals("Tari")){
                 newFragmentPenari = new OrganizerInfoBidangSeniPenariFragment();
                 transaction.add(R.id.organizer_main_fragment_container, newFragmentPenari,"Penari");
                 transaction.hide(newFragmentPenari);
             }
-            else if (title.equals("Wayang")){
-                newFragmentWayang = new OrganizerInfoBidangSeniWayangFragment();
-                transaction.add(R.id.organizer_main_fragment_container, newFragmentWayang,"Wayang");
-                transaction.hide(newFragmentWayang);
-            }
-            else if (title.equals("Teater")){
+            if (title.equals("Teater")){
                 newFragmentTeater = new OrganizerInfoBidangSeniTeaterFragment();
                 transaction.add(R.id.organizer_main_fragment_container, newFragmentTeater,"Teater");
                 transaction.hide(newFragmentTeater);
             }
-            else if (title.equals("Musisi")){
+            if (title.equals("Musisi")){
                 newFragmentMusisi = new OrganizerInfoBidangSeniMusisiFragment();
                 transaction.add(R.id.organizer_main_fragment_container, newFragmentMusisi,"Musisi");
                 transaction.hide(newFragmentMusisi);
             }
-            else if (title.equals("Komedian")){
+            if (title.equals("Komedian")){
                 newFragmentKomedian = new OrganizerInfoBidangSeniKomedianFragment();
                 transaction.add(R.id.organizer_main_fragment_container, newFragmentKomedian,"Komedian");
                 transaction.hide(newFragmentKomedian);
