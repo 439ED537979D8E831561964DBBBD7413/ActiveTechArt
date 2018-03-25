@@ -33,7 +33,7 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
     }
 
     public void onClickGenerateSquare(View view) {
-        mEncodeString = getString(R.string.string_to_encode);
+        mEncodeString = "a";
         mTextDesc.setVisibility(View.GONE);
         mProgress.setVisibility(View.VISIBLE);
         new AsyncGenerateQRCode().execute(GenerateQR.MARGIN_AUTOMATIC);

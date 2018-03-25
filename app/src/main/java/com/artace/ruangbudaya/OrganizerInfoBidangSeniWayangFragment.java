@@ -1,68 +1,34 @@
 package com.artace.ruangbudaya;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.Image;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.artace.ruangbudaya.adapter.EventAdapter;
-import com.artace.ruangbudaya.connection.DatabaseConnection;
-import com.artace.ruangbudaya.constant.Field;
-import com.artace.ruangbudaya.controller.AppController;
-import com.artace.ruangbudaya.pojo.PojoEvent;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {} interface
+ * {@link OrganizerInfoBidangSeniWayangFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link OrganizerInfoBidangSeniFragment#newInstance} factory method to
+ * Use the {@link OrganizerInfoBidangSeniWayangFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OrganizerInfoBidangSeniFragment extends Fragment {
+public class OrganizerInfoBidangSeniWayangFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -72,15 +38,14 @@ public class OrganizerInfoBidangSeniFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-//    private OnFragmentInteractionListener mListener;
-
     ConstraintLayout rootView;
     Toolbar mToolbar;
     OrganizerMainActivity mainActivity;
     SliderLayout mDemoSlider;
 
+    private OnFragmentInteractionListener mListener;
 
-    public OrganizerInfoBidangSeniFragment() {
+    public OrganizerInfoBidangSeniWayangFragment() {
         // Required empty public constructor
     }
 
@@ -90,11 +55,11 @@ public class OrganizerInfoBidangSeniFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment OrganizerInfoBidangSeniFragment.
+     * @return A new instance of fragment OrganizerInfoBidangSeniWayangFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OrganizerInfoBidangSeniFragment newInstance(String param1, String param2) {
-        OrganizerInfoBidangSeniFragment fragment = new OrganizerInfoBidangSeniFragment();
+    public static OrganizerInfoBidangSeniWayangFragment newInstance(String param1, String param2) {
+        OrganizerInfoBidangSeniWayangFragment fragment = new OrganizerInfoBidangSeniWayangFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -115,23 +80,18 @@ public class OrganizerInfoBidangSeniFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        rootView = (ConstraintLayout) inflater.inflate(R.layout.fragment_organizer_info_bidang_seni, container, false);
+        rootView = (ConstraintLayout) inflater.inflate(R.layout.fragment_organizer_info_bidang_seni_wayang, container, false);
 
         final ConstraintLayout rootViewFinal = rootView;
         mainActivity = (OrganizerMainActivity) getActivity();
 
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.tari_pendet).fit().into((ImageView) rootView.findViewById(R.id.organizer_info_bidang_seni_imageTari));
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.musisi).fit().into((ImageView) rootView.findViewById(R.id.organizer_info_bidang_seni_imageMusisi));
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.banyol_group).fit().into((ImageView) rootView.findViewById(R.id.organizer_info_bidang_seni_imageKomedian));
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.teater).fit().into((ImageView) rootView.findViewById(R.id.organizer_info_bidang_seni_imageWayang));
-        Picasso.with(getActivity().getApplicationContext()).load(R.drawable.wayang).fit().into((ImageView) rootView.findViewById(R.id.organizer_info_bidang_seni_imageTeater));
 
         setToolbar();
 
 
         //START : SLIDER LAYOUT
 
-        mDemoSlider = (SliderLayout) rootView.findViewById(R.id.organizer_info_bidang_seni_slider);
+        mDemoSlider = rootView.findViewById(R.id.organizer_info_bidang_seni_wayang_slider);
 
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
 //        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
@@ -170,32 +130,35 @@ public class OrganizerInfoBidangSeniFragment extends Fragment {
     }
 
     public void setToolbar(){
-        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_info_bidang_seni_toolbar);
+        mToolbar = rootView.findViewById(R.id.organizer_info_bidang_seni_wayang_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(mainActivity.title);
     }
 
-
-
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     /**
@@ -208,8 +171,8 @@ public class OrganizerInfoBidangSeniFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
 }

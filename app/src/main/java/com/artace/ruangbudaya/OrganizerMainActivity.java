@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.artace.ruangbudaya.ViewPlugins.DrawerMenu;
 import com.roughike.bottombar.BottomBar;
@@ -21,7 +20,11 @@ public class OrganizerMainActivity extends AppCompatActivity {
     OrganizerSenimanFragment newFragment1;
     OrganizerEventsFragment newFragment2;
     OrganizerDiundangFragment newFragment3;
-    OrganizerInfoBidangSeniFragment newFragment4;
+    OrganizerInfoBidangSeniPenariFragment newFragmentPenari;
+    OrganizerInfoBidangSeniTeaterFragment newFragmentTeater;
+    OrganizerInfoBidangSeniWayangFragment newFragmentWayang;
+    OrganizerInfoBidangSeniMusisiFragment newFragmentMusisi;
+    OrganizerInfoBidangSeniKomedianFragment newFragmentKomedian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
     }
 
     private void bottomBarListeners(){
-        BottomBar bottomBar = (BottomBar) findViewById(R.id.organizer_main_bottombar);
+        BottomBar bottomBar = findViewById(R.id.organizer_main_bottombar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
@@ -64,7 +67,11 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment2);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragment4);
+                    transaction.hide(newFragmentPenari);
+                    transaction.hide(newFragmentWayang);
+                    transaction.hide(newFragmentMusisi);
+                    transaction.hide(newFragmentTeater);
+                    transaction.hide(newFragmentKomedian);
 
                     transaction.commit();
                 }
@@ -74,7 +81,11 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment3);
-                    transaction.hide(newFragment4);
+                    transaction.hide(newFragmentPenari);
+                    transaction.hide(newFragmentWayang);
+                    transaction.hide(newFragmentMusisi);
+                    transaction.hide(newFragmentTeater);
+                    transaction.hide(newFragmentKomedian);
 
                     transaction.commit();
                     newFragment2.setToolbar();
@@ -85,21 +96,83 @@ public class OrganizerMainActivity extends AppCompatActivity {
 
                     transaction.hide(newFragment1);
                     transaction.hide(newFragment2);
-                    transaction.hide(newFragment4);
+                    transaction.hide(newFragmentPenari);
+                    transaction.hide(newFragmentWayang);
+                    transaction.hide(newFragmentMusisi);
+                    transaction.hide(newFragmentTeater);
+                    transaction.hide(newFragmentKomedian);
 
                     transaction.commit();
                     newFragment3.setToolbar();
                 }
                 else if (tabId == R.id.tab_info) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.show(newFragment4);
+                    if (title.equals("Teater")){
+                        transaction.show(newFragmentTeater);
+                        transaction.hide(newFragment1);
+                        transaction.hide(newFragment2);
+                        transaction.hide(newFragment3);
+                        transaction.hide(newFragmentPenari);
+                        transaction.hide(newFragmentMusisi);
+                        transaction.hide(newFragmentTeater);
+                        transaction.hide(newFragmentKomedian);
 
-                    transaction.hide(newFragment1);
-                    transaction.hide(newFragment2);
-                    transaction.hide(newFragment3);
+                        transaction.commit();
+                        newFragmentTeater.setToolbar();
+                    }
+                    else if(title.equals("Tari")){
+                        transaction.show(newFragmentPenari);
 
-                    transaction.commit();
-                    newFragment4.setToolbar();
+                        transaction.hide(newFragment1);
+                        transaction.hide(newFragment2);
+                        transaction.hide(newFragment3);
+                        transaction.hide(newFragmentWayang);
+                        transaction.hide(newFragmentMusisi);
+                        transaction.hide(newFragmentTeater);
+                        transaction.hide(newFragmentKomedian);
+
+                        transaction.commit();
+                        newFragmentPenari.setToolbar();
+                    }
+                    else if (title.equals("Musisi")){
+                        transaction.show(newFragmentMusisi);
+                        transaction.hide(newFragment1);
+                        transaction.hide(newFragment2);
+                        transaction.hide(newFragment3);
+                        transaction.hide(newFragmentPenari);
+                        transaction.hide(newFragmentWayang);
+                        transaction.hide(newFragmentTeater);
+                        transaction.hide(newFragmentKomedian);
+
+                        transaction.commit();
+                        newFragmentMusisi.setToolbar();
+                    }
+                    else if (title.equals("Wayang")){
+                        transaction.show(newFragmentWayang);
+                        transaction.hide(newFragment1);
+                        transaction.hide(newFragment2);
+                        transaction.hide(newFragment3);
+                        transaction.hide(newFragmentPenari);
+                        transaction.hide(newFragmentMusisi);
+                        transaction.hide(newFragmentTeater);
+                        transaction.hide(newFragmentKomedian);
+                        transaction.commit();
+                        newFragmentWayang.setToolbar();
+                    }
+                    else if (title.equals("Komedian")){
+                        transaction.show(newFragmentKomedian);
+                        transaction.hide(newFragment1);
+                        transaction.hide(newFragment2);
+                        transaction.hide(newFragment3);
+                        transaction.hide(newFragmentPenari);
+                        transaction.hide(newFragmentWayang);
+                        transaction.hide(newFragmentMusisi);
+                        transaction.hide(newFragmentTeater);
+
+                        transaction.commit();
+                        newFragmentKomedian.setToolbar();
+                    }
+
                 }
             }
         });
@@ -123,10 +196,21 @@ public class OrganizerMainActivity extends AppCompatActivity {
                 return;
             }
 
+            if (getIntent() != null){
+                Bundle extras = getIntent().getExtras();
+                title = extras.getString("TITLE");
+//            setToolbar(title);
+            }
+            else{
+                title = savedInstanceState.getString("TITLE");
+//            setToolbar(title);
+            }
+
             newFragment1 = new OrganizerSenimanFragment();
             newFragment2 = new OrganizerEventsFragment();
             newFragment3 = new OrganizerDiundangFragment();
-            newFragment4 = new OrganizerInfoBidangSeniFragment();
+
+
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Seniman");
 
@@ -134,8 +218,34 @@ public class OrganizerMainActivity extends AppCompatActivity {
             transaction.hide(newFragment2);
             transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Diundang");
             transaction.hide(newFragment3);
-            transaction.add(R.id.organizer_main_fragment_container, newFragment4,"Info");
-            transaction.hide(newFragment4);
+
+            if (title.equals("Tari")){
+                newFragmentPenari = new OrganizerInfoBidangSeniPenariFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentPenari,"Penari");
+                transaction.hide(newFragmentPenari);
+            }
+            else if (title.equals("Wayang")){
+                newFragmentWayang = new OrganizerInfoBidangSeniWayangFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentWayang,"Wayang");
+                transaction.hide(newFragmentWayang);
+            }
+            else if (title.equals("Teater")){
+                newFragmentTeater = new OrganizerInfoBidangSeniTeaterFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentTeater,"Teater");
+                transaction.hide(newFragmentTeater);
+            }
+            else if (title.equals("Musisi")){
+                newFragmentMusisi = new OrganizerInfoBidangSeniMusisiFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentMusisi,"Musisi");
+                transaction.hide(newFragmentMusisi);
+            }
+            else if (title.equals("Komedian")){
+                newFragmentKomedian = new OrganizerInfoBidangSeniKomedianFragment();
+                transaction.add(R.id.organizer_main_fragment_container, newFragmentKomedian,"Komedian");
+                transaction.hide(newFragmentKomedian);
+            }
+
+
             transaction.commit();
         }
     }

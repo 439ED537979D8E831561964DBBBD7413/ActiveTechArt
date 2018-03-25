@@ -17,6 +17,7 @@ import com.artace.ruangbudaya.MainActivity;
 import com.artace.ruangbudaya.R;
 import com.artace.ruangbudaya.RegisterEventOrganizerActivity;
 import com.artace.ruangbudaya.RegisterSenimanActivity;
+import com.artace.ruangbudaya.ScannQRCodeActivity;
 import com.artace.ruangbudaya.TentangAplikasiActivity;
 import com.artace.ruangbudaya.connection.DatabaseConnection;
 import com.artace.ruangbudaya.constant.Field;
@@ -188,7 +189,7 @@ public class DrawerMenu {
                             contextFinal.startActivity(intent);
                         }
                         if (drawerItem.getIdentifier() == 4){
-                            Intent intent = new Intent(contextFinal, GenerateQrCodeActivity.class);
+                            Intent intent = new Intent(contextFinal, ScannQRCodeActivity.class);
                             contextFinal.startActivity(intent);
                         }
                         if (drawerItem.getIdentifier() == 5){

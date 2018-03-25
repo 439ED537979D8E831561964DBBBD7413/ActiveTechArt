@@ -41,7 +41,7 @@
                     android:id="@+id/organizer_seniman_backdropopacity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/gradient"
+                    android:background="@color/backgroundImageWithOpacity"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax" />

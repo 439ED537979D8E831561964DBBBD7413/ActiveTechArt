@@ -74,7 +74,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
         if (!session || !sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
 
-            holder.btnHapus.setBackgroundColor(context.getResources().getColor(R.color.primary));
+            holder.btnHapus.setVisibility(View.GONE);
         }
         holder.btnHapus.setTag(position);
 
@@ -188,14 +188,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
             super(itemView);
 
-            namaEvent = (TextView) itemView.findViewById(R.id.item_event_list_namaEvent);
-            tanggalEvent = (TextView) itemView.findViewById(R.id.item_event_list_tanggalEvent);
+            namaEvent = itemView.findViewById(R.id.item_event_list_namaEvent);
+            tanggalEvent = itemView.findViewById(R.id.item_event_list_tanggalEvent);
 
-            namaEo = (TextView) itemView.findViewById(R.id.item_event_list_penyelenggaraAcara);
+            namaEo = itemView.findViewById(R.id.item_event_list_penyelenggaraAcara);
 //             Volley's NetworkImageView which will load Image from URL
-            imageEvent = (ImageView) itemView.findViewById(R.id.item_event_list_imageevent);
-            cardviewDetail = (CardView) itemView.findViewById(R.id.item_event_list_cardView);
-            btnHapus = (Button) itemView.findViewById(R.id.item_event_list_btndelete);
+            imageEvent = itemView.findViewById(R.id.item_event_list_imageevent);
+            cardviewDetail = itemView.findViewById(R.id.item_event_list_cardView);
+            btnHapus = itemView.findViewById(R.id.item_event_list_btndelete);
         }
     }
 
