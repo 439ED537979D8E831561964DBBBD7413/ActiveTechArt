@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,9 +31,9 @@ import com.artace.ruangbudaya.utils.VolleyResponseListener;
 public class TambahEventActivity extends AppCompatActivity {
 
     EditText tambah_event_tanggalevent, mNama, mTempat, mKeterangan;
-    String nama, tanggal, tempat, keterangan, id_eo;
+    String nama, tanggal, tempat, keterangan, id_eo, foto;
     DatePickerDialog datePickerDialog;
-    Button mSubmit;
+    Button mSubmit, mFoto;
     Toolbar mToolbar;
     Volley mPostCommentResponse;
 
@@ -46,7 +47,15 @@ public class TambahEventActivity extends AppCompatActivity {
         mNama = (EditText) findViewById(R.id.tambah_event_namaevent);
         mTempat = (EditText) findViewById(R.id.tambah_event_lokasi);
         mKeterangan = (EditText) findViewById(R.id.tambah_event_keterangan);
+        mFoto = (Button) findViewById(R.id.tambah_event_browse_foto);
         mSubmit = (Button) findViewById(R.id.tambah_event_submit);
+        mFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, 100);
+            }
+        });
 
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
