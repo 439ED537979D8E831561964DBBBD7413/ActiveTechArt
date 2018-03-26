@@ -107,7 +107,7 @@ public class DatabaseConnection {
     }
 
     public static String getDeleteEvent(int id_event) {
-        return DELETE_EVENT + "?id_event=" + id_event;
+        return DELETE_EVENT + "?id_acara=" + id_event;
     }
 
     public static String getDirectoryFotoUserDefault() {

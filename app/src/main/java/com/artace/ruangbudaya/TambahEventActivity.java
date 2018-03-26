@@ -145,21 +145,25 @@ public class TambahEventActivity extends AppCompatActivity {
 
                 //displaying selected image to imageview
                 mFoto.setImageBitmap(bitmapFoto);
-
+                Log.d("TambahEvent","onActivityResult foto");
 //                mSubmit.setEnabled(true);
 //                mSubmit.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                if (requestCode == 100){
-                    status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-                }
-                if (requestCode == PLACE_PICKER_REQUEST){
-
-                    Place place = PlacePicker.getPlace(data, this);
-                    latitude = place.getLatLng().latitude;
-                    longitude = place.getLatLng().longitude;
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (requestCode == 2){
+            status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+            Log.d("TambahEvent","onActivityResult is google play service available");
+        }
+
+        if (requestCode == PLACE_PICKER_REQUEST){
+
+            Place place = PlacePicker.getPlace(data, this);
+            latitude = place.getLatLng().latitude;
+            longitude = place.getLatLng().longitude;
+            Log.d("TambahEvent","onAcivityResult Lat = "+latitude+" Long = "+longitude);
         }
 
     }
@@ -169,7 +173,7 @@ public class TambahEventActivity extends AppCompatActivity {
         if (status != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(status)) {
                 GooglePlayServicesUtil.getErrorDialog(status, this,
-                        100).show();
+                        2).show();
             }
         }
     }
