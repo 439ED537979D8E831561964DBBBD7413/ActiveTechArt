@@ -48,7 +48,6 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniWayangFragment">
             app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_wayang_slider">
 
 
-
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

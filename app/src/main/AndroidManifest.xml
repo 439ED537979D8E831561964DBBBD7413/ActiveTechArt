@@ -77,8 +77,10 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".GenerateQrCodeActivity" />
-        <activity android:name=".ScannQRCodeActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".ScannQRCodeActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".TambahEventMapsActivity"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@
         title="Diundang" />
     <tab
         id="@+id/tab_info"
-        icon="@drawable/info_bottom16"
+        icon="@drawable/ic_info_outline"
         title="Info" />
 </tabs>
 

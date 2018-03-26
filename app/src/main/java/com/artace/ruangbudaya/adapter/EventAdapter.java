@@ -77,7 +77,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             holder.btnHapus.setVisibility(View.GONE);
         }
         holder.btnHapus.setTag(position);
-
+        holder.cardviewDetail.setTag(position);
         //OnClicks
 
         holder.cardviewDetail.setOnClickListener(new View.OnClickListener() {

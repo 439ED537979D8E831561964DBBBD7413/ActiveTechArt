@@ -202,6 +202,46 @@
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tambah_event_layoutFoto">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tambah_event_layoutFoto1">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:paddingBottom="5dp" android:paddingLeft="@dimen/form_content_marginLeft"
+                        android:paddingTop="11dp"
+                        android:text="Pilih Foto"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/colorSecondaryText" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/tambah_event_imgView"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_launcher"
+                    app:layout_constraintTop_toBottomOf="@id/tambah_event_layoutFoto1"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <Button
+                android:id="@+id/tambah_event_browse_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BROWSE" />
+
 
             <Button
                 android:id="@+id/tambah_event_submit"

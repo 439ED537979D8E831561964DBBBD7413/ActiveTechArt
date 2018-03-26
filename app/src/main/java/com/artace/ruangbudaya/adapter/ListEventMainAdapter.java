@@ -79,10 +79,12 @@ public class ListEventMainAdapter extends RecyclerView.Adapter<ListEventMainAdap
         holder.imageEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int position = (Integer) view.getTag();
+                event = eventList.get(position);
 
                 Intent intent = new Intent(context, EventDetailActivity.class);
                 Bundle extras = new Bundle();
-
+                extras.putInt("id_acara",event.getId_acara());
                 intent.putExtras(extras);
                 context.startActivity(intent);
             }

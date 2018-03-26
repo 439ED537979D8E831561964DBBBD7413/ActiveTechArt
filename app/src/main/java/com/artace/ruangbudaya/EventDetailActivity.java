@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -81,14 +82,14 @@ public class EventDetailActivity extends AppCompatActivity {
                             tanggalEvent.setText(obj.getString("tanggal"));
 
                             EditText lokasiEvent = (EditText) findViewById(R.id.event_detail_lokasi);
-                            lokasiEvent.setText(obj.getString("lokasi"));
+                            lokasiEvent.setText(obj.getString("nama_lokasi"));
 
                             EditText keteranganEvent = (EditText) findViewById(R.id.event_detail_keterangan);
                             keteranganEvent.setText(obj.getString("keterangan"));
+                            Log.d("EventDetail","keterangan = "+obj.getString("keterangan"));
 
                             NetworkImageView imageEvent = (NetworkImageView) findViewById(R.id.event_detail_imageEvent);
                             imageEvent.setImageUrl(DatabaseConnection.getBaseUrl() + obj.getString("foto"), AppController.getInstance().getImageLoader());
-
 
                             EditText namaEo = (EditText) findViewById(R.id.event_detail_namaeo);
                             namaEo.setText(obj.getString("nama_eo"));
