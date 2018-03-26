@@ -6,6 +6,15 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
 
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/organizer_info_bidang_seni_komedian_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -45,23 +54,63 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_teater_slider">
+            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_komedian_slider">
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_seniman_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
+                <!--card_view:cardCornerRadius="@dimen/card_album_radius">-->
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_seniman_foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/gb_wayang"/>
+
+                    <TextView
+                        android:id="@+id/item_list_seniman_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_seniman_foto"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:text="Wayang Kulit"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_seniman_nama"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:textSize="@dimen/album_title"
+                        android:layout_gravity="right"
+                        android:text="Kesenian wayang kulit merupakan seni tradisional Indonesia dan sebagian besar  berkembang di Pulau  Jawa. Hebatnya  kesenian teater tradisional Indonesia semacam wayang kulit pun telah terdaftar dan tercatat dalam UNESCO sebagai warisan budaya dunia. "
+                        android:textColor="@color/primaryTextBlack"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
-
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/organizer_info_bidang_seni_komedian_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
 </android.support.constraint.ConstraintLayout>
