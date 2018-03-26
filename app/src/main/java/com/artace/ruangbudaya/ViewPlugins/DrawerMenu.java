@@ -103,12 +103,68 @@ public class DrawerMenu {
             buildDrawerNotLoggedIn(context,activity,mToolbar, headerResult);
         }
         else{
-            buildDrawerLoggedIn(context,activity,mToolbar, headerResult);
+            if (sharedpreferences.getString(Field.getJenisUser(),null).equals("seniman")){
+                buildDrawerLoggedInSeniman(context,activity,mToolbar, headerResult);
+            }
+            else{
+                buildDrawerLoggedInEo(context,activity,mToolbar, headerResult);
+            }
         }
 
     }
 
-    private void buildDrawerLoggedIn(Context context, AppCompatActivity activity, Toolbar mToolbar, AccountHeader headerResult){
+    private void buildDrawerLoggedInSeniman(Context context, AppCompatActivity activity, Toolbar mToolbar, AccountHeader headerResult){
+        final Context contextFinal = context;
+        final AppCompatActivity activityFinal = activity;
+
+        //if you want to update the items at a later time it is recommended to keep it in a variable
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Konfirmasi Kedatangan").withIcon(GoogleMaterial.Icon.gmd_camera);
+
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
+        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("Log Out").withIcon(GoogleMaterial.Icon.gmd_exit_to_app);
+
+        //create the drawer and remember the `Drawer` result object
+        Drawer result = new DrawerBuilder()
+                .withActivity(activity)
+                .withToolbar(mToolbar)
+                .withAccountHeader(headerResult)
+                .addDrawerItems(
+                        item1,
+                        item2,
+                        new DividerDrawerItem(),
+                        item3
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        if (drawerItem.getIdentifier() == 1){
+                            Intent intent = new Intent(contextFinal, ScannQRCodeActivity.class);
+                            contextFinal.startActivity(intent);
+                        }
+
+                        if (drawerItem.getIdentifier() == 2){
+                            Intent intent = new Intent(contextFinal,TentangAplikasiActivity.class);
+                            contextFinal.startActivity(intent);
+                        }
+                        if (drawerItem.getIdentifier() == 3){
+
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.clear();
+                            editor.apply();
+
+                            Intent intent = new Intent(contextFinal, MainActivity.class);
+                            contextFinal.startActivity(intent);
+                            activityFinal.finish();
+                        }
+                        return false;
+                    }
+                })
+                .build();
+        if(mToolbar != null)
+            result.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+    }
+
+    private void buildDrawerLoggedInEo(Context context, AppCompatActivity activity, Toolbar mToolbar, AccountHeader headerResult){
         final Context contextFinal = context;
         final AppCompatActivity activityFinal = activity;
         //if you want to update the items at a later time it is recommended to keep it in a variable
@@ -157,8 +213,7 @@ public class DrawerMenu {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Daftar Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_box);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Daftar Sebagai Event organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Scan QR Code").withIcon(GoogleMaterial.Icon.gmd_scanner);
-        SecondaryDrawerItem item5 = new SecondaryDrawerItem().withIdentifier(5).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(5).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -169,9 +224,8 @@ public class DrawerMenu {
                         item1,
                         item2,
                         item3,
-                        item4,
                         new DividerDrawerItem(),
-                        item5
+                        item4
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -189,10 +243,6 @@ public class DrawerMenu {
                             contextFinal.startActivity(intent);
                         }
                         if (drawerItem.getIdentifier() == 4){
-                            Intent intent = new Intent(contextFinal, ScannQRCodeActivity.class);
-                            contextFinal.startActivity(intent);
-                        }
-                        if (drawerItem.getIdentifier() == 5){
                             Intent intent = new Intent(contextFinal, TentangAplikasiActivity.class);
                             contextFinal.startActivity(intent);
                         }

@@ -1,104 +1,101 @@
 package com.artace.ruangbudaya;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.AsyncTask;
+import android.media.Image;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.artace.ruangbudaya.ViewPlugins.GenerateQR;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
+import org.w3c.dom.Text;
 
 public class GenerateQrCodeActivity extends AppCompatActivity {
 
-    private static final String TAG = "GenerateQrCodeActivity";
-
-    private String mEncodeString;
-    private TextView mTextDesc;
-    private ImageView mImageQR;
-    private ProgressBar mProgress;
-    private Bitmap mBitmapQR;
+    Bitmap bitmap;
+    ImageView qrcode;
+    Toolbar mToolbar;
+    TextView namaeo,namaevent,tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generate_qr_code);
+        setContentView(R.layout.activity_generate_qrcode);
+
+        setToolbar();
+
+        qrcode = (ImageView) findViewById(R.id.generate_qrcode_image);
+
+        namaeo = (TextView) findViewById(R.id.generate_qrcode_NamaPenyelenggaraAcara);
+        namaevent = (TextView) findViewById(R.id.generate_qrcode_namaEvent);
+        tanggal = (TextView) findViewById(R.id.generate_qrcode_tanggalAcara);
+
+        Bundle extras = getIntent().getExtras();
+
+        int kode = extras.getInt("id_tawaran_tampil");
+
+        namaeo.setText(extras.getString("namaeo"));
+        namaevent.setText(extras.getString("namaevent"));
+        tanggal.setText(extras.getString("tanggal"));
+
+        try {
+            bitmap = TextToImageEncode(String.valueOf(kode));
+            qrcode.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("gamao",e.getMessage());
+        }
 
     }
 
-    public void onClickGenerateSquare(View view) {
-        mEncodeString = "a";
-        mTextDesc.setVisibility(View.GONE);
-        mProgress.setVisibility(View.VISIBLE);
-        new AsyncGenerateQRCode().execute(GenerateQR.MARGIN_AUTOMATIC);
+    private Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    200, 200, null
+            );
+
+        } catch (IllegalArgumentException Illegalargumentexception) {
+
+            return null;
+        }
+        int bitMatrixWidth = bitMatrix.getWidth();
+
+        int bitMatrixHeight = bitMatrix.getHeight();
+
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+
+        bitmap.setPixels(pixels, 0, 200, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
     }
 
-    /**
-     * AsyncTask to generate QR Code image
-     */
-    private class AsyncGenerateQRCode extends AsyncTask<Integer, Void, Integer> {
 
-        /**
-         * Background thread function to generate image
-         *
-         * @param params margin to use in creating QR Code
-         * @return non zero for success
-         *
-         * Note that is margin is not in pixels.  See the zxing api for details about the margin
-         * for QR code generation
-         */
-        @Override
-        protected Integer doInBackground(Integer... params) {
-            if (params.length != 1) {
-                throw new IllegalArgumentException("Must pass QR Code margin value as argument");
-            }
-
-            try {
-                final int colorQR = Color.BLACK;
-                final int colorBackQR = Color.WHITE;
-                final int marginSize = params[0];
-                final int width = 400;
-                final int height = 400;
-
-                mBitmapQR = GenerateQR.generateBitmap(mEncodeString, width, height,
-                        marginSize, colorQR, colorBackQR);
-            }
-            catch (IllegalArgumentException iae) {
-                Log.e(TAG, "Invalid arguments for encoding QR");
-                iae.printStackTrace();
-                return 0;
-            }
-            catch (WriterException we) {
-                Log.e(TAG, "QR Writer unable to generate code");
-                we.printStackTrace();
-                return 0;
-            }
-            return 1;
-        }
-
-        @Override
-        protected void onPostExecute(Integer result) {
-            mProgress.setVisibility(View.GONE);
-            if (result != 0) {
-                mImageQR.setImageBitmap(mBitmapQR);
-                mImageQR.setVisibility(View.VISIBLE);
-            }else {
-                mTextDesc.setText(getString(R.string.encode_error));
-                mTextDesc.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        protected void onPreExecute() {}
-
-        @Override
-        protected void onProgressUpdate(Void... values) {}
+    private void setToolbar(){
+        mToolbar = (Toolbar) findViewById(R.id.generate_qrcode_toolbar);
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("Konfirmasi Kehadiran");
     }
 
 }

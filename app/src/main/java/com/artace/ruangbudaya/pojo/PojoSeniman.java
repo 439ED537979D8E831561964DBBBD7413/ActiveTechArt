@@ -4,7 +4,7 @@ package com.artace.ruangbudaya.pojo;
 public class PojoSeniman {
 
     private int id_kelompok_seniman,id_bidang_seni,id_user,id_acara;
-    private String nama,portfolio,no_hp,foto;
+    private String nama,portfolio,no_hp,foto,namaeo,tanggalevent;
 
     private String status,namaevent;
     private int id_tawaran_tampil,status_kehadiran;
@@ -20,6 +20,19 @@ public class PojoSeniman {
         this.status = status;
         this.id_tawaran_tampil = id_tawaran_tampil;
         this.namaevent = namaevent;
+    }
+
+    public PojoSeniman(int id_kelompok_seniman, int id_bidang_seni, String nama, String foto, String status, int id_tawaran_tampil, int status_kehadiran, String namaevent, String tanggalevent, String namaeo) {
+        this.id_kelompok_seniman = id_kelompok_seniman;
+        this.id_bidang_seni = id_bidang_seni;
+        this.nama = nama;
+        this.foto = foto;
+        this.status = status;
+        this.id_tawaran_tampil = id_tawaran_tampil;
+        this.status_kehadiran = status_kehadiran;
+        this.namaevent = namaevent;
+        this.namaeo = namaeo;
+        this.tanggalevent = tanggalevent;
     }
 
     public PojoSeniman(int id_kelompok_seniman, int id_bidang_seni, String nama, String foto, String status, int id_tawaran_tampil, int status_kehadiran, String namaevent) {
@@ -66,6 +79,14 @@ public class PojoSeniman {
 
     public void setStatus_kehadiran(int status_kehadiran) {
         this.status_kehadiran = status_kehadiran;
+    }
+
+    public String getNamaeo() {
+        return namaeo;
+    }
+
+    public String getTanggalevent() {
+        return tanggalevent;
     }
 
     public int getId_tawaran_tampil() {

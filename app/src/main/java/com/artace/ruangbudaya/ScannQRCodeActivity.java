@@ -13,7 +13,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.artace.ruangbudaya.connection.DatabaseConnection;
+import com.artace.ruangbudaya.utils.StringPostRequest;
+import com.artace.ruangbudaya.utils.VolleyResponseListener;
 import com.google.zxing.Result;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -128,17 +134,27 @@ public class ScannQRCodeActivity extends AppCompatActivity implements ZXingScann
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mScannerView.resumeCameraPreview(ScannQRCodeActivity.this);
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("id_tawaran_tampil",result);
+
+                StringPostRequest strReq = new StringPostRequest();
+                strReq.sendPost(getApplication(), params, DatabaseConnection.getUpdateTawaranTampilKonfirmasiKehadiran(), new VolleyResponseListener() {
+                    @Override
+                    public void onResponse(String response) {
+//                finish();
+                        Intent intent = new Intent(ScannQRCodeActivity.this, SenimanMainActivity.class);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onError(String message) {
+                        Log.e("ScannQRCodeActivity","Ada error : "+message);
+                    }
+                });
+
             }
         });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result));
-                startActivity(browserIntent);
-            }
-        });
-        builder.setMessage(rawResult.getText());
+        builder.setMessage("konfirmasi berhasil");
         AlertDialog alert1 = builder.create();
         alert1.show();
     }

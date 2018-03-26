@@ -240,7 +240,7 @@ public class OrganizerDiundangFragment extends Fragment {
 
                             JSONObject obj = (JSONObject) jr.get(i);
 
-                            PojoSeniman seniman = new PojoSeniman(obj.getInt("id_kelompok_seniman"),obj.getInt("id_bidang_seni"),obj.getString("nama"),DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("status"), obj.getInt("id_tawaran_tampil"),obj.getInt("status_kehadiran"), obj.getString("namaevent"));
+                            PojoSeniman seniman = new PojoSeniman(obj.getInt("id_kelompok_seniman"),obj.getInt("id_bidang_seni"),obj.getString("nama"),DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("status"), obj.getInt("id_tawaran_tampil"),obj.getInt("status_kehadiran"), obj.getString("namaevent"), obj.getString("tanggalevent"), obj.getString("namaeo"));
 
                             // adding event to events array
                             senimanList.add(seniman);

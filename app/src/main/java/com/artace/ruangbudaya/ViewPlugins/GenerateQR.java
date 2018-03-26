@@ -10,68 +10,55 @@ import java.util.Map;
 import android.graphics.Bitmap;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
+import com.artace.ruangbudaya.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 
-public class GenerateQR {
+public class GenerateQR extends AppCompatActivity{
 
+    public Bitmap IntToImageEncode(int Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    String.valueOf(Value),
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    500, 500, null
+            );
 
-    static public int MARGIN_AUTOMATIC = -1;
+        } catch (IllegalArgumentException Illegalargumentexception) {
 
-    /**
-     * Set no margin to be added to the QR code by the zxing engine
-     */
-    static public int MARGIN_NONE = 0;
-
-    /**
-     * Encode a string into a QR Code and return a bitmap image of the QR code
-     *
-     * @param contentsToEncode String to be encoded, this will often be a URL, but could be any string
-     * @param imageWidth       number of pixels in width for the resultant image
-     * @param imageHeight      number of pixels in height for the resultant image
-     * @param marginSize       the EncodeHintType.MARGIN parameter into zxing engine
-     * @param color            data color for QR code
-     * @param colorBack        background color for QR code
-     * @return bitmap containing QR code image
-     * @throws WriterException          zxing engine is unable to create QR code data
-     * @throws IllegalStateException    when executed on the UI thread
-     */
-    static public Bitmap generateBitmap(@NonNull String contentsToEncode,
-                                        int imageWidth, int imageHeight,
-                                        int marginSize, int color, int colorBack)
-            throws WriterException, IllegalStateException {
-
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new IllegalStateException("Should not be invoked from the UI thread");
+            return null;
         }
+        int bitMatrixWidth = bitMatrix.getWidth();
 
-        Map<EncodeHintType, Object> hints = null;
-        if (marginSize != MARGIN_AUTOMATIC) {
-            hints = new EnumMap<>(EncodeHintType.class);
-            // We want to generate with a custom margin size
-            hints.put(EncodeHintType.MARGIN, marginSize);
-        }
+        int bitMatrixHeight = bitMatrix.getHeight();
 
-        MultiFormatWriter writer = new MultiFormatWriter();
-        BitMatrix result = writer.encode(contentsToEncode, BarcodeFormat.QR_CODE, imageWidth, imageHeight, hints);
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
 
-        final int width = result.getWidth();
-        final int height = result.getHeight();
-        int[] pixels = new int[width * height];
-        for (int y = 0; y < height; y++) {
-            int offset = y * width;
-            for (int x = 0; x < width; x++) {
-                pixels[offset + x] = result.get(x, y) ? color : colorBack;
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
             }
         }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
 
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
+
 }
+

@@ -3,27 +3,36 @@ package com.artace.ruangbudaya;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.NetworkImageView;
+import com.artace.ruangbudaya.ViewPlugins.GenerateQR;
 import com.artace.ruangbudaya.connection.DatabaseConnection;
 import com.artace.ruangbudaya.constant.Field;
 import com.artace.ruangbudaya.controller.AppController;
 import com.artace.ruangbudaya.utils.YoutubeId;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,7 +45,8 @@ public class EoSenimanActivity extends AppCompatActivity {
     public NetworkImageView portfolio;
     private Context context;
     Button beriTawaran;
-
+//    ImageView iv;
+//    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +63,16 @@ public class EoSenimanActivity extends AppCompatActivity {
         ActionBar ab = ((AppCompatActivity)this).getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+//        iv = (ImageView) findViewById(R.id.qr);
+//
+
+
         initCollapsingToolbar();
 
         getDetailSeniman();
     }
+
+
 
     private void getDetailSeniman() {
         //Getting Instance of Volley Request Queue

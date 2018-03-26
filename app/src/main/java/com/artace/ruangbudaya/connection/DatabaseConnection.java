@@ -25,6 +25,7 @@ public class DatabaseConnection {
     //UPDATE
     public static String UPDATE_SENIMAN = BASE_URL+"seniman/UpdateSeniman.php";
 
+    public static String UPDATE_TAWARAN_TAMPIL_KONFIRMASI_KEHADIRAN = BASE_URL+"tawaran_tampil/UpdateTawaranTampilKonfirmasiKehadiran.php";
     //INSERT
     public static String INSERT_REGISTER_SENIMAN = BASE_URL+"seniman/RegisterSeniman.php";
     public static String CREATE_EVENT_ORGANIZER = BASE_URL+"eventorganizer/CreateEventOrganizer.php";
@@ -108,6 +109,10 @@ public class DatabaseConnection {
 
     public static String getDeleteEvent(int id_event) {
         return DELETE_EVENT + "?id_acara=" + id_event;
+    }
+
+    public static String getUpdateTawaranTampilKonfirmasiKehadiran() {
+        return UPDATE_TAWARAN_TAMPIL_KONFIRMASI_KEHADIRAN;
     }
 
     public static String getDirectoryFotoUserDefault() {

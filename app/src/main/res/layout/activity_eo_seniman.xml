@@ -34,9 +34,9 @@
                     android:id="@+id/organizer_seniman_backdrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/bghead2"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/bghead2"
                     app:layout_collapseMode="parallax" />
 
                 <LinearLayout
@@ -90,6 +90,7 @@
                         app:layout_constraintStart_toStartOf="@+id/eo_seniman_imageSeniman"
                         app:layout_constraintTop_toBottomOf="@+id/eo_seniman_namaSeniman" />
                 </LinearLayout>
+
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
@@ -106,7 +107,7 @@
         android:id="@+id/eo_seniman_dataLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="300dp"
+
         app:layout_constraintTop_toBottomOf="@+id/eo_seniman_appbar">
 
         <LinearLayout
@@ -142,6 +143,8 @@
                     android:layout_marginRight="8dp"
                     android:editable="false"
                     android:ems="9"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/primaryTextBlack"
                     android:paddingLeft="10dp"
                     android:textColorHint="@color/colorSecondaryText"
                     android:textSize="14sp"
@@ -175,6 +178,8 @@
                     android:layout_marginRight="8dp"
                     android:editable="false"
                     android:ems="9"
+                    android:fontFamily="@font/roboto_light"
+                    android:textColor="@color/primaryTextBlack"
                     android:paddingLeft="10dp"
                     android:textColorHint="@color/colorSecondaryText"
                     android:textSize="14sp"
@@ -193,6 +198,7 @@
             android:layout_width="245dp"
             android:layout_height="165dp"
             android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -241,13 +247,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <!--<ScrollView-->
-        <!--android:id="@+id/scrollView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--android:visibility="visible"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent">-->
+    <!--android:id="@+id/scrollView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:visibility="visible"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
 </android.support.constraint.ConstraintLayout>

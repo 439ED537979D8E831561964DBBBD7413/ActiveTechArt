@@ -60,7 +60,7 @@ public class ListTawaranAdapter extends RecyclerView.Adapter<ListTawaranAdapter.
         holder.hargaEvent.setText("IDR "+event.getHarga()+",-");
         holder.namaEo.setText(event.getEo());
 
-        Picasso.with(context).load(event.getFoto()).transform(new CircularImageViewPicaso()).fit().into(holder.imageEvent);
+        Picasso.with(context).load(event.getFoto()).fit().into(holder.imageEvent);
 
         holder.btnTerima.setTag(position);
         holder.btnTolak.setTag(position);

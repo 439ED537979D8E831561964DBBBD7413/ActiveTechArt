@@ -37,7 +37,7 @@
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/primaryTextBlack"
                 android:textSize="@dimen/album_title"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
+                android:textColor="@color/primaryTextBlack"
                 android:textSize="@dimen/songs_count"
                 card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_nama" />
 
@@ -64,6 +65,7 @@
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
+                android:textColor="@color/primaryTextBlack"
                 android:textSize="@dimen/songs_count_sub"
                 card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_subtitle" />
 
@@ -82,6 +84,20 @@
                 card_view:layout_constraintBottom_toTopOf="@+id/item_list_diundang_containerstatus"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_namaevent" />
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:id="@+id/item_list_diundang_qrcode"
+                android:elevation="3dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                card_view:layout_constraintBottom_toTopOf="@+id/item_list_diundang_containerstatus"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_namaevent"/>
 
             <LinearLayout
                 android:id="@+id/item_list_diundang_containerstatus"

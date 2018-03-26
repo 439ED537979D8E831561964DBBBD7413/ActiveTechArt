@@ -83,7 +83,7 @@
         <activity android:name=".GenerateQrCodeActivity" />
         <activity
             android:name=".ScannQRCodeActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
