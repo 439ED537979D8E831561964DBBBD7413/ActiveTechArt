@@ -266,7 +266,7 @@ public class TambahEventActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case android.R.id.home:
-                finish();
+                onBackPressed();
                 return true;
         }
 
@@ -274,9 +274,10 @@ public class TambahEventActivity extends AppCompatActivity {
     }
 
     @Override
-    public void finish() {
-
+    public void onBackPressed() {
+        finish();
     }
+
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);

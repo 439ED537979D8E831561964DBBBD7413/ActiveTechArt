@@ -10,6 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.artace.ruangbudaya.ViewPlugins.DrawerMenu;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -20,6 +26,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
     OrganizerSenimanFragment newFragment1;
     OrganizerEventsFragment newFragment2;
     OrganizerDiundangFragment newFragment3;
+    EventMapsFragment newFragmentMaps;
     OrganizerInfoBidangSeniPenariFragment newFragmentPenari;
     OrganizerInfoBidangSeniTeaterFragment newFragmentTeater;
     OrganizerInfoBidangSeniWayangFragment newFragmentWayang;
@@ -47,7 +54,21 @@ public class OrganizerMainActivity extends AppCompatActivity {
         initFragment(savedInstanceState);
         bottomBarListeners();
 
+
     }
+
+//    public void initMaps(){
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentByTag("Maps");
+//        mapFragment.getMapAsync(this);
+//    }
+//
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        LatLng sydney = new LatLng(-33.852, 151.211);
+//        googleMap.addMarker(new MarkerOptions().position(sydney)
+//                .title("Marker in Sydney"));
+//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
@@ -55,148 +76,6 @@ public class OrganizerMainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState, outPersistentState);
 
     }
-
-    private void bottomBarListeners(){
-        BottomBar bottomBar = findViewById(R.id.organizer_main_bottombar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_seniman) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.show(newFragment1);
-
-                    if(title.equals("Tari")){
-                        transaction.hide(newFragmentPenari);
-                    }
-                    else if(title.equals("Teater")){
-                        transaction.hide(newFragmentTeater);
-                    }
-                    else if(title.equals("Musisi")){
-                        transaction.hide(newFragmentMusisi);
-                    }
-                    else if(title.equals("Wayang")){
-                        transaction.hide(newFragmentWayang);
-                    }
-                    else{
-                        transaction.hide(newFragmentKomedian);
-                    }
-
-                    transaction.hide(newFragment2);
-                    transaction.hide(newFragment3);
-
-                    transaction.commit();
-                }
-                else if (tabId == R.id.tab_events) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.show(newFragment2);
-                    transaction.hide(newFragment1);
-                    transaction.hide(newFragment3);
-
-                    if(title.equals("Tari")){
-                        transaction.hide(newFragmentPenari);
-                    }
-                    else if(title.equals("Teater")){
-                        transaction.hide(newFragmentTeater);
-                    }
-                    else if(title.equals("Musisi")){
-                        transaction.hide(newFragmentMusisi);
-                    }
-                    else if(title.equals("Wayang")){
-                        transaction.hide(newFragmentWayang);
-                    }
-                    else{
-                        transaction.hide(newFragmentKomedian);
-                    }
-
-                    transaction.commit();
-                    newFragment2.setToolbar();
-                }
-                else if (tabId == R.id.tab_diundang) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.show(newFragment3);
-
-                    transaction.hide(newFragment1);
-                    transaction.hide(newFragment2);
-
-                    if(title.equals("Tari")){
-                        transaction.hide(newFragmentPenari);
-                    }
-                    else if(title.equals("Teater")){
-                        transaction.hide(newFragmentTeater);
-                    }
-                    else if(title.equals("Musisi")){
-                        transaction.hide(newFragmentMusisi);
-                    }
-                    else if(title.equals("Wayang")){
-                        transaction.hide(newFragmentWayang);
-                    }
-                    else{
-                        transaction.hide(newFragmentKomedian);
-                    }
-
-                    transaction.commit();
-                    newFragment3.setToolbar();
-                }
-                else if (tabId == R.id.tab_info) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    if (title.equals("Teater")){
-                        transaction.show(newFragmentTeater);
-                        transaction.hide(newFragment1);
-                        transaction.hide(newFragment2);
-                        transaction.hide(newFragment3);
-
-                        transaction.commit();
-                        newFragmentTeater.setToolbar();
-                    }
-                    else if(title.equals("Tari")){
-                        transaction.show(newFragmentPenari);
-
-                        transaction.hide(newFragment1);
-                        transaction.hide(newFragment2);
-                        transaction.hide(newFragment3);
-
-                        transaction.commit();
-                        newFragmentPenari.setToolbar();
-                    }
-                    else if (title.equals("Musisi")){
-                        transaction.show(newFragmentMusisi);
-                        transaction.hide(newFragment1);
-                        transaction.hide(newFragment2);
-                        transaction.hide(newFragment3);
-
-                        transaction.commit();
-                        newFragmentMusisi.setToolbar();
-                    }
-                    else if (title.equals("Wayang")){
-                        transaction.show(newFragmentWayang);
-                        transaction.hide(newFragment1);
-                        transaction.hide(newFragment2);
-                        transaction.hide(newFragment3);
-                        transaction.commit();
-                        newFragmentWayang.setToolbar();
-                    }
-                    else if (title.equals("Komedian")){
-                        transaction.show(newFragmentKomedian);
-                        transaction.hide(newFragment1);
-                        transaction.hide(newFragment2);
-                        transaction.hide(newFragment3);
-
-                        transaction.commit();
-                        newFragmentKomedian.setToolbar();
-                    }
-
-                }
-            }
-        });
-    }
-
-//    private void setToolbar(String title){
-//        mToolbar = (Toolbar) findViewById(R.id.organizer_main_toolbar);
-//        setSupportActionBar(mToolbar);
-//        ActionBar ab = getSupportActionBar();
-//        ab.setDisplayHomeAsUpEnabled(true);
-//        ab.setTitle(title);
-//    }
 
     private void initFragment(Bundle savedInstanceState){
         if (findViewById(R.id.organizer_main_fragment_container) != null) {
@@ -221,7 +100,7 @@ public class OrganizerMainActivity extends AppCompatActivity {
             newFragment1 = new OrganizerSenimanFragment();
             newFragment2 = new OrganizerEventsFragment();
             newFragment3 = new OrganizerDiundangFragment();
-
+            newFragmentMaps = new EventMapsFragment();
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.organizer_main_fragment_container, newFragment1,"Seniman");
@@ -230,6 +109,8 @@ public class OrganizerMainActivity extends AppCompatActivity {
             transaction.hide(newFragment2);
             transaction.add(R.id.organizer_main_fragment_container, newFragment3,"Diundang");
             transaction.hide(newFragment3);
+            transaction.add(R.id.organizer_main_fragment_container, newFragmentMaps,"Maps");
+            transaction.hide(newFragmentMaps);
 
             if (title.equals("Tari")){
                 newFragmentPenari = new OrganizerInfoBidangSeniPenariFragment();
@@ -261,6 +142,189 @@ public class OrganizerMainActivity extends AppCompatActivity {
             transaction.commit();
         }
     }
+
+    private void bottomBarListeners(){
+        BottomBar bottomBar = findViewById(R.id.organizer_main_bottombar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_seniman) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.show(newFragment1);
+
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
+
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragment3);
+                    transaction.hide(newFragmentMaps);
+
+                    transaction.commit();
+                }
+                else if (tabId == R.id.tab_events) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.show(newFragment2);
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment3);
+                    transaction.hide(newFragmentMaps);
+
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
+
+                    transaction.commit();
+                    newFragment2.setToolbar();
+                }
+                else if (tabId == R.id.tab_diundang) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.show(newFragment3);
+
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragmentMaps);
+
+                    if(title.equals("Tari")){
+                        transaction.hide(newFragmentPenari);
+                    }
+                    else if(title.equals("Teater")){
+                        transaction.hide(newFragmentTeater);
+                    }
+                    else if(title.equals("Musisi")){
+                        transaction.hide(newFragmentMusisi);
+                    }
+                    else if(title.equals("Wayang")){
+                        transaction.hide(newFragmentWayang);
+                    }
+                    else{
+                        transaction.hide(newFragmentKomedian);
+                    }
+
+                    transaction.commit();
+                    newFragment3.setToolbar();
+                }
+                else if (tabId == R.id.tab_info) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.hide(newFragmentMaps);
+                    transaction.hide(newFragment1);
+                    transaction.hide(newFragment2);
+                    transaction.hide(newFragment3);
+
+                    if (title.equals("Teater")){
+                        transaction.show(newFragmentTeater);
+                        transaction.commit();
+                        newFragmentTeater.setToolbar();
+                    }
+                    else if(title.equals("Tari")){
+                        transaction.show(newFragmentPenari);
+
+                        transaction.commit();
+                        newFragmentPenari.setToolbar();
+                    }
+                    else if (title.equals("Musisi")){
+                        transaction.show(newFragmentMusisi);
+
+                        transaction.commit();
+                        newFragmentMusisi.setToolbar();
+                    }
+                    else if (title.equals("Wayang")){
+                        transaction.show(newFragmentWayang);
+                        transaction.commit();
+                        newFragmentWayang.setToolbar();
+                    }
+                    else if (title.equals("Komedian")){
+                        transaction.show(newFragmentKomedian);
+
+                        transaction.commit();
+                        newFragmentKomedian.setToolbar();
+                    }
+
+                }
+            }
+        });
+    }
+
+    public void showEventMaps(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(newFragment1);
+        transaction.hide(newFragment2);
+        transaction.hide(newFragment3);
+        if(title.equals("Tari")){
+            transaction.hide(newFragmentPenari);
+        }
+        else if(title.equals("Teater")){
+            transaction.hide(newFragmentTeater);
+        }
+        else if(title.equals("Musisi")){
+            transaction.hide(newFragmentMusisi);
+        }
+        else if(title.equals("Wayang")){
+            transaction.hide(newFragmentWayang);
+        }
+        else{
+            transaction.hide(newFragmentKomedian);
+        }
+        transaction.show(newFragmentMaps);
+        transaction.commit();
+        newFragmentMaps.setToolbar();
+    }
+
+    public void showEventList(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(newFragmentMaps);
+        transaction.hide(newFragment1);
+        transaction.hide(newFragment3);
+        if(title.equals("Tari")){
+            transaction.hide(newFragmentPenari);
+        }
+        else if(title.equals("Teater")){
+            transaction.hide(newFragmentTeater);
+        }
+        else if(title.equals("Musisi")){
+            transaction.hide(newFragmentMusisi);
+        }
+        else if(title.equals("Wayang")){
+            transaction.hide(newFragmentWayang);
+        }
+        else{
+            transaction.hide(newFragmentKomedian);
+        }
+        transaction.show(newFragment2);
+        transaction.commit();
+        newFragment2.setToolbar();
+    }
+
+//    private void setToolbar(String title){
+//        mToolbar = (Toolbar) findViewById(R.id.organizer_main_toolbar);
+//        setSupportActionBar(mToolbar);
+//        ActionBar ab = getSupportActionBar();
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setTitle(title);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

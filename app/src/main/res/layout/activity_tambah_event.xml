@@ -163,12 +163,15 @@
 
             <Button
                 android:id="@+id/tambah_event_pick_map"
-                android:layout_marginLeft="48dp"
+                android:layout_marginLeft="45dp"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PICK LOKASI"
+                android:text="TENTUKAN LOKASI"
+                android:textColor="@color/colorWhiteText"
                 tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="16dp" />
+                tools:layout_editor_absoluteY="16dp"
+                android:background="@color/colorPrimary"/>
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -249,6 +252,8 @@
                 android:id="@+id/tambah_event_browse_foto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:textColor="@color/colorWhiteText"
                 android:text="BROWSE" />
 
 

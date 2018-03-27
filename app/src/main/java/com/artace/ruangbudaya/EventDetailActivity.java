@@ -38,8 +38,8 @@ public class EventDetailActivity extends AppCompatActivity {
         btnListSeniman = (Button) findViewById(R.id.event_detail_btnListSeniman);
 
         Bundle extras = getIntent().getExtras();
-//        final int id_acara = extras.getInt("id_acara");
-//        urlRead = DatabaseConnection.getReadEventDetail() + "?id_acara=" + String.valueOf(id_acara);
+        final int id_acara = extras.getInt("id_acara");
+        urlRead = DatabaseConnection.getReadEventDetail() + "?id_acara=" + String.valueOf(id_acara);
 
         setToolbar();
 
@@ -49,7 +49,7 @@ public class EventDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EventDetailActivity.this, ListSenimanDetailEventActivity.class);
-//                intent.putExtra("id_acara",id_acara);
+                intent.putExtra("id_acara",id_acara);
                 startActivity(intent);
                 finish();
 

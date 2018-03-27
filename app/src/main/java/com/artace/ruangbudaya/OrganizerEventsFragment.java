@@ -175,25 +175,6 @@ public class OrganizerEventsFragment extends Fragment {
         requestData(urlRead);
     }
 
-    public void getDataSearch(String searchString){
-        urlRead = DatabaseConnection.getReadEventorganizerEvents();
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-        boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(),false);
-
-        if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("event_organizer")){
-            urlRead += "?id_penyelenggara_acara=" + sharedpreferences.getString(Field.getIdPenyelenggaraAcara(),null);
-            mFab.setVisibility(View.VISIBLE);
-            urlRead += "&search="+searchString;
-        }
-        else {
-            urlRead += "?search="+searchString;
-            mFab.setVisibility(View.GONE);
-        }
-        urlRead = urlRead.replaceAll(" ","%20");
-        eventList.clear();
-        requestData(urlRead);
-    }
-
     public void requestData(String url){
         //Set loading anim
         mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_events_progressbar);
@@ -219,6 +200,7 @@ public class OrganizerEventsFragment extends Fragment {
 
                             // adding event to events array
                             eventList.add(event);
+                            Log.d("OrganizerEvent","test iterasi OrganizerEvent");
 
                         } catch (Exception e) {
                             System.out.println("LOG gamao! = " + e.getMessage());
@@ -251,42 +233,16 @@ public class OrganizerEventsFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
-        inflater.inflate(R.menu.menu_search, menu);
-        MenuItem cari = menu.findItem(R.id.searchbox);
+        inflater.inflate(R.menu.menu_maps, menu);
+        MenuItem itemMenu = menu.findItem(R.id.menumaps);
 
-        final SearchView searchView = new SearchView(((OrganizerMainActivity) getContext()).getSupportActionBar().getThemedContext());
-        MenuItemCompat.setShowAsAction(cari, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
-        MenuItemCompat.setActionView(cari, searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        itemMenu.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                showSoftwareKeyboard(false);
-                getDataSearch(query);
-                return true;
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                ((OrganizerMainActivity)getActivity()).showEventMaps();
+                return false;
             }
-            @Override
-            public boolean onQueryTextChange(String query) {
-//                getDataSearch(query);
-
-                return true;
-            }
-
         });
-        searchView.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-
-                                          }
-                                      }
-        );
-    }
-
-
-    protected void showSoftwareKeyboard(boolean showKeyboard){
-        final Activity activity = getActivity();
-        final InputMethodManager inputManager = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), showKeyboard ? InputMethodManager.SHOW_FORCED : InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override

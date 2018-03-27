@@ -8,6 +8,7 @@ public class PojoEvent {
 
     private int id_acara, id_penyelenggara_acara;
     private String nama, tanggal, lokasi, keterangan,foto,eo;
+    private double latitude,longitude;
 
     public PojoEvent() {
     }
@@ -38,6 +39,34 @@ public class PojoEvent {
         this.keterangan = keterangan;
         this.foto = foto;
         this.eo = eo;
+    }
+
+    public PojoEvent(int id_acara, int id_penyelenggara_acara, String nama, String tanggal, String keterangan, String foto, String eo, double latitude, double longitude) {
+        this.id_acara = id_acara;
+        this.id_penyelenggara_acara = id_penyelenggara_acara;
+        this.nama = nama;
+        this.tanggal = tanggal;
+        this.keterangan = keterangan;
+        this.foto = foto;
+        this.eo = eo;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getEo() {
