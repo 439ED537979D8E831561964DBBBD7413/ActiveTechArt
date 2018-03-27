@@ -6,6 +6,281 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/organizer_info_bidang_seni_komedian_toolbar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/organizer_info_bidang_seni_komedian_slider"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.daimajia.slider.library.SliderLayout>
+
+            <com.daimajia.slider.library.Indicators.PagerIndicator
+                android:id="@+id/organizer_info_bidang_seni_komedian_indicatorslider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="256dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.daimajia.slider.library.Indicators.PagerIndicator>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_list_info_komedian_layout_cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_komedian_slider"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/item_list_info_komedian_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/card_margin"
+                    android:elevation="3dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/item_list_info_komedian_foto"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/album_cover_height"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bondres" />
+
+                        <TextView
+                            android:id="@+id/item_list_komedian_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_foto"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:paddingTop="@dimen/album_title_padding"
+                            android:text="Bondres"
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_komedian_nama"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Bondres merupakan salah satu kesenian tradisional Bali. Pada mulanya, bondres merupakan selingan dalam kesenian topeng di Bali. Namun, belakangan bondres muncul sebagai pertunjukan tersendiri, terpisah dari kesenian topeng. Dari sinilah kemudian muncul seni lawak khas Bali atau yang lebih dikenal dengan bebondresan."
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text1b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_text"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Dalam bebondresan, penonton akan disuguhi sebuah alur cerita tetapi alur ini hanya sebagai pegangan saja karena yang lebih ditonjolkan adalah lawakan atau banyolan para seniman bebondresan yang terselip pesan-pesan yang ingin disampaikan. "
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_list_info_komedian_layout_cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_info_komedian_layout_cardView"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/item_list_info_komedian_card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/card_margin"
+                    android:elevation="3dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/item_list_info_komedian_foto2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/album_cover_height"
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ludruk" />
+
+                        <TextView
+                            android:id="@+id/item_list_komedian_nama2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_foto2"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:paddingTop="@dimen/album_title_padding"
+                            android:text="Ludruk"
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_komedian_nama2"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Ludruk adalah suatu kesenian drama tradisional dari Jawa Timur. Ludruk merupakan suatu drama tradisional yang diperagakan oleh sebuah grup kesenian yang dipergelarkan di sebuah panggung dengan mengambil cerita tentang kehidupan rakyat sehari-hari, cerita perjuangan, dan sebagainya yang diselingi dengan lawakan dan diiringi dengan gamelan sebagai musik."
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text2b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_text2"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Dialog/monolog dalam ludruk bersifat menghibur dan membuat penontonnya tertawa, menggunakan bahasa khas Surabaya, meski kadang-kadang ada bintang tamu dari daerah lain seperti Jombang, Malang, Madura, Madiun dengan logat yang berbeda. Bahasa lugas yang digunakan pada ludruk, membuat dia mudah diserap oleh kalangan nonintelek."
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/item_list_info_komedian_layout_cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_info_komedian_layout_cardView2"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/item_list_info_komedian_card_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/card_margin"
+                    android:elevation="3dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/item_list_info_komedian_foto3"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/album_cover_height"
+
+                            android:clickable="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/lenong" />
+
+                        <TextView
+                            android:id="@+id/item_list_komedian_nama3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_foto3"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:paddingTop="@dimen/album_title_padding"
+                            android:text="Lenong"
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_komedian_nama3"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Lenong adalah kesenian teater tradisional atau sandiwara rakyat Betawi yang dibawakan dalam dialek Betawi yang berasal dari Jakarta, Indonesia.Kesenian tradisional ini diiringi musik gambang kromong dengan alat-alat musik tradisional serta alat musik unsur Tionghoa.  "
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                        <TextView
+                            android:id="@+id/item_list_info_komedian_text3b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/item_list_info_komedian_text3"
+                            android:layout_gravity="right"
+                            android:paddingBottom="@dimen/album_title_padding"
+                            android:paddingLeft="@dimen/album_title_padding"
+                            android:paddingRight="@dimen/album_title_padding"
+                            android:text="Lakon atau skenario lenong umumnya mengandung pesan moral, yaitu menolong yang lemah, membenci kerakusan dan perbuatan tercela. Lenong menggunakan bahasa Indonesia dengan dialek Betawi. Lakon-lakon lenong berkembang dari lawakan-lawakan tanpa plot cerita yang dirangkai-rangkai hingga menjadi pertunjukan semalam suntuk dengan lakon panjang dan utuh."
+                            android:textColor="@color/primaryTextBlack"
+                            android:textSize="@dimen/album_title" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/organizer_info_bidang_seni_komedian_toolbar"
@@ -13,104 +288,8 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
-
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.daimajia.slider.library.SliderLayout
-            android:id="@+id/organizer_info_bidang_seni_komedian_slider"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="56dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </com.daimajia.slider.library.SliderLayout>
-
-        <com.daimajia.slider.library.Indicators.PagerIndicator
-            android:id="@+id/organizer_info_bidang_seni_komedian_indicatorslider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="256dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </com.daimajia.slider.library.Indicators.PagerIndicator>
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_komedian_slider">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/item_list_seniman_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/card_margin"
-                android:elevation="3dp">
-                <!--card_view:cardCornerRadius="@dimen/card_album_radius">-->
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/item_list_seniman_foto"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/album_cover_height"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/gb_wayang"/>
-
-                    <TextView
-                        android:id="@+id/item_list_seniman_nama"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/item_list_seniman_foto"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:paddingTop="@dimen/album_title_padding"
-                        android:text="Wayang Kulit"
-                        android:textColor="@color/primaryTextBlack"
-                        android:textSize="@dimen/album_title" />
-
-                    <TextView
-                        android:id="@+id/item_list_info_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/item_list_seniman_nama"
-                        android:paddingBottom="@dimen/album_title_padding"
-                        android:paddingLeft="@dimen/album_title_padding"
-                        android:paddingRight="@dimen/album_title_padding"
-                        android:textSize="@dimen/album_title"
-                        android:layout_gravity="right"
-                        android:text="Kesenian wayang kulit merupakan seni tradisional Indonesia dan sebagian besar  berkembang di Pulau  Jawa. Hebatnya  kesenian teater tradisional Indonesia semacam wayang kulit pun telah terdaftar dan tercatat dalam UNESCO sebagai warisan budaya dunia. "
-                        android:textColor="@color/primaryTextBlack"/>
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.constraint.ConstraintLayout>
-
-</ScrollView>
-
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>

@@ -8,7 +8,12 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniWayangFragment">
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_constraintTop_toBottomOf="@id/organizer_info_bidang_seni_wayang_toolbar"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintVertical_bias="1.0">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,16 +43,237 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniWayangFragment">
         </com.daimajia.slider.library.Indicators.PagerIndicator>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_wayang_layout_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_wayang_slider">
+            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_wayang_slider"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_wayang_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
 
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_wayang_foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/gb_wayang" />
+
+                    <TextView
+                        android:id="@+id/item_list_wayang_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_foto"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Wayang Kulit"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_wayang_nama"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Kesenian wayang kulit merupakan seni tradisional Indonesia dan sebagian besar  berkembang di Pulau Jawa. Hebatnya kesenian teater tradisional Indonesia semacam wayang kulit pun telah terdaftar dan tercatat dalam UNESCO sebagai warisan budaya dunia. "
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text1b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_text"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Wayang kulit dimainkan oleh seorang dalang yang juga menjadi narator dialog tokoh-tokoh wayang, dengan diiringi oleh musik gamelan yang dimainkan sekelompok nayaga dan tembang yang dinyanyikan oleh para pesinden. Dalang memainkan wayang kulit di balik kelir, yaitu layar yang terbuat dari kain putih."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_wayang_layout_cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_list_info_wayang_layout_cardView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_wayang_card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_wayang_foto2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/wayang_golek" />
+
+                    <TextView
+                        android:id="@+id/item_list_wayang_nama2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_foto2"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Wayang Golek"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_wayang_nama2"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Wayang golek adalah suatu seni tradisional Sunda pertunjukan wayang yang terbuat dari boneka kayu, yang terutama sangat populer di wilayah Tanah Pasundan, daerah penyebarannya terbentang luas dari Cirebon di sebelah timur sampai wilayah Banten di sebelah barat, bahkan di daerah Jawa Tengah yang berbatasan dengan Jawa Barat sering pula dipertunjukkan pergelaran wayang golek."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text2b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_text2"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Sebagaimana alur cerita pewayangan umumnya, dalam pertunjukan wayang golek juga biasanya memiliki lakon-lakon baik galur maupun carangan. Alur cerita dapat diambil dari cerita rakyat seperti penyebaran agama Islam oleh Walangsungsang dan Rara Santang maupun dari epik yang bersumber dari cerita Ramayana dan Mahabarata dengan menggunakan bahasa Sunda."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_wayang_layout_cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_list_info_wayang_layout_cardView2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_wayang_card_view3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_wayang_foto3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/wayang_klitik" />
+
+                    <TextView
+                        android:id="@+id/item_list_wayang_nama3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_foto3"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Wayang Klitik"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_wayang_nama3"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Wayang klithik adalah wayang yang terbuat dari kayu. Berbeda dengan wayang golek yang mirip dengan boneka, wayang klitik berbentuk pipih seperti wayang kulit. Wayang ini pertama kali diciptakan oleh Pangeran Pekik, adipati Surabaya, dari bahan kulit dan berukuran kecil sehingga lebih sering disebut dengan wayang krucil.  "
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_wayang_text3b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_wayang_text3"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Di Jawa Tengah wayang klithik memiliki bentuk yang mirip dengan wayang gedog. Tokoh-tokohnya memakai dodot rapekan, berkeris, dan menggunakan tutup kepala tekes (kipas). Di Jawa Timur tokoh-tokohnya banyak yang menyerupai wayang purwa, raja-rajanya bermahkota dan memakai praba. Di Jawa Tengah, tokoh-tokoh rajanya bergelung Keling atau Garuda Mungkur saja."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

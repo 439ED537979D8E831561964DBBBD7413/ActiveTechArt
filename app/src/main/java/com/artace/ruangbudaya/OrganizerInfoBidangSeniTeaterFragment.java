@@ -96,11 +96,11 @@ public class OrganizerInfoBidangSeniTeaterFragment extends Fragment {
 //        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("    _",R.drawable.header1);
-        file_maps.put("    .",R.drawable.header2);
-        file_maps.put("    ,",R.drawable.header3);
-        file_maps.put("    ,",R.drawable.header3);
-        file_maps.put("    ,",R.drawable.header3);
+        file_maps.put("    ",R.drawable.header1);
+        file_maps.put("     ",R.drawable.header2);
+        file_maps.put("      ",R.drawable.header3);
+        file_maps.put("       ",R.drawable.header4);
+        file_maps.put("        ",R.drawable.header5);
 
 
         for(String name : file_maps.keySet()){

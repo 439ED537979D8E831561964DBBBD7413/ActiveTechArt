@@ -38,17 +38,238 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniMusisiFragment">
         </com.daimajia.slider.library.Indicators.PagerIndicator>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_musisi_layout_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_teater_slider">
+            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_musisi_slider"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_musisi_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
 
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_musisi_foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/angklung" />
+
+                    <TextView
+                        android:id="@+id/item_list_musisi_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_foto"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Angklung"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_musisi_nama"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Angklung adalah alat musik multitonal (bernada ganda) yang secara tradisional berkembang dalam masyarakat Sunda di Pulau Jawa bagian barat. Angklung terdaftar sebagai Karya Agung Warisan Budaya Lisan dan Nonbendawi Manusia dari UNESCO sejak November 2010.
+"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text1b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_text"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Alat musik ini dibuat dari bambu, dibunyikan dengan cara digoyangkan (bunyi disebabkan oleh benturan badan pipa bambu) sehingga menghasilkan bunyi yang bergetar dalam susunan nada 2, 3, sampai 4 nada dalam setiap ukuran, baik besar maupun kecil. "
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_musisi_layout_cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_list_info_musisi_layout_cardView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_musisi_card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_musisi_foto2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/gamelan" />
+
+                    <TextView
+                        android:id="@+id/item_list_musisi_nama2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_foto2"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Gamelan"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_musisi_nama2"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Gamelan adalah ensembel musik yang biasanya menonjolkan metalofon, gambang, gendang, dan gong. Istilah gamelan merujuk pada instrumennya / alatnya, yang mana merupakan satu kesatuan utuh yang diwujudkan dan dibunyikan bersama. Orkes gamelan kebanyakan terdapat di pulau Jawa, Madura, Bali, dan Lombok di Indonesia dalam berbagai jenis ukuran dan bentuk ensembel. "
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text2b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_text2"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Kata Gamelan sendiri berasal dari bahasa Jawa gamel yang berarti memukul / menabuh, diikuti akhiran an yang menjadikannya kata benda. Di Bali dan Lombok saat ini, dan di Jawa lewat abad ke-18, istilah gong lebih dianggap sinonim dengan gamelan."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/item_list_info_musisi_layout_cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_list_info_musisi_layout_cardView2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/item_list_info_musisi_card_view3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                android:elevation="3dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/item_list_info_musisi_foto3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/album_cover_height"
+
+                        android:clickable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/tanjidor" />
+
+                    <TextView
+                        android:id="@+id/item_list_musisi_nama3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_foto3"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:paddingTop="@dimen/album_title_padding"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:text="Tanjidor"
+                        android:textStyle="bold"
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_musisi_nama3"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Tanjidor (kadang hanya disebut tanji) adalah sebuah kesenian Betawi yang berbentuk orkes. Kesenian ini sudah dimulai sejak abad ke-19 atas rintisan Augustijn Michiels atau lebih dikenal dengan nama Mayor Jantje di daerah Citrap atau Citeureup."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+                    <TextView
+                        android:id="@+id/item_list_info_musisi_text3b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/item_list_info_musisi_text3"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/album_title_padding"
+                        android:paddingLeft="@dimen/album_title_padding"
+                        android:paddingRight="@dimen/album_title_padding"
+                        android:text="Alat-alat musik yang digunakan biasanya sama seperti drumben. Kesenian Tanjidor juga terdapat di Kalimantan Barat, sementara di Kalimantan Selatan sudah punah. Kesenian Tanjidor umumnya dipakai dalam musik jalanan tradisional, atau pesta cap gomeh di kalangan Cina Betawi. Musik ini merupakan sisa dari musik baris dan musik tiup zaman Belanda di Indonesia."
+                        android:textColor="@color/primaryTextBlack"
+                        android:textSize="@dimen/album_title" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
