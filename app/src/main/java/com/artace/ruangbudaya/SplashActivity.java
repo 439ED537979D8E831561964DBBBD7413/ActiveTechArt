@@ -33,4 +33,5 @@ public class SplashActivity extends Activity {
         }, splashInterval);
         //===================================================
     }
+    //test
 }
