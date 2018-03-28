@@ -76,6 +76,45 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/register_seniman_img2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/list"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="@dimen/form_textInputLayout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
+                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img2"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Spinner
+                        android:id="@+id/register_seniman_jenis"
+                        style="@style/SpinnerTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_content_height"
+
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:padding="10dp"
+                        android:textColor="@color/colorSecondaryText" />
+
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
@@ -107,11 +146,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
                         android:ems="10"
+                        android:fontFamily="@font/roboto_light"
                         android:hint="Username"
                         android:inputType="text"
-                        android:textColorHint="@color/colorSecondaryText" />
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
@@ -151,11 +192,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
                         android:ems="10"
+                        android:fontFamily="@font/roboto_light"
                         android:hint="Password"
                         android:inputType="textPassword"
-                        android:textColorHint="@color/colorSecondaryText" />
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
@@ -193,11 +236,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
-                        android:inputType="textPersonName"
                         android:ems="10"
+                        android:fontFamily="@font/roboto_light"
                         android:hint="Nama"
-                        android:textColorHint="@color/colorSecondaryText" />
+                        android:inputType="textPersonName"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
@@ -235,10 +280,56 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
                         android:ems="10"
+                        android:fontFamily="@font/roboto_light"
                         android:hint="Link Video Youtube (Portfolio)"
-                        android:textColorHint="@color/colorSecondaryText" />
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/register_seniman_img9"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/call"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.74" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="@dimen/form_textInputLayout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginEnd="@dimen/form_textInputLayout_marginRight"
+                    android:layout_marginLeft="@dimen/form_textInputLayout_marginLeft"
+                    android:layout_marginStart="@dimen/form_textInputLayout_marginLeft"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/register_seniman_img9"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/register_seniman_nohp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/form_content_height"
+                        android:layout_marginTop="@dimen/form_content_marginTop"
+                        android:ems="10"
+                        android:fontFamily="@font/roboto_light"
+                        android:hint="Nomor HP"
+                        android:inputType="phone"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
@@ -249,11 +340,11 @@
 
                 <ImageView
                     android:id="@+id/register_seniman_img8"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/call"
+                    android:src="@drawable/info2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -272,19 +363,19 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
-                        android:id="@+id/register_seniman_nohp"
+                        android:id="@+id/register_seniman_keterangan"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/form_content_height"
                         android:layout_marginTop="@dimen/form_content_marginTop"
-                        android:padding="@dimen/form_content_padding"
                         android:ems="10"
-                        android:inputType="phone"
-                        android:hint="Nomor HP"
-                        android:textColorHint="@color/colorSecondaryText" />
+                        android:fontFamily="@font/roboto_light"
+                        android:hint="keterangan"
+                        android:padding="@dimen/form_content_padding"
+                        android:textColorHint="@color/colorSecondaryText"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.constraint.ConstraintLayout>
-
 
             <Button
                 android:id="@+id/register_seniman_submit"

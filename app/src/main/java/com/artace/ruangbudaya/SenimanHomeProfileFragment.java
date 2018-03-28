@@ -52,9 +52,9 @@ public class SenimanHomeProfileFragment extends Fragment {
     RequestQueue queue;
     private String mParam1;
     private String mParam2;
-    public String Mno_hp,Mportfolio,id_kelompok_seniman,Mnama;
+    public String Mno_hp,Mportfolio,id_kelompok_seniman,Mnama, Mketerangan;
     public TextView namaSeniman;
-    public EditText no_hp,link_video,ubahvid;
+    public EditText no_hp,link_video,ubahvid,keterangan;
     public SharedPreferences sharedpreferences;
     public CircularNetworkImageView imageSeniman;
     public NetworkImageView portfolio;
@@ -105,15 +105,17 @@ public class SenimanHomeProfileFragment extends Fragment {
         String Snama = sharedpreferences.getString(Field.getNAMA(),null);
         String Sno_hp = sharedpreferences.getString(Field.getNoHp(),null);
         String Sportfolio = sharedpreferences.getString(Field.getPORTFOLIO(),null);
+        String Sketerangan = sharedpreferences.getString(Field.getKETERANGAN(), null);
 
         YoutubeId generateYoutubeId = new YoutubeId();
         final String idThumbnail = generateYoutubeId.generateId(Sportfolio);
 
-        imageSeniman = (CircularNetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_imageSeniman);
-        namaSeniman = (TextView) rootView.findViewById(R.id.fragment_seniman_home_profile_namaSeniman);
-        no_hp = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_noHp);
-        link_video = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
-        portfolio = (NetworkImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
+        imageSeniman = rootView.findViewById(R.id.fragment_seniman_home_profile_imageSeniman);
+        namaSeniman = rootView.findViewById(R.id.fragment_seniman_home_profile_namaSeniman);
+        no_hp = rootView.findViewById(R.id.fragment_seniman_home_profile_noHp);
+        keterangan = rootView.findViewById(R.id.fragment_seniman_home_profile_keterangan);
+        link_video = rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
+        portfolio = rootView.findViewById(R.id.fragment_seniman_home_profile_videoSeniman);
 
         //SET FIELD DISABLE
         no_hp.setEnabled(false);
@@ -123,6 +125,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         link_video.setText(Sportfolio);
         namaSeniman.setText(Snama);
         no_hp.setText(Sno_hp);
+        keterangan.setText(Sketerangan);
 
         imageSeniman.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,11 +146,11 @@ public class SenimanHomeProfileFragment extends Fragment {
                 SenimanHomeProfileFragment.this.getContext().startActivity(intent);
             }
         });
-        fab = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButton);
-        fabs = (FloatingActionButton)rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonSave);
-        fabc = (FloatingActionButton) rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonCancel);
-        ubahvid = (EditText) rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
-        imgubahvid = (ImageView) rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
+        fab = rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButton);
+        fabs = rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonSave);
+        fabc = rootView.findViewById(R.id.fragment_seniman_home_profile_floatingActionButtonCancel);
+        ubahvid = rootView.findViewById(R.id.fragment_seniman_home_profile_linkVideo);
+        imgubahvid = rootView.findViewById(R.id.fragment_seniman_home_profile_img4);
         fabs.setVisibility(View.INVISIBLE);
         fabc.setVisibility(View.INVISIBLE);
         ubahvid.setVisibility(View.GONE);
@@ -202,6 +205,7 @@ public class SenimanHomeProfileFragment extends Fragment {
         Mnama = namaSeniman.getText().toString();
         Mportfolio = link_video.getText().toString();
         Mno_hp = no_hp.getText().toString();
+        Mketerangan = keterangan.getText().toString();
         String Mjenis_kelamin;
 
 
@@ -209,11 +213,13 @@ public class SenimanHomeProfileFragment extends Fragment {
         params.put("no_hp",Mno_hp);
         params.put("nama",Mnama);
         params.put("portfolio",Mportfolio);
+        params.put("keterangan",Mketerangan);
 
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putBoolean(Field.getSessionStatus(), true);
         editor.putString(Field.getNoHp(), Mno_hp);
         editor.putString(Field.getPORTFOLIO(), Mportfolio);
+        editor.putString(Field.getKETERANGAN(), Mketerangan);
         editor.commit();
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);

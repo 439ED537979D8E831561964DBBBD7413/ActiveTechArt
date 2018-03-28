@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_background"
+    android:background="@drawable/bg_main"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -24,10 +24,10 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="80dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo_white" />
 
 
             <TextView
@@ -86,7 +86,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Didedikasikan Untuk Seniman Jalanan"
+                android:text="Didedikasikan Untuk Seniman"
                 android:textColor="#fefefe"
                 android:textSize="19sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Dari Teknologi Informasi UNUD 2017"
+                android:text="Dari Teknologi Informasi UNUD 2018"
                 android:textColor="#fefefe"
                 android:textSize="15sp" />
 

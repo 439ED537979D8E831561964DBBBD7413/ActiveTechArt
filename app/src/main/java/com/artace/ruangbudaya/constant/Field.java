@@ -12,6 +12,7 @@ public class Field {
     public static final String NAMA = "nama";
     public static final String NO_HP = "no_hp";
     public static final String FOTO = "foto";
+    public static final String KETERANGAN = "keterangan";
     public static final String JENIS_USER = "jenis_user";
 
     //event organizer
@@ -61,6 +62,9 @@ public class Field {
     }
 
 
+    public static String getKETERANGAN() {
+        return KETERANGAN;
+    }
 
     public static String getPORTFOLIO() {
         return PORTFOLIO;

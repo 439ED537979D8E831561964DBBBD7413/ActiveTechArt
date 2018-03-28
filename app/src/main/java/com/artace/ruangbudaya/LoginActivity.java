@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user = (EditText) findViewById(R.id.login_username);
-        pass = (EditText) findViewById(R.id.login_password);
+        user = findViewById(R.id.login_username);
+        pass = findViewById(R.id.login_password);
 
         //Cek intent dari register
         checkFromRegister();
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void actionBtnLogin(){
-        btnLogin = (Button) findViewById(R.id.login_btn);
+        btnLogin = findViewById(R.id.login_btn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,13 +121,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void viewActions(){
-        btnRegister = (TextView) findViewById(R.id.login_btn_register);
+        btnRegister = findViewById(R.id.login_btn_register);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setContentView(R.layout.register_choose);
 
-                btnRegisterSeniman = (Button) findViewById(R.id.register_choose_seniman);
+                btnRegisterSeniman = findViewById(R.id.register_choose_seniman);
                 btnRegisterSeniman.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-                btnRegisterEO = (Button) findViewById(R.id.register_choose_eo);
+                btnRegisterEO = findViewById(R.id.register_choose_eo);
                 btnRegisterEO.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -175,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                         String nama = Field.getNAMA();
                         String no_hp = Field.getNoHp();
                         String foto = Field.getFOTO();
+                        String keterangan = Field.getKETERANGAN();
                         String jenis_user = Field.getJenisUser();
 
                         // menyimpan login ke session
@@ -197,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(id_kelompok_seniman, response.getString(id_kelompok_seniman));
                             editor.putString(id_bidang_seni, response.getString(id_bidang_seni));
                             editor.putString(portfolio, response.getString(portfolio));
+                            editor.putString(keterangan, response.getString(keterangan));
                             editor.commit();
 
                             Log.e("Successfully Login!", response.toString());

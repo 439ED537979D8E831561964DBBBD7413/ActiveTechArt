@@ -46,7 +46,8 @@ import java.util.Map;
 
 public class RegisterSenimanActivity extends AppCompatActivity {
 
-    EditText mUsername, mPassword, mNama, mNoHp, mPortfolio;
+    Spinner mJenisSeniman;
+    EditText mUsername, mPassword, mNama, mNoHp, mPortfolio, mKeterangan;
     Button mFoto, mDaftar;
     RequestQueue queue;
     ImageView mViewFoto;
@@ -82,7 +83,7 @@ public class RegisterSenimanActivity extends AppCompatActivity {
 
         READ_JENIS_SENIMAN_URL = DatabaseConnection.getReadJenisSeniman();
 
-        mToolbar = (Toolbar) findViewById(R.id.register_seniman_toolbar);
+        mToolbar = findViewById(R.id.register_seniman_toolbar);
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -101,15 +102,16 @@ public class RegisterSenimanActivity extends AppCompatActivity {
             }
         }
         //end cek
-
-        mPortfolio = (EditText) findViewById(R.id.register_seniman_portfolio);
-        mUsername = (EditText) findViewById(R.id.register_seniman_username);
-        mPassword = (EditText) findViewById(R.id.register_seniman_password);
-        mNama = (EditText) findViewById(R.id.register_seniman_nama);
-        mFoto = (Button) findViewById(R.id.register_seniman_btnFoto);
-        mViewFoto = (ImageView) findViewById(R.id.register_seniman_viewFoto);
-        mDaftar = (Button) findViewById(R.id.register_seniman_submit);
-        mNoHp = (EditText) findViewById(R.id.register_seniman_nohp);
+        mJenisSeniman = findViewById(R.id.register_seniman_jenis);
+        mPortfolio = findViewById(R.id.register_seniman_portfolio);
+        mUsername = findViewById(R.id.register_seniman_username);
+        mPassword = findViewById(R.id.register_seniman_password);
+        mNama = findViewById(R.id.register_seniman_nama);
+        mFoto = findViewById(R.id.register_seniman_btnFoto);
+        mViewFoto = findViewById(R.id.register_seniman_viewFoto);
+        mDaftar = findViewById(R.id.register_seniman_submit);
+        mNoHp = findViewById(R.id.register_seniman_nohp);
+        mKeterangan = findViewById(R.id.register_seniman_keterangan);
 
         mDaftar.setEnabled(false);
         mDaftar.setBackgroundColor(getResources().getColor(R.color.colorSecondaryText));
@@ -131,6 +133,8 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                 String namaS = mNama.getText().toString();
                 String nohpS = mNoHp.getText().toString();
                 String portfolioS = mPortfolio.getText().toString();
+                String keteranganS = mKeterangan.getText().toString();
+
 
                 if (userS.trim().length()>0 && namaS.trim().length()>0 && nohpS.trim().length()>0 && portfolioS.trim().length()>0) {
                     if (passS.trim().length()>5){
@@ -147,7 +151,7 @@ public class RegisterSenimanActivity extends AppCompatActivity {
             }
         });
 
-//        ReadJenisSeniman();
+        ReadJenisSeniman();
 
     }
 
@@ -200,16 +204,17 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                 String password = mPassword.getText().toString();
                 String nama = mNama.getText().toString();
                 String no_hp = mNoHp.getText().toString();
-
+                String keterangan = mKeterangan.getText().toString();
+                int id_bidang_seni = listValueJenisSeniman.get(mJenisSeniman.getSelectedItemPosition());
                 final String portfolio = mPortfolio.getText().toString();
 
                 params.put("username",username);
                 params.put("password",password);
-
+                params.put("id_bidang_seni",String.valueOf(id_bidang_seni));
                 params.put("nama",nama);
-
                 params.put("portfolio",portfolio);
                 params.put("no_hp",no_hp);
+                params.put("keterangan",keterangan);
 
                 return params;
             }
@@ -257,57 +262,57 @@ public class RegisterSenimanActivity extends AppCompatActivity {
 
 
 
-//    private void ReadJenisSeniman() {
-//
-//        Log.e("man","uhuy");
-//
-//        final Context contextFinal = this;
-//        queue = AppController.getInstance().getRequestQueue();
-//
-//        JsonArrayRequest readRequest = new JsonArrayRequest(READ_JENIS_SENIMAN_URL, new Response.Listener<JSONArray>() {
-//
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                Log.d(TAG, response.toString());
-//                try {
-//                    JSONArray jr = response.getJSONArray(0);
-//                    listValueJenisSeniman = new ArrayList<Integer>();
-//                    listDisplayJenisSeniman = new ArrayList<String>();
-//
-//
-//                    for (int i = 0; i < jr.length(); i++) {
-//                        try {
-//
-//                            JSONObject obj = (JSONObject) jr.get(i);
-//                            listValueJenisSeniman.add(obj.getInt("id_jenis_seniman"));
-//
-//                            listDisplayJenisSeniman.add(obj.getString("jenis_seniman"));
-//
-//                            Log.e("man","tapppjiwaaa");
-//
-//                        } catch (Exception e) {
-//                            Log.e("man","LOG gamao! = " + e.getMessage());
-//                        }
-//                    }
-//                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(contextFinal,android.R.layout.simple_spinner_dropdown_item, listDisplayJenisSeniman);
-//
-//                    mJenisSeniman.setAdapter(dataAdapter);
-//                } catch (Exception e) {
-//                    Log.e("man","LOG gamao diluar! = " + e.getMessage());
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(TAG, "Login Error: " + error.getMessage());
-//            }
-//        });
-//
-//        // Adding request to request queue
-////        AppController.getInstance().addToRequestQueue(readRequest, tag_json_obj);
-//        queue.add(readRequest);
-//    }
+    private void ReadJenisSeniman() {
+
+        Log.e("man","uhuy");
+
+        final Context contextFinal = this;
+        queue = AppController.getInstance().getRequestQueue();
+
+        JsonArrayRequest readRequest = new JsonArrayRequest(READ_JENIS_SENIMAN_URL, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONArray jr = response.getJSONArray(0);
+                    listValueJenisSeniman = new ArrayList<Integer>();
+                    listDisplayJenisSeniman = new ArrayList<String>();
+
+
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+                            listValueJenisSeniman.add(obj.getInt("id_bidang_seni"));
+
+                            listDisplayJenisSeniman.add(obj.getString("nama_bidang_seni"));
+
+                            Log.e("man","tapppjiwaaa");
+
+                        } catch (Exception e) {
+                            Log.e("man","LOG gamao! = " + e.getMessage());
+                        }
+                    }
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(contextFinal,android.R.layout.simple_spinner_dropdown_item, listDisplayJenisSeniman);
+
+                    mJenisSeniman.setAdapter(dataAdapter);
+                } catch (Exception e) {
+                    Log.e("man","LOG gamao diluar! = " + e.getMessage());
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+            }
+        });
+
+        // Adding request to request queue
+//        AppController.getInstance().addToRequestQueue(readRequest, tag_json_obj);
+        queue.add(readRequest);
+    }
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

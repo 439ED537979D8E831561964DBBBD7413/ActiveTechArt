@@ -213,7 +213,7 @@ public class DrawerMenu {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Login").withIcon(GoogleMaterial.Icon.gmd_account_circle);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withIdentifier(2).withName("Daftar Sebagai Seniman").withIcon(GoogleMaterial.Icon.gmd_account_box);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withIdentifier(3).withName("Daftar Sebagai Event organizer").withIcon(GoogleMaterial.Icon.gmd_account_box);
-        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(5).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Tentang Aplikasi").withIcon(GoogleMaterial.Icon.gmd_info);
 
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()

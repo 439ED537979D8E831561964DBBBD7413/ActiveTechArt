@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();
     List<PojoEvent> eventList = new ArrayList<PojoEvent>();
     RequestQueue queue;
+    SharedPreferences sharedpreferences;
+    Boolean session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         runIntro();
 
         //START : TOOLBAR
-        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mToolbar = findViewById(R.id.main_toolbar);
         this.setSupportActionBar(mToolbar);
         ActionBar ab = this.getSupportActionBar();
         ab.setTitle("");
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //start : recylcerviewSeniman
 
-        recyclerView = (RecyclerView) findViewById(R.id.main_recyclerview_seniman);
+        recyclerView = findViewById(R.id.main_recyclerview_seniman);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         //start : recylcerviewEvent
 
-        recyclerViewEvent = (RecyclerView) findViewById(R.id.main_recyclerview_acara);
+        recyclerViewEvent = findViewById(R.id.main_recyclerview_acara);
         LinearLayoutManager layoutManagerEvent
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewEvent.setLayoutManager(layoutManagerEvent);
@@ -114,29 +116,19 @@ public class MainActivity extends AppCompatActivity {
 
         //end   : recyclerviewEvent
 
-//        SharedPreferences sharedpreferences = this.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
-//
-//        Boolean session = sharedpreferences.getBoolean(Field.getSessionStatus(), false);
-//        String jenisSeniman = sharedpreferences.getString(Field.getJenisUser(),null);
-//
-//        if (session && jenisSeniman.equals("seniman")){
-//            Intent intent = new Intent(MainActivity.this,SenimanMainActivity.class);
-//            intent.putExtra("id_seniman",sharedpreferences.getString(Field.getIdSeniman(),null));
-//            startActivity(intent);
-//        }
-//
-//
-//
-//
+        sharedpreferences = this.getSharedPreferences(Field.getLoginSharedPreferences(), Context.MODE_PRIVATE);
 
-        statistikAcara = (TextView) findViewById(R.id.main_statistik_acara);
-        statistikKelompokSeniman = (TextView) findViewById(R.id.main_statistik_seniman);
+        session = sharedpreferences.getBoolean(Field.getSessionStatus(), false);
 
-
+        if (session && sharedpreferences.getString(Field.getJenisUser(),null).equals("seniman")){
+            Intent intent = new Intent(MainActivity.this,SenimanMainActivity.class);
+            intent.putExtra("id_kelompok_seniman",sharedpreferences.getString(Field.getIdKelompokSeniman(),null));
+            startActivity(intent);
+        }
 
         //START : CARDS
 
-        cardTari = (CardView) findViewById(R.id.main_card_view_tari);
+        cardTari = findViewById(R.id.main_card_view_tari);
         cardTari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cardTeater = (CardView) findViewById(R.id.main_card_view_teater);
+        cardTeater = findViewById(R.id.main_card_view_teater);
         cardTeater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cardMusisi = (CardView) findViewById(R.id.main_card_view_musisi);
+        cardMusisi = findViewById(R.id.main_card_view_musisi);
         cardMusisi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cardWayang = (CardView) findViewById(R.id.main_card_view_wayang);
+        cardWayang = findViewById(R.id.main_card_view_wayang);
         cardWayang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -184,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cardKomedian = (CardView) findViewById(R.id.main_card_view_komedian);
+        cardKomedian = findViewById(R.id.main_card_view_komedian);
         cardKomedian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //END : CARD
-
+            //END : CARD
+        getStatistik();
     }
 
 
@@ -334,6 +326,55 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the thread
         t.start();
+    }
+
+    private void getStatistik(){
+        String urlRead1;
+
+        urlRead1 = DatabaseConnection.getStatistikMain();
+        //Getting Instance of Volley Request Queue
+        queue = AppController.getInstance().getRequestQueue();
+        //Volley's inbuilt class to make Json array request
+        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead1, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try{
+                    JSONArray jr = response.getJSONArray(0);
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+
+//                            int idAcara = obj.getInt("id_acara");
+//                            int idPenyelenggaraAcara = obj.getInt("id_penyelenggara_acara");
+
+                            statistikAcara = findViewById(R.id.main_statistik_acara);
+                            statistikKelompokSeniman = findViewById(R.id.main_statistik_seniman);
+
+                            statistikAcara.setText(obj.getString("jumlah_acara"));
+                            statistikKelompokSeniman.setText(obj.getString("jumlah_seniman"));
+
+                            Log.d("EventDetail","keterangan = "+obj.getInt("jumlah_acara"));
+
+                        } catch (Exception e) {
+                            System.out.println("LOG gamao! = " + e.getMessage());
+                            Log.e("Log asd3 = ", e.getMessage());
+                        }
+                    }
+                }catch (Exception e){
+                    System.out.println("LOG gamao diluar! = " + e.getMessage());
+                    Log.e("Log asd2 = ", e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+                Log.e("Log asd1 = ", error.getMessage());
+            }
+        });
+        //Adding JsonArrayRequest to Request Queue
+        queue.add(newsReq);
     }
 
     @Override

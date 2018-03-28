@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/card_margin"
+        android:layout_margin="4dp"
         android:elevation="3dp"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
@@ -22,7 +22,6 @@
                 android:id="@+id/item_list_diundang_foto"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
-                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:scaleType="fitXY"
                 card_view:layout_constraintEnd_toEndOf="parent"
@@ -34,49 +33,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_list_diundang_foto"
+                android:fontFamily="@font/roboto_light"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:paddingTop="@dimen/album_title_padding"
                 android:textColor="@color/primaryTextBlack"
-                android:textSize="@dimen/album_title"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_foto" />
 
             <TextView
-                android:id="@+id/item_list_diundang_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/item_list_diundang_nama"
-                android:layout_weight="1"
-                android:paddingBottom="@dimen/songs_count_padding_bottom"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:textColor="@color/primaryTextBlack"
-                android:textSize="@dimen/songs_count"
-                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_nama" />
-
-            <TextView
                 android:id="@+id/item_list_diundang_namaevent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/item_list_diundang_subtitle"
                 android:layout_weight="1"
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textColor="@color/primaryTextBlack"
-                android:textSize="@dimen/songs_count_sub"
-                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_subtitle" />
+                android:textSize="12sp"
+                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_nama" />
 
             <ImageView
                 android:id="@+id/item_list_diundang_delete"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="4dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@color/colorPrimary"
                 android:elevation="4dp"
                 android:padding="5dp"
@@ -86,18 +71,18 @@
                 card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_namaevent" />
 
             <ImageView
-                android:visibility="gone"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
                 android:id="@+id/item_list_diundang_qrcode"
-                android:elevation="3dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
+                android:elevation="3dp"
+                android:visibility="gone"
                 card_view:layout_constraintBottom_toTopOf="@+id/item_list_diundang_containerstatus"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_namaevent"/>
+                card_view:layout_constraintTop_toBottomOf="@+id/item_list_diundang_namaevent" />
 
             <LinearLayout
                 android:id="@+id/item_list_diundang_containerstatus"
@@ -115,6 +100,7 @@
                     android:id="@+id/item_list_diundang_textstatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_light"
                     android:gravity="center"
                     android:textColor="@color/colorWhiteText" />
             </LinearLayout>

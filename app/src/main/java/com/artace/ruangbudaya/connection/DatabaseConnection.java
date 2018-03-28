@@ -19,6 +19,9 @@ public class DatabaseConnection {
     //READ JENIS SENIMAN
     public  static String READ_JENIS_SENIMAN = BASE_URL+"jenis_seniman/JenisSeniman.php";
 
+    //STATISTIK
+    public static String STATISTIK_MAIN = BASE_URL+"statistik/statistikMain.php";
+
     //UPLOAD
     public static String UPLOAD_FOTO_EO = BASE_URL+"upload/foto/Eo.php";
 
@@ -49,6 +52,10 @@ public class DatabaseConnection {
     public static String DIRECTORY_FOTO_USER_DEFAULT = BASE_URL+"images/user/default.png";
 
     public DatabaseConnection() {
+    }
+
+    public static String getStatistikMain() {
+        return STATISTIK_MAIN;
     }
 
     public static String getInsertTawaranTampil() {
