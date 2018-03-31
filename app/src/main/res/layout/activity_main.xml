@@ -94,7 +94,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto_light"
-                        android:text="54"
+                        tools:text="54"
                         android:textColor="#ED6549"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -136,7 +136,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto_light"
-                        android:text="54"
+                        tools:text="54"
                         android:textColor="#ED6549"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -578,7 +578,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         app:layout_collapseMode="pin"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
 
 </android.support.constraint.ConstraintLayout>

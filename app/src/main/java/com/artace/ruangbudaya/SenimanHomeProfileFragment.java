@@ -159,6 +159,7 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 no_hp.setEnabled(true);
+                keterangan.setEnabled(true);
                 fab.setVisibility(View.GONE);
                 ubahvid.setVisibility(View.VISIBLE);
                 imgubahvid.setVisibility(View.VISIBLE);
@@ -172,6 +173,7 @@ public class SenimanHomeProfileFragment extends Fragment {
             public void onClick(View v) {
                 submitForm();
                 no_hp.setEnabled(false);
+                keterangan.setEnabled(false);
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
@@ -184,6 +186,7 @@ public class SenimanHomeProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 no_hp.setEnabled(false);
+                keterangan.setEnabled(false);
                 fab.setVisibility(View.VISIBLE);
                 ubahvid.setVisibility(View.GONE);
                 imgubahvid.setVisibility(View.GONE);
