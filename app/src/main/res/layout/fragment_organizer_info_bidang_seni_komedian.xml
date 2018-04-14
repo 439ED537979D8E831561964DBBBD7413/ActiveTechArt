@@ -45,13 +45,10 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
                 android:id="@+id/item_list_info_komedian_layout_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_komedian_slider"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_komedian_slider">
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/item_list_info_komedian_card_view"
@@ -125,13 +122,10 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
                 android:id="@+id/item_list_info_komedian_layout_cardView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_list_info_komedian_layout_cardView"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/item_list_info_komedian_layout_cardView">
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/item_list_info_komedian_card_view2"
@@ -203,7 +197,7 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniKomedianFragment">
                 android:id="@+id/item_list_info_komedian_layout_cardView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginTop="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

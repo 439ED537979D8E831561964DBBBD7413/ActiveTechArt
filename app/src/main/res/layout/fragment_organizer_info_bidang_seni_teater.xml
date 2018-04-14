@@ -41,13 +41,10 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
             android:id="@+id/item_list_info_teater_layout_cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_teater_slider"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/organizer_info_bidang_seni_teater_slider">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/item_list_info_teater_card_view"
@@ -75,14 +72,14 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/item_list_info_teater_foto"
+                        android:paddingBottom="@dimen/album_title_padding"
                         android:paddingLeft="@dimen/album_title_padding"
                         android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:paddingBottom="@dimen/album_title_padding"
                         android:text="Wayang Wong"
-                        android:textStyle="bold"
                         android:textColor="@color/primaryTextBlack"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/item_list_info_teater_text"
@@ -96,6 +93,7 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:text="Wayang orang disebut juga dengan istilah wayang wong (bahasa Jawa) adalah wayang yang dimainkan dengan menggunakan orang sebagai tokoh dalam cerita wayang tersebut. Wayang orang diciptakan oleh Sultan Hamangkurat I pada tahun 1731. Cerita-cerita yang diangkat dalam wayang orang berbasis kepada due epic cerita kolosal yaitu Mahabharata dan Ramayana."
                         android:textColor="@color/primaryTextBlack"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/item_list_info_teater_text1b"
                         android:layout_width="match_parent"
@@ -120,13 +118,10 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
             android:id="@+id/item_list_info_teater_layout_cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_list_info_teater_layout_cardView"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/item_list_info_teater_layout_cardView">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/item_list_info_teater_card_view2"
@@ -154,14 +149,14 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/item_list_info_teater_foto2"
+                        android:paddingBottom="@dimen/album_title_padding"
                         android:paddingLeft="@dimen/album_title_padding"
                         android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:paddingBottom="@dimen/album_title_padding"
                         android:text="Randai"
-                        android:textStyle="bold"
                         android:textColor="@color/primaryTextBlack"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/item_list_info_teater_text2"
@@ -175,6 +170,7 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:text="Randai merupakan kesenian khas Minangkabau berupa aksi teater atau sandiwara dengan beberapa unsur seni. Unsur seni yang terkandung dalam kesenian Randai adalah seni drama, seni suara, seni tari, seni musik tradisional, dan juga seni beladiri silat. "
                         android:textColor="@color/primaryTextBlack"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/item_list_info_teater_text2b"
                         android:layout_width="match_parent"
@@ -197,7 +193,7 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
             android:id="@+id/item_list_info_teater_layout_cardView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -232,14 +228,14 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/item_list_info_teater_foto3"
+                        android:paddingBottom="@dimen/album_title_padding"
                         android:paddingLeft="@dimen/album_title_padding"
                         android:paddingRight="@dimen/album_title_padding"
                         android:paddingTop="@dimen/album_title_padding"
-                        android:paddingBottom="@dimen/album_title_padding"
                         android:text="Arja"
-                        android:textStyle="bold"
                         android:textColor="@color/primaryTextBlack"
-                        android:textSize="18dp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/item_list_info_teater_text3"
@@ -253,6 +249,7 @@ tools:context="com.artace.ruangbudaya.OrganizerInfoBidangSeniTeaterFragment">
                         android:text="Teater tradisional yang berasal dari Bali ini merupakan kombinasi dari berbagai seni yang terdapat di Bali, seperti seni tari, drama, vokal, hingga seni busana. Tapi, yang lebih hebat lagi, pertunjukan teater ini merupakan teater yang komunikatif dengan penontonnya, bahkan penonton tersebut bisa menentukan reaksi dari aktor dan aktris yang bemain di dalamnya."
                         android:textColor="@color/primaryTextBlack"
                         android:textSize="@dimen/album_title" />
+
                     <TextView
                         android:id="@+id/item_list_info_teater_text3b"
                         android:layout_width="match_parent"
