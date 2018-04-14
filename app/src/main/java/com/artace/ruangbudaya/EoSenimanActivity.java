@@ -124,6 +124,9 @@ public class EoSenimanActivity extends AppCompatActivity {
                             EditText nohpSeniman = (EditText) findViewById(R.id.eo_seniman_noTelp);
                             nohpSeniman.setText(obj.getString("no_hp"));
 
+                            EditText ketSeniman = (EditText) findViewById(R.id.eo_seniman_keterangan);
+                            ketSeniman.setText(obj.getString("keterangan"));
+
                             NetworkImageView fotoSeniman = (NetworkImageView) findViewById(R.id.eo_seniman_imageSeniman);
                             fotoSeniman.setImageUrl(DatabaseConnection.getBaseUrl() + obj.getString("foto"), AppController.getInstance().getImageLoader());
                             fotoSeniman.setOnClickListener(new View.OnClickListener() {

@@ -85,7 +85,7 @@
                     android:layout_height="25dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/date"
+                    android:src="@drawable/ic_calendar_black_48"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -243,7 +243,7 @@
                     android:layout_height="125dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/photo"
                     app:layout_constraintTop_toBottomOf="@id/tambah_event_layoutFoto1"/>
 
             </android.support.constraint.ConstraintLayout>
