@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //        //END : TOOLBAR
 //
-
         //start : recylcerviewSeniman
 
         recyclerView = findViewById(R.id.main_recyclerview_seniman);
@@ -99,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         getData();
-
         //end   : recyclerviewSeniman
 
         //start : recylcerviewEvent
@@ -127,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //START : CARDS
+
 
         cardTari = findViewById(R.id.main_card_view_tari);
         cardTari.setOnClickListener(new View.OnClickListener() {
@@ -188,10 +187,58 @@ public class MainActivity extends AppCompatActivity {
             }
         });
             //END : CARD
+
         getStatistik();
+     }
+
+    private void getStatistik(){
+        String urlRead;
+
+        urlRead = DatabaseConnection.getStatistikMain();
+        //Getting Instance of Volley Request Queue
+        RequestQueue queue1 = AppController.getInstance().getRequestQueue();
+        //Volley's inbuilt class to make Json array request
+        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try{
+                    JSONArray jr = response.getJSONArray(0);
+                    for (int i = 0; i < jr.length(); i++) {
+                        try {
+
+                            JSONObject obj = (JSONObject) jr.get(i);
+
+//                            int idAcara = obj.getInt("id_acara");
+//                            int idPenyelenggaraAcara = obj.getInt("id_penyelenggara_acara");
+
+                            statistikAcara = findViewById(R.id.main_statistik_acara);
+                            statistikKelompokSeniman = findViewById(R.id.main_statistik_seniman);
+
+                            statistikAcara.setText(obj.getString("jumlah_acara"));
+                            statistikKelompokSeniman.setText(obj.getString("jumlah_seniman"));
+
+                            Log.d("EventDetail","keterangan = "+obj.getInt("jumlah_acara"));
+
+                        } catch (Exception e) {
+                            System.out.println("LOG gamao! = " + e.getMessage());
+                            Log.e("Log asd3 = ", e.getMessage());
+                        }
+                    }
+                }catch (Exception e){
+                    System.out.println("LOG gamao diluar! = " + e.getMessage());
+                    Log.e("Log asd2 = ", e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("LOG_123OrganizerEventsFragment : "+error.getMessage());
+                Log.e("Log asd1 = ", error.getMessage());
+            }
+        });
+        //Adding JsonArrayRequest to Request Queue
+        queue1.add(newsReq);
     }
-
-
 
     public void getData(){
 
@@ -233,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+                System.out.println("LOG_SenimanFragment : "+error.getMessage());
 
             }
         });
@@ -281,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
+                System.out.println("LOG_EventsFragment : "+error.getMessage());
 
             }
         });
@@ -326,55 +373,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the thread
         t.start();
-    }
-
-    private void getStatistik(){
-        String urlRead1;
-
-        urlRead1 = DatabaseConnection.getStatistikMain();
-        //Getting Instance of Volley Request Queue
-        queue = AppController.getInstance().getRequestQueue();
-        //Volley's inbuilt class to make Json array request
-        JsonArrayRequest newsReq = new JsonArrayRequest(urlRead1, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try{
-                    JSONArray jr = response.getJSONArray(0);
-                    for (int i = 0; i < jr.length(); i++) {
-                        try {
-
-                            JSONObject obj = (JSONObject) jr.get(i);
-
-//                            int idAcara = obj.getInt("id_acara");
-//                            int idPenyelenggaraAcara = obj.getInt("id_penyelenggara_acara");
-
-                            statistikAcara = findViewById(R.id.main_statistik_acara);
-                            statistikKelompokSeniman = findViewById(R.id.main_statistik_seniman);
-
-                            statistikAcara.setText(obj.getString("jumlah_acara"));
-                            statistikKelompokSeniman.setText(obj.getString("jumlah_seniman"));
-
-                            Log.d("EventDetail","keterangan = "+obj.getInt("jumlah_acara"));
-
-                        } catch (Exception e) {
-                            System.out.println("LOG gamao! = " + e.getMessage());
-                            Log.e("Log asd3 = ", e.getMessage());
-                        }
-                    }
-                }catch (Exception e){
-                    System.out.println("LOG gamao diluar! = " + e.getMessage());
-                    Log.e("Log asd2 = ", e.getMessage());
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("LOG_OrganizerEventsFragment : "+error.getMessage());
-                Log.e("Log asd1 = ", error.getMessage());
-            }
-        });
-        //Adding JsonArrayRequest to Request Queue
-        queue.add(newsReq);
     }
 
     @Override

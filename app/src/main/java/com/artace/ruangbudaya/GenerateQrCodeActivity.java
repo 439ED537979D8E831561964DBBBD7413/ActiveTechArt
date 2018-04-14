@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,11 +32,11 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
 
         setToolbar();
 
-        qrcode = (ImageView) findViewById(R.id.generate_qrcode_image);
+        qrcode = findViewById(R.id.generate_qrcode_image);
 
-        namaeo = (TextView) findViewById(R.id.generate_qrcode_NamaPenyelenggaraAcara);
-        namaevent = (TextView) findViewById(R.id.generate_qrcode_namaEvent);
-        tanggal = (TextView) findViewById(R.id.generate_qrcode_tanggalAcara);
+        namaeo = findViewById(R.id.generate_qrcode_NamaPenyelenggaraAcara);
+        namaevent = findViewById(R.id.generate_qrcode_namaEvent);
+        tanggal = findViewById(R.id.generate_qrcode_tanggalAcara);
 
         Bundle extras = getIntent().getExtras();
 
@@ -60,7 +61,7 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
         try {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    BarcodeFormat.QR_CODE,
                     200, 200, null
             );
 
@@ -91,11 +92,22 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
 
 
     private void setToolbar(){
-        mToolbar = (Toolbar) findViewById(R.id.generate_qrcode_toolbar);
+        mToolbar = findViewById(R.id.generate_qrcode_toolbar);
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle("Konfirmasi Kehadiran");
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

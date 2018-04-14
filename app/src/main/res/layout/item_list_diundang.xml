@@ -21,7 +21,7 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/item_list_diundang_foto"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/album_cover_height"
+                android:layout_height="145dp"
                 android:clickable="true"
                 android:scaleType="fitXY"
                 card_view:layout_constraintEnd_toEndOf="parent"
@@ -72,12 +72,9 @@
 
             <ImageView
                 android:id="@+id/item_list_diundang_qrcode"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
                 android:elevation="3dp"
                 android:visibility="gone"
                 card_view:layout_constraintBottom_toTopOf="@+id/item_list_diundang_containerstatus"

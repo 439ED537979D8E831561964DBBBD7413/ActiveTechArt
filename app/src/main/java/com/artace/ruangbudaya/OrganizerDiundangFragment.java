@@ -68,7 +68,7 @@ public class OrganizerDiundangFragment extends Fragment {
     RelativeLayout rootView;
     RecyclerView recyclerView;
     ListDiundangAdapter adapter;
-    List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();;
+    List<PojoSeniman> senimanList = new ArrayList<PojoSeniman>();
     ProgressBar mLoadingAnim;
     SwipeRefreshLayout mSwipeRefreshLayout;
     RequestQueue queue;
@@ -121,21 +121,21 @@ public class OrganizerDiundangFragment extends Fragment {
 
         mainActivity = (OrganizerMainActivity) getActivity();
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.organizer_diundang_toolbar);
+        Toolbar toolbar = rootView.findViewById(R.id.organizer_diundang_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.organizer_diundang_recyclerview);
+        recyclerView = rootView.findViewById(R.id.organizer_diundang_recyclerview);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         adapter = new ListDiundangAdapter(getContext(), senimanList, OrganizerDiundangFragment.this);
         recyclerView.setAdapter(adapter);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.organizer_diundang_swipeRefreshLayout);
+        mSwipeRefreshLayout = rootView.findViewById(R.id.organizer_diundang_swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -220,7 +220,7 @@ public class OrganizerDiundangFragment extends Fragment {
 
     public void requestData(String url){
 
-        mLoadingAnim = (ProgressBar) rootView.findViewById(R.id.organizer_diundang_progressbar);
+        mLoadingAnim = rootView.findViewById(R.id.organizer_diundang_progressbar);
         mLoadingAnim.setVisibility(View.VISIBLE);
 
         //Getting Instance of Volley Request Queue
@@ -317,7 +317,7 @@ public class OrganizerDiundangFragment extends Fragment {
     }
 
     public void setToolbar(){
-        mToolbar = (Toolbar) rootView.findViewById(R.id.organizer_diundang_toolbar);
+        mToolbar = rootView.findViewById(R.id.organizer_diundang_toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
         ActionBar ab = ((AppCompatActivity)getActivity()).getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
