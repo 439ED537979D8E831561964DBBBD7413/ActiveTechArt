@@ -59,7 +59,7 @@
                     android:layout_height="125dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/ic_profile_pic_default" />
 
                 <Button
                     android:id="@+id/register_eventorganizer_browse_foto"

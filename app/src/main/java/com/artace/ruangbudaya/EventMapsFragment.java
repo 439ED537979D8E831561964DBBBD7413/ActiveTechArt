@@ -130,18 +130,9 @@ public class EventMapsFragment extends Fragment {
         setHasOptionsMenu(true);
         rootView = (RelativeLayout) inflater.inflate(R.layout.fragment_event_maps, container, false);
         //TODO : ganti jd jd maps
-//        recyclerView = (RecyclerView) rootView.findViewById(R.id.event_maps_recyclerview);
 
         final RelativeLayout rootViewFinal = rootView;
         mainActivity = (OrganizerMainActivity) getActivity();
-
-//        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.event_maps_swipeRefreshLayout);
-//        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                getEvents(googleMapGlobal);
-//            }
-//        });
 
         mFab = (FloatingActionButton) rootView.findViewById(R.id.event_maps_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -227,21 +218,11 @@ public class EventMapsFragment extends Fragment {
 
                             PojoEvent event = new PojoEvent(obj.getInt("id_acara"),obj.getInt("id_penyelenggara_acara"),obj.getString("nama"),obj.getString("tanggal"),obj.getString("keterangan"),DatabaseConnection.getBaseUrl() + obj.getString("foto"),obj.getString("nama_eo"), obj.getDouble("latitude"), obj.getDouble("longitude"));
 
-                            // adding event to events array
-                            // eventList.add(event);
-//                                    LatLng itemMap = new LatLng(obj.getDouble("latitude"), obj.getDouble("longitude"));
-//                                    googleMap.addMarker(new MarkerOptions().position(itemMap)
-//                                            .title(event.getNama())
-//                                            .snippet(event.getTanggal())
-//                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_account_circle_black_24dp))
-//                                            );
-//                                    Log.d("MapsFragment","Lat : "+obj.getDouble("latitude")+" Long :"+obj.getDouble("longitude"));
-
                             LatLng position = new LatLng(obj.getDouble("latitude"), obj.getDouble("longitude"));
 
                             MarkerOptions markerOptions = new MarkerOptions();
                             markerOptions.position(position)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_face));
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_maps_marker));
 
                             PojoEvent eventTag = new PojoEvent();
                             eventTag.setNama(obj.getString("nama"));
