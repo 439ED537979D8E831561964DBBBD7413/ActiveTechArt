@@ -78,12 +78,15 @@ public class MainActivity extends AppCompatActivity {
         ActionBar ab = this.getSupportActionBar();
         ab.setTitle("");
 
+
 //        //START : DRAWER MENU
 //
         DrawerMenu drawer = new DrawerMenu();
         drawer.createDrawer(this, this, mToolbar);
 
 //        //END : DRAWER MENU
+
+        initCollapsingToolbar();
 //
 //        //END : TOOLBAR
 //
@@ -373,6 +376,35 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the thread
         t.start();
+    }
+
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                findViewById(R.id.main_collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = findViewById(R.id.main_appbar);
+        appBarLayout.setExpanded(true);
+
+        // hiding & showing the title when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle("Ruang Budaya");
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+            }
+        });
+
     }
 
     @Override

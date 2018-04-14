@@ -12,14 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Seniman Jalanan"
+        android:text="Seniman Daerah"
         android:textColor="@color/colorWhiteText"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/intro_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Sebagai Seniman" />
+        />
 
 
     <android.support.v7.widget.CardView
@@ -56,5 +56,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intro_logo"
-        tools:text="Daftarkan diri, cantumkan video peformancemu, dan tunggu tawaran tampil dari event organizer" />
+        tools:text="Daftarkan diri, cantumkan video peformancemu, dan tunggu tawaran tampil dari Penyelenggara Acara" />
 </android.support.constraint.ConstraintLayout>

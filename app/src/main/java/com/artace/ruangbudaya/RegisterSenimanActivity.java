@@ -140,11 +140,9 @@ public class RegisterSenimanActivity extends AppCompatActivity {
                     if (passS.trim().length()>5){
                         submitForm(bitmapFoto);
                     }
-                    else
-                    {
+                    else{
                         Toast.makeText(getApplicationContext(),"Password minimal 6 karakter", Toast.LENGTH_SHORT).show();
                     }
-
                 }else{
                     Toast.makeText(RegisterSenimanActivity.this, "Data harus lengkap", Toast.LENGTH_SHORT).show();
                 }
